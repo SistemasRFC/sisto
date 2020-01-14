@@ -1,5 +1,5 @@
 <?php
-define('PATH', '/var/www/html/git/sisto/');
+define('PATH', '/var/www/html/sisto/');
 
 define('AGUARDANDO_ATENDIMENTO', 1);
 define('EM_DESENVOLVIMENTO', 2);
