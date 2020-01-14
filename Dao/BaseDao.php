@@ -13,8 +13,8 @@ class BaseDao{
     private static $dbtype   = "mysql";
     private static $host     = "localhost";
     private static $port     = "3306";
-    private static $user     = "maker";
-    private static $password = "maker";
+    private static $user     = "root";
+    private static $password = "Rfm1440@";
     private static $conexao = "";
     private static $db       = "sisto";
     public static $qtdRegistros = 0;
@@ -29,11 +29,11 @@ class BaseDao{
             //self::$conexao = mysqli_connect(self::getHost(),self::getUser(),self::getPassword());                    
             self::$conexao = new mysqli(self::getHost(), self::getUser(), self::getPassword(), self::getDB());
             if(mysqli_connect_errno()){          
-                print "Ocorreu um Erro na conexão MySQL:<b>".mysql_error()."</b>";
+                print "Ocorreu um Erro na conexão MySQL:<b>".mysqli_error()."</b>";
                 die();
             }
         }catch(Exception $e){
-            print "<b>".mysql_error()."</b>";
+            print "<b>".mysqli_error()."</b>";
         }
     }
 
