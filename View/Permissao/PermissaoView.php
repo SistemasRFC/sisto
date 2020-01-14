@@ -43,7 +43,7 @@
             </tr>
             <tr>
                 <td id="tdListaPermissaos" align="left">
-                    <div id="ListaPermissaos" style="overflow: auto; width: 50%"></div>
+                    <div id="ListaPermissaos" style="overflow: auto; width: 90%"></div>
                 </td>
             </tr>
             <tr>

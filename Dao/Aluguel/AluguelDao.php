@@ -53,54 +53,36 @@ class AluguelDao extends BaseDao
     }
     
     Public Function ListarAlugueisDia(){
-        $sql = "SELECT V.COD_VENDA AS COD_ALUGUEL,
-                       DATE_FORMAT(V.DTA_VENDA, '%d/%m/%Y') AS DTA_ALUGUEL,
-                       V.COD_CLIENTE,
-                       CL.NME_CLIENTE AS DSC_CLIENTE,
-                       CL.NRO_TELEFONE,
-                       VP.COD_PRODUTO_COR,
-                       CONCAT(P.DSC_PRODUTO,' ',C.DSC_COR) AS DSC_PRODUTO_COR,
-                       VP.QTD_VENDA AS QTD_ALUGUEL,
-                       SUM(VP.VLR_VENDA) AS VLR_TOTAL_ALUGUEL
-                  FROM RE_VENDA V
-                 INNER JOIN EN_CLIENTE CL
-                    ON V.COD_CLIENTE = CL.COD_CLIENTE
-                 INNER JOIN RE_VENDA_PRODUTO VP
-                    ON V.COD_VENDA = VP.COD_VENDA
-                 INNER JOIN RE_PRODUTO_COR PC
-                    ON VP.COD_PRODUTO_COR = PC.COD_PRODUTO_COR
-                 INNER JOIN EN_PRODUTO P
-                    ON PC.COD_PRODUTO = P.COD_PRODUTO
-                 INNER JOIN EN_COR C
-                    ON PC.COD_COR = C.COD_COR
-                 WHERE V.DTA_VENDA = NOW()
-                 ORDER BY V.DTA_VENDA, CL.NME_CLIENTE";
+        $sql = " SELECT V.COD_VENDA AS COD_ALUGUEL,
+                        DATE_FORMAT(V.DTA_VENDA, '%d/%m/%Y') AS DTA_ALUGUEL,
+                        V.COD_CLIENTE,
+                        CL.NME_CLIENTE AS DSC_CLIENTE,
+                        CL.NRO_TELEFONE,
+                        (SELECT SUM(VP.VLR_VENDA)
+                           FROM RE_VENDA_PRODUTO VP 
+                          WHERE VP.COD_VENDA = V.COD_VENDA) AS VLR_TOTAL_ALUGUEL
+                   FROM RE_VENDA V
+                  INNER JOIN EN_CLIENTE CL
+                     ON V.COD_CLIENTE = CL.COD_CLIENTE
+                  WHERE V.DTA_VENDA > NOW()
+                  ORDER BY V.DTA_VENDA, CL.NME_CLIENTE";
         return $this->selectDB($sql, false);
     }
     
     Public Function ListarAlugueisAgendados(){
-        $sql = "SELECT V.COD_VENDA AS COD_ALUGUEL,
-                       DATE_FORMAT(V.DTA_VENDA, '%d/%m/%Y') AS DTA_ALUGUEL,
-                       V.COD_CLIENTE,
-                       CL.NME_CLIENTE AS DSC_CLIENTE,
-                       CL.NRO_TELEFONE,
-                       VP.COD_PRODUTO_COR,
-                       CONCAT(P.DSC_PRODUTO,' ',C.DSC_COR) AS DSC_PRODUTO_COR,
-                       VP.QTD_VENDA AS QTD_ALUGUEL,
-                       SUM(VP.VLR_VENDA) AS VLR_TOTAL_ALUGUEL
-                  FROM RE_VENDA V
-                 INNER JOIN EN_CLIENTE CL
-                    ON V.COD_CLIENTE = CL.COD_CLIENTE
-                 INNER JOIN RE_VENDA_PRODUTO VP
-                    ON V.COD_VENDA = VP.COD_VENDA
-                 INNER JOIN RE_PRODUTO_COR PC
-                    ON VP.COD_PRODUTO_COR = PC.COD_PRODUTO_COR
-                 INNER JOIN EN_PRODUTO P
-                    ON PC.COD_PRODUTO = P.COD_PRODUTO
-                 INNER JOIN EN_COR C
-                    ON PC.COD_COR = C.COD_COR
-                 WHERE V.DTA_VENDA > NOW()
-                 ORDER BY V.DTA_VENDA, CL.NME_CLIENTE";
+        $sql = " SELECT V.COD_VENDA AS COD_ALUGUEL,
+                        DATE_FORMAT(V.DTA_VENDA, '%d/%m/%Y') AS DTA_ALUGUEL,
+                        V.COD_CLIENTE,
+                        CL.NME_CLIENTE AS DSC_CLIENTE,
+                        CL.NRO_TELEFONE,
+                        (SELECT SUM(VP.VLR_VENDA)
+                           FROM RE_VENDA_PRODUTO VP 
+                          WHERE VP.COD_VENDA = V.COD_VENDA) AS VLR_TOTAL_ALUGUEL
+                   FROM RE_VENDA V
+                  INNER JOIN EN_CLIENTE CL
+                     ON V.COD_CLIENTE = CL.COD_CLIENTE
+                  WHERE V.DTA_VENDA > NOW()
+                  ORDER BY V.DTA_VENDA, CL.NME_CLIENTE";
         return $this->selectDB($sql, false);
     }
 }

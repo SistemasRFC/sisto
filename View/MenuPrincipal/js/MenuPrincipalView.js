@@ -84,20 +84,18 @@ function montaGridAlugueisAgendados(dados){
             dados = dados[1];
             var grid = '<table id="tbAlugueisA" class="display" style="width:100%">';
             grid += '<thead><tr>';
-            grid += ' <th width="15%"><b>Data</b></th>';
+            grid += ' <th width="5%"><b>Cod.</b></th>';
+            grid += ' <th width="10%"><b>Data</b></th>';
             grid += ' <th width="15%"><b>Cliente</b></th>';
             grid += ' <th width="15%"><b>Telefone</b></th>';
-            grid += ' <th width="30%"><b>Produtos</b></th>';
-            grid += ' <th width="10%"><b>Quantidade</b></th>';
             grid += ' <th width="15%"><b>Valor</b></th>';
             grid += '</tr></thead><tbody>';
             for (i=0;i<dados.length;i++){
                 grid += '<tr>';
+                grid += ' <td>'+dados[i].COD_ALUGUEL+'</td>';
                 grid += ' <td>'+dados[i].DTA_ALUGUEL+'</td>';
                 grid += ' <td>'+dados[i].DSC_CLIENTE+'</td>';
                 grid += ' <td>'+dados[i].NRO_TELEFONE+'</td>';
-                grid += ' <td>'+dados[i].DSC_PRODUTO_COR+'</td>';
-                grid += ' <td>'+dados[i].QTD_ALUGUEL+'</td>';
                 grid += ' <td>'+dados[i].VLR_TOTAL_ALUGUEL+'</td>';
                 grid += '</tr>';
             }

@@ -71,8 +71,9 @@ function salvarMenu(){
 function trataRetornoSalvar(retorno){
     if (retorno[0]==true){
         $("#codMenu").val(retorno[2]);
-        swal.close();
         carregarListaMenus();
+        $("#cadastroMenu").modal('hide');
+        swal.close();
     }else{
         $(".jquery-waiting-base-container").fadeOut({modo:"fast"});
         swal({

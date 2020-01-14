@@ -61,18 +61,11 @@ class AluguelModel extends BaseModel
         return json_encode($lista);
     }
     
-    Public Function ListarAlugueisAgendados($Json=true){
+    Public Function ListarAlugueisAgendados(){
         $dao = new AluguelDao();
         $lista = $dao->ListarAlugueisAgendados();
-        if($lista[0] && $lista[1]['COD_ALUGUEL']=null){
-            $lista[0] = false;
-            $lista[1] = null;
-        }
-        if ($Json){
-            return json_encode($lista);
-        }else{
-            return $lista;        
-        }
+        
+        return json_encode($lista);
     }
 }
 

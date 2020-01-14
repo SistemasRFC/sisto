@@ -14,10 +14,10 @@ class MenuPrincipalDao extends BaseDao
                U.TXT_SENHA,
                '250px' AS VLR_TAMANHO_SUBMENU,
                (SELECT COUNT(*) 
-		  FROM SE_MENU MI 
-		 WHERE M.COD_MENU = MI.COD_MENU_PAI 
-                   AND M.IND_ATIVO = 'S' 
-                   AND M.IND_VISIBLE = 'S') AS QTD_FILHOS
+                  FROM SE_MENU MI 
+                 WHERE M.COD_MENU = MI.COD_MENU_PAI
+                   AND MI.IND_ATIVO = 'S' 
+                   AND MI.IND_VISIBLE = 'S') AS QTD_FILHOS
           FROM SE_MENU M
          INNER JOIN SE_MENU_PERFIL MP
             ON M.COD_MENU = MP.COD_MENU

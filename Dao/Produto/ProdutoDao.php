@@ -44,17 +44,19 @@ class ProdutoDao extends BaseDao
                          FROM RE_PRODUTO_COR
                         WHERE COD_PRODUTO = '".filter_input(INPUT_POST, 'codProduto', FILTER_SANITIZE_NUMBER_INT)."'
                           AND COD_COR = '".$codCor."'";
+                        //   echo $sql_select;
         return $this->selectDB($sql_select, false);
         
     }
 
-    Public Function InsertProdutoCor($codCor, $vlrProdutoCor, $qtdProdutoCor){
+    Public Function InsertProdutoCor($codProduto, $codCor, $vlrProdutoCor, $qtdProdutoCor){
             $sql = "INSERT INTO RE_PRODUTO_COR
                                 (COD_PRODUTO, COD_COR, VLR_PRODUTO_COR, QTD_PRODUTO_COR) 
-                         VALUES ('".filter_input(INPUT_POST, 'codProduto', FILTER_SANITIZE_NUMBER_INT)."',
+                         VALUES ('".$codProduto."',
                                  '".$codCor."', 
                                  '".$vlrProdutoCor."',
                                  '".$qtdProdutoCor."')";
+                                //  echo $sql;
         return $this->insertDB($sql);
     }
 

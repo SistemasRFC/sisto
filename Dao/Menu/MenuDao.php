@@ -5,13 +5,13 @@ class MenuDao extends BaseDao
     Protected $tableName = "SE_MENU";
     
     Protected $columns = array ("dscMenu"           => array("column" => "DSC_MENU", "typeColumn" => "S"),
-                                "nmeController"             => array("column" => "NME_CONTROLLER", "typeColumn" => "S"), 
-                                "nmeMethod"            => array("column" => "NME_METHOD", "typeColumn" => "S"),
-                                "codMenuPai"             => array("column" => "COD_MENU_PAI", "typeColumn" => "I"),
-                                "indAtivo"             => array("column" => "IND_ATIVO", "typeColumn" => "S"),
-                                "indVisible"             => array("column" => "IND_VISIBLE", "typeColumn" => "S"),
-                                "indMobile"             => array("column" => "IND_MOBILE", "typeColumn" => "S"),
-                                "codMenuPai"             => array("column" => "COD_MENU_PAI", "typeColumn" => "I"));
+                                "nmeController"     => array("column" => "NME_CONTROLLER", "typeColumn" => "S"), 
+                                "nmeMethod"         => array("column" => "NME_METHOD", "typeColumn" => "S"),
+                                "codMenuPai"        => array("column" => "COD_MENU_PAI", "typeColumn" => "I"),
+                                "indAtivo"          => array("column" => "IND_ATIVO", "typeColumn" => "S"),
+                                "indVisible"        => array("column" => "IND_VISIBLE", "typeColumn" => "S"),
+                                "dscCaminhoImagem"  => array("column" => "DSC_CAMINHO_IMAGEM", "typeColumn" => "S"),
+                                "codMenuPai"        => array("column" => "COD_MENU_PAI", "typeColumn" => "I"));
     
     Protected $columnKey = array("codMenu"          => array("column" => "COD_MENU", "typeColumn" => "I"));
     

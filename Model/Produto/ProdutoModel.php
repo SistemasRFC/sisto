@@ -25,10 +25,12 @@ class ProdutoModel extends BaseModel
         $dao->IniciaTransacao();
         $result = $dao->InsertProduto();
         if($result[0]){
+            $codVenda = $result[2];
             $array = explode("$", $_POST['codCor']);
             for ($i=0;$i<count($array)-1;$i++){
             $registro=explode('#',$array[$i]);
-            $result = $dao->InsertProdutoCor($registro[0], $registro[1], $registro[2]);    
+            $registro[1] = str_replace(",", ".", str_replace(".", "", $registro[1]));
+            $result = $dao->InsertProdutoCor($codVenda, $registro[0], $registro[1], $registro[2]);    
             }
             if($result[0]){
                 $dao->ComitaTransacao();
@@ -47,11 +49,13 @@ class ProdutoModel extends BaseModel
             $array = explode("$", $_POST['codCor']);
             for ($i=0;$i<count($array)-1;$i++){
                 $registro=explode('#',$array[$i]);
-                $result = $dao->VerificaProdutoCor($registro[0]);
-                if($result[1] == NULL){
-                    $result = $dao->InsertProdutoCor($registro[0], $registro[1], $registro[2]);
-                }else{
-                    $result = $dao->UpdateProdutoCor($registro[0], $registro[1], $registro[2]);
+                if($registro[2] != 0){
+                    $result = $dao->VerificaProdutoCor($registro[0]);
+                    if($result[1] == NULL){
+                        $result = $dao->InsertProdutoCor($registro[0], $registro[1], $registro[2]);
+                    }else{
+                        $result = $dao->UpdateProdutoCor($registro[0], $registro[1], $registro[2]);
+                    }
                 }
             }
             if($result[0]){

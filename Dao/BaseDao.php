@@ -13,8 +13,8 @@ class BaseDao{
     private static $dbtype   = "mysql";
     private static $host     = "localhost";
     private static $port     = "3306";
-    private static $user     = "root";
-    private static $password = "";
+    private static $user     = "maker";
+    private static $password = "maker";
     private static $conexao = "";
     private static $db       = "sisto";
     public static $qtdRegistros = 0;

@@ -6,7 +6,7 @@ define("DSC_FUNC", "Function");
 
 class BaseController {
 
-    public static $defaultPath = 'sisto';
+    public static $defaultPath = 'git/sisto';
     /**
      * Construtor da BaseController 
      */
