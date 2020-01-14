@@ -64,7 +64,7 @@ class AluguelDao extends BaseDao
                    FROM RE_VENDA V
                   INNER JOIN EN_CLIENTE CL
                      ON V.COD_CLIENTE = CL.COD_CLIENTE
-                  WHERE V.DTA_VENDA > NOW()
+                  WHERE V.DTA_VENDA = NOW()
                   ORDER BY V.DTA_VENDA, CL.NME_CLIENTE";
         return $this->selectDB($sql, false);
     }
