@@ -1,6 +1,7 @@
 <?php
 include_once(PATH."Model/BaseModel.php");
 include_once(PATH."Dao/Produto/ProdutoDao.php");
+include_once(PATH."Resources/php/FuncoesMoeda.php");
 class ProdutoModel extends BaseModel
 {
     public function ProdutoModel(){
@@ -13,6 +14,9 @@ class ProdutoModel extends BaseModel
     Public Function ListarProdutos($Json=true){
         $dao = new ProdutoDao();
         $lista = $dao->ListarProdutos();
+        if ($lista[0]){
+            $lista = FuncoesMoeda::FormataMoedaInArray($lista, 'VLR_PRODUTO');
+        }
         if ($Json){
             return json_encode($lista);
         }else{
