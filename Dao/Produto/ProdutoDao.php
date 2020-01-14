@@ -88,4 +88,20 @@ class ProdutoDao extends BaseDao
 //       echo $sql;die;
         return $this->selectDB($sql, false);
     }
+    
+    Public Function ListarProdutosPorDia($dta, $codProduto=75){
+        $sql="";
+        for($i=0;$i<7;$i++){
+            $sql .= "(SELECT '".$dta[$i]."' AS DTA_VENDA, COALESCE((SELECT COALESCE(SUM(VP.QTD_VENDA),0) AS QTD_VENDA
+                      FROM RE_VENDA V
+                     INNER JOIN RE_VENDA_PRODUTO VP
+                        ON V.COD_VENDA = VP.COD_VENDA
+                     WHERE DTA_VENDA = '".$this->ConverteDataForm($dta[$i])."'
+                       AND VP.COD_PRODUTO_COR=$codProduto
+                     GROUP BY DTA_VENDA),0) AS QTD_VENDA) UNION ALL";
+        }
+        $sql = substr($sql, 0, strlen($sql)-strlen(" UNION ALL"));
+//        echo $sql;
+        return $this->selectDB($sql, false);
+    }
 }
