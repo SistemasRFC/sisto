@@ -29,7 +29,7 @@ function montaGridProdutos(dados){
             tabela += '<td>'+dados[i].DSC_PRODUTO+'</td>';
             tabela += '<td>'+dados[i].DSC_COR+'</td>';
             tabela += '<td>'+dados[i].QTD_PRODUTO+'</td>';
-            tabela += '<td> R$ '+dados[i].VLR_PRODUTO+',00</td>';
+            tabela += '<td> R$ '+dados[i].VLR_PRODUTO+'</td>';
             tabela += "<td><a href=\"javascript:carregaCamposProduto('"+dados[i].COD_PRODUTO+"', '"+dados[i].DSC_PRODUTO+"');\">Editar</a></td>";
             tabela += '</tr>';
 
