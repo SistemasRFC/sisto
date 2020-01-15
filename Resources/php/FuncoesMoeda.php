@@ -3,8 +3,7 @@
 class FuncoesMoeda{
     
     Public Static Function FormataMoeda($campo) {
-        $campo = number_format($campo, 2, ",", ".");
-        return $campo;
+        return number_format($campo, 2, ",", ".");
     }
 
     Public Static Function FormataMoedaInArray($lista, $campo, $indice=1) {

@@ -54,7 +54,7 @@ class FuncoesData{
      * @param type $years
      * @return type
      */
-    Public Function makeDate($date, $days = 0, $mounths = 0, $years = 0) {
+    Public Static Function makeDate($date, $days = 0, $mounths = 0, $years = 0) {
         $date = explode("/", $date);
         return date('d/m/Y', mktime(0, 0, 0, $date[1] + $mounths, $date[0] + $days, $date[2] + $years));
     }

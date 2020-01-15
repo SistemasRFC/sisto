@@ -36,5 +36,10 @@ class ProdutoController extends BaseController
         $ProdutoModel = new ProdutoModel();
         echo $ProdutoModel->ListarProdutoCor();
     }
+    
+    Public Function ListarProdutosPorDia(){
+        $ProdutoModel = new ProdutoModel();
+        echo $ProdutoModel->ListarProdutosPorDia();        
+    }
 }
 $classController = new ProdutoController();
