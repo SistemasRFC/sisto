@@ -73,6 +73,7 @@ function montaGridProdutosAluguel(dados){
     if(dados[0]){
         dados = dados[1];
         if(dados != null){
+            console.log(dados);
             var tabela = '<table id="tbProdutosAluguel" class="display" style="width:100%">';
             tabela += '<thead>';
             tabela += '<tr>';
@@ -84,12 +85,11 @@ function montaGridProdutosAluguel(dados){
             tabela += '</tr>';
             tabela += '</thead><tbody>';
             for (i=0;i<dados.length;i++){
-
                 tabela += '<tr>';
                 tabela += '<td>'+dados[i].DSC_PRODUTO_COR+'</td>';
                 tabela += '<td>'+dados[i].QTD_PRODUTO_ALUGUEL+'</td>';
-                tabela += '<td>R$ '+dados[i].VLR_PRODUTO_COR+',00</td>';
-                tabela += '<td>R$ '+dados[i].VLR_ALUGUEL+',00</td>';
+                tabela += '<td>R$ '+dados[i].VLR_PRODUTO_COR+'</td>';
+                tabela += '<td>R$ '+dados[i].VLR_ALUGUEL+'</td>';
                 tabela += "<td><a href=\"javascript:carregaCamposProdutoAluguel('"+dados[i].COD_PRODUTO_ALUGUEL+"', '"+dados[i].COD_PRODUTO_COR+"', '"+dados[i].QTD_PRODUTO_ALUGUEL+"');\">Editar</a> \n\
                                &nbsp;&nbsp; <a href=\"javascript:removeProdutoAluguel('"+dados[i].COD_PRODUTO_ALUGUEL+"');\">Excluir</a></td>";
                 tabela += '</tr>';
@@ -100,7 +100,7 @@ function montaGridProdutosAluguel(dados){
             tabela += '<tr>';
             tabela += '<th colspan= "3"></th>';
             tabela += '<th><b>Total</b></th>';
-            tabela += '<th>'+dados["VLR_TOTAL_ALUGUEL"]+'</th>';
+            tabela += '<th>'+totalFinal+'</th>';
             tabela += '</tr>';
             tabela += '</tfoot>';
             tabela += '</table>';

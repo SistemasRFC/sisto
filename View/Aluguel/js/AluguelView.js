@@ -34,7 +34,12 @@ function montaGridAluguel(dados){
                 tabela += '<td>'+dados[i].DTA_ALUGUEL+'</td>';
                 tabela += '<td>'+dados[i].NME_CLIENTE+'</td>';
                 tabela += '<td>'+dados[i].DSC_SITUACAO+'</td>';
-                tabela += "<td><a href=\"javascript:carregaCamposAluguel('"+dados[i].COD_ALUGUEL+"', '"+dados[i].DTA_ALUGUEL+"', '"+dados[i].COD_CLIENTE+"', '"+dados[i].COD_SITUACAO+"');\">Editar</a></td>";
+                tabela += "<td>";
+                tabela += " <a href=\"javascript:carregaCamposAluguel('"+dados[i].COD_ALUGUEL+"', '"+dados[i].DTA_ALUGUEL+"', '"+dados[i].COD_CLIENTE+"', '"+dados[i].COD_SITUACAO+"');\">Editar</a>";
+                tabela += " <a href=\"javascript:alteraStatusAluguel('"+dados[i].COD_ALUGUEL+"', '9');\">Entregar</a>";
+                tabela += " <a href=\"javascript:alteraStatusAluguel('"+dados[i].COD_ALUGUEL+"', '6');\">Buscar</a>";
+                tabela += " <a href=\"javascript:alteraStatusAluguel('"+dados[i].COD_ALUGUEL+"', '7');\">Cancelar</a>";
+                tabela += "</td>";
                 tabela += '</tr>';
 
             }
@@ -72,6 +77,11 @@ function montaGridAluguel(dados){
             $("#tabelaAlugueis").html(tabela);
         }
     }
+}
+
+function alteraStatusAluguel(codAluguel, status) {
+    var parametros = 'codAluguel;'+codAluguel+'|codSituacao;'+status;
+    ExecutaDispatch('Aluguel', 'UpdateAluguel', parametros, retornoInsertAluguel);
 }
 
 $(document).ready(function(){

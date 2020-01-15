@@ -20,18 +20,12 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-6">
-            <label for="search"><b>Produto:</b></label>
-        </div>
-        <div class="col-4">
-            <b>Quantidade:</b>
-        </div>
-        <div class="col-2">&nbsp;</div>
-    </div>
-    <div class="row">
-        <div class="col-6">
+            <label for="search"><b>Produto: </b></label>
+            <!-- Transformar para ficar igual campo do cliente-->
             <div id="divComboboxProduto"></div>
         </div>
-        <div class="col-4">
+        <div class="col-2">
+            <label><b>Quantidade</b></label>
             <input type="text" id="qtdProdutoAluguel" class="form-control">
         </div>
     </div>

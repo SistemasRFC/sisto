@@ -18,6 +18,7 @@
             <div class="row">&nbsp;</div>
             <div class="row">&nbsp;</div>
             <div class="row">
+                <div class="col-1"></div>
                 <div class="col-1">
                     <input type="button" id="btnNovoAluguel" class="btn btn-secondary" value="Novo Aluguel">
                 </div>

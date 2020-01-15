@@ -2,6 +2,8 @@
         <script src="../../Resources/jquery/jquery-1.10.1.min.js"></script>
         <script src="../../Resources/bootstrap/js/popper.min.js?rdm=<?php echo time();?>"></script>
         <script src="../../Resources/bootstrap/js/bootstrap.min.js?rdm=<?php echo time();?>"></script>
+        <link href="../../Resources/css/style.css?rdm=<?php echo time();?>" rel="stylesheet">
+
         <!-- Bootstrap core CSS -->
         <link href="../../Resources/bootstrap/css/bootstrap.min.css?rdm=<?php echo time();?>" rel="stylesheet">
         <!-- Custom styles for this template -->
