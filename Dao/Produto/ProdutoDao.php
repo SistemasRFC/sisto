@@ -98,6 +98,7 @@ class ProdutoDao extends BaseDao
                         ON V.COD_VENDA = VP.COD_VENDA
                      WHERE DTA_VENDA = '".$this->ConverteDataForm($dta[$i])."'
                        AND VP.COD_PRODUTO_COR=$codProduto
+                       AND V.COD_SITUACAO IN (8,9)
                      GROUP BY DTA_VENDA),0) AS QTD_VENDA) UNION ALL";
         }
         $sql = substr($sql, 0, strlen($sql)-strlen(" UNION ALL"));
