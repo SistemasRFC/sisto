@@ -12,17 +12,18 @@
             <div class="row">&nbsp;</div>
             <div class="row">&nbsp;</div>
             <div class="row">&nbsp;</div>
-            <div class="row">&nbsp;</div>
             <div class="row">
+                <div class="col-1"></div>
                 <div class="col-1">
                     <input type="button" id="btnNovoCliente" class="btn btn-secondary" value="Novo Cliente">
                 </div>
             </div>
+            <div class="row">&nbsp;</div>
         </div>
         <!-- <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <?php include_once "CadClienteView.php";?>
+                    <?php //include_once "CadClienteView.php";?>
                 </div>
             </div>
             <div class="row">&nbsp;</div>

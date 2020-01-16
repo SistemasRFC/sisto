@@ -77,7 +77,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Voltar</button>
-                <button type="button" class="btn btn-primary" id="btnSalvarProdutoCor">Salvar</button>
+                <button type="button" class="btn btn-primary" id="btnSalvarCliente">Salvar</button>
             </div>
         </div>
     </div>

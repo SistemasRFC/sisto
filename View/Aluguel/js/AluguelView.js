@@ -22,23 +22,23 @@ function montaGridAluguel(dados){
             var tabela = '<table id="tbAluguel" class="display" style="width:100%">';
             tabela += '<thead>';
             tabela += '<tr>';
-            tabela += '<th><b>Data</b></th>';
-            tabela += '<th><b>Cliente</b></th>';
-            tabela += '<th><b>Situação</b></th>';
-            tabela += '<th><b>Ação</b></th>';
+            tabela += " <th width='12%' style='text-align: center;'><b>Data</b></th>";
+            tabela += " <th width='35%'><b>Cliente</b></th>";
+            tabela += " <th width='10%'><b>Situação</b></th>";
+            tabela += " <th width='30%' style='text-align: center;'><b>Ação</b></th>";
             tabela += '</tr>';
             tabela += '</thead><tbody>';
             for (i=0;i<dados.length;i++){
 
                 tabela += '<tr>';
-                tabela += '<td>'+dados[i].DTA_ALUGUEL+'</td>';
+                tabela += "<td style='text-align: center;'>"+dados[i].DTA_ALUGUEL+"</td>";
                 tabela += '<td>'+dados[i].NME_CLIENTE+'</td>';
                 tabela += '<td>'+dados[i].DSC_SITUACAO+'</td>';
-                tabela += "<td>";
+                tabela += "<td style='text-align: center;'>";
                 tabela += " <a href=\"javascript:carregaCamposAluguel('"+dados[i].COD_ALUGUEL+"', '"+dados[i].DTA_ALUGUEL+"', '"+dados[i].COD_CLIENTE+"', '"+dados[i].COD_SITUACAO+"');\">Editar</a>";
-                tabela += " <a href=\"javascript:alteraStatusAluguel('"+dados[i].COD_ALUGUEL+"', '9');\">Entregar</a>";
-                tabela += " <a href=\"javascript:alteraStatusAluguel('"+dados[i].COD_ALUGUEL+"', '6');\">Buscar</a>";
-                tabela += " <a href=\"javascript:alteraStatusAluguel('"+dados[i].COD_ALUGUEL+"', '7');\">Cancelar</a>";
+                tabela += " | <a href=\"javascript:alteraStatusAluguel('"+dados[i].COD_ALUGUEL+"', '9');\">Entregar</a>";
+                tabela += " | <a href=\"javascript:alteraStatusAluguel('"+dados[i].COD_ALUGUEL+"', '6');\">Buscar</a>";
+                tabela += " | <a href=\"javascript:alteraStatusAluguel('"+dados[i].COD_ALUGUEL+"', '7');\">Cancelar</a>";
                 tabela += "</td>";
                 tabela += '</tr>';
 

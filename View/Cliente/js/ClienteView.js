@@ -3,6 +3,23 @@ $(function() {
         limparCampos();
         $("#modalCadCliente").modal('show');
     });
+
+    $("#btnSalvarCliente").click(function(){
+        if($("#nmeCliente").val() == '' || $("#nroTelefone").val() == ''){
+            swal({
+                title: "Aviso!",
+                text: "Preencha os campos: Nome e Telefone!",
+                type: "info",
+                confirmButtonText: "Fechar"
+            }); 
+        }else{
+            if($("#codCliente").val() == 0){
+                inserirCliente();
+            }else{
+                updateCliente();
+            }   
+        }
+    });
 });
 
 function carregaGridClientes(){
