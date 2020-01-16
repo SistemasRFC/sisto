@@ -19,6 +19,12 @@ class ClienteModel extends BaseModel
             return $lista;        
         }
     }
+
+    Public Function ListarClientesAutoComplete(){
+        $dao = new ClienteDao();
+        $lista = $dao->ListarClientesAutoComplete();
+        return json_encode($lista);
+    }
     
     Public Function InsertCliente(){
         $dao = new ClienteDao();        

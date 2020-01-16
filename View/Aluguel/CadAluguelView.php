@@ -11,15 +11,13 @@
     </div>
     <div class="row">&nbsp;</div>
     <div class="row">
-        <div class="col-5">
-        <form autocomplete="off" action="/action_page.php">
-            <div class="autocomplete" style="width:300px;">
-                <input id="myInput" type="text" name="myCountry" placeholder="Country">
-            </div>
-            <!-- <input type="submit"> -->
-        </form>
-            <!-- <label><b>Cliente</b></label>
-            <input type="text" class="form-control" id="nmeCliente" name="nmeCliente"> -->
+        <div class="col-6">
+            <form autocomplete="off">
+                <label><b>Cliente</b></label>
+                <div class="autocomplete" >
+                    <input id="nmeCliente" class="form-control" type="text" name="nmeCliente" placeholder="Nome...">
+                </div>
+            </form>
         </div>
         <div class="col-1" style="padding: 0px;padding-top: 32px;">
             <button id="bntIncCliente" class="btn btn-default" title="Incluir Cliente" style="border: 1px solid #ccc;cursor: pointer;">...</button>
@@ -65,17 +63,17 @@
     </div>
 </div>
 </html>
-<!--<div class="modal fade bd-example-modal-lg" id="CadProdutoAluguel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+<div class="modal fade bd-example-modal-lg" id="modalCliente" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Produtos</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">Cliente</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <?php //include_once "CadProdutoAluguelView.php";?>
+                <?php include_once "../Cliente/CadClienteView.php";?>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Voltar</button>
@@ -83,4 +81,4 @@
             </div>
         </div>
     </div>
-</div>-->
+</div>

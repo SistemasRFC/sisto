@@ -4,11 +4,13 @@ class ClienteDao extends BaseDao
 {
     Protected $tableName = "EN_CLIENTE";
     
-    Protected $columns = array ("nmeCliente"   => array("column" =>"NME_CLIENTE", "typeColumn" =>"S"),
+    Protected $columns = array ("nmeCliente"    => array("column" =>"NME_CLIENTE", "typeColumn" =>"S"),
                                 "nroTelefone"   => array("column" =>"NRO_TELEFONE", "typeColumn" =>"S"),
-                                "txtEmail"   => array("column" =>"TXT_EMAIL", "typeColumn" =>"S"));
+                                "txtEmail"      => array("column" =>"TXT_EMAIL", "typeColumn" =>"S"),
+                                "nroCpf"        => array("column" =>"NRO_CPF", "typeColumn" =>"S"),
+                                "dscEndereco"   => array("column" =>"DSC_ENDERECO", "typeColumn" =>"S"));
     
-    Protected $columnKey = array("codCliente"=> array("column" =>"COD_CLIENTE", "typeColumn" => "I"));
+    Protected $columnKey = array("codCliente"   => array("column" =>"COD_CLIENTE", "typeColumn" => "I"));
     
     Public Function ClienteDao(){
         $this->conect();
@@ -16,6 +18,14 @@ class ClienteDao extends BaseDao
 
     Public Function ListarClientes(){
         return $this->MontarSelect();
+    }
+
+    Public Function ListarClientesAutoComplete(){
+        $select = " SELECT COD_CLIENTE AS COD,
+                           NME_CLIENTE AS TEXT
+                      FROM EN_CLIENTE ";
+
+        return $this->selectDB($select, false);
     }
 
     Public Function UpdateCliente(){

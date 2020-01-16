@@ -13,4 +13,5 @@
         <!-- DataTables -->
         <link rel="stylesheet" type="text/css" href="../../Resources/datatable/datatable.css"/>
         <script type="text/javascript" src="../../Resources/datatable/datatable.js"></script>
+        <script type="text/javascript" src="../../Resources/autoComplete/js/autoComplete.js"></script>
 </html>

@@ -1,8 +1,7 @@
 $(function() {
     $("#btnNovoCliente").click(function(){
-        $("#nmeCliente").val('');
-        $("#nroTelefone").val('');
-        $("#txtEmailCliente").val('');
+        limparCampos();
+        $("#modalCadCliente").modal('show');
     });
 });
 
@@ -17,8 +16,9 @@ function montaGridClientes(dados){
         tabela += '<thead>';
         tabela += '<tr>';
         tabela += '<th><b>Nome</b></th>';
+        tabela += '<th><b>CPF</b></th>';
         tabela += '<th><b>Telefone</b></th>';
-        tabela += '<th><b>Email</b></th>';
+        tabela += '<th><b>Endereço</b></th>';
         tabela += '<th><b>Ação</b></th>';
         tabela += '</tr>';
         tabela += '</thead><tbody>';
@@ -26,9 +26,10 @@ function montaGridClientes(dados){
 
             tabela += '<tr>';
             tabela += '<td>'+dados[i].NME_CLIENTE+'</td>';
+            tabela += '<td>'+dados[i].NRO_CPF+'</td>';
             tabela += '<td>'+dados[i].NRO_TELEFONE+'</td>';
-            tabela += '<td>'+dados[i].TXT_EMAIL+'</td>';
-            tabela += "<td><a href=\"javascript:carregaCamposCliente('"+dados[i].COD_CLIENTE+"', '"+dados[i].NME_CLIENTE+"', '"+dados[i].NRO_TELEFONE+"', '"+dados[i].TXT_EMAIL+"');\">Editar</a></td>";
+            tabela += '<td>'+dados[i].DSC_ENDERECO+'</td>';
+            tabela += "<td><a href=\"javascript:carregaCamposCliente('"+dados[i].COD_CLIENTE+"', '"+dados[i].NME_CLIENTE+"', '"+dados[i].NRO_CPF+"', '"+dados[i].NRO_TELEFONE+"', '"+dados[i].TXT_EMAIL+"', '"+dados[i].DSC_ENDERECO+"');\">Editar</a></td>";
             tabela += '</tr>';
 
         }
@@ -63,6 +64,15 @@ function montaGridClientes(dados){
             }
         });
     }
+}
+
+function limparCampos() {
+    $("#codCliente").val(0); 
+    $("#nmeCliente").val(''); 
+    $("#nroCpf").val(''); 
+    $("#nroTelefone").val(''); 
+    $("#txtEmail").val(''); 
+    $("#dscEndereco").val(''); 
 }
 
 $(document).ready(function(){

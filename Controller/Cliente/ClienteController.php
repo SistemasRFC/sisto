@@ -16,6 +16,11 @@ class ClienteController extends BaseController
         $ClienteModel = new ClienteModel();
         echo $ClienteModel->ListarClientes();
     }
+
+    Public Function ListarClientesAutoComplete(){
+        $ClienteModel = new ClienteModel();
+        echo $ClienteModel->ListarClientesAutoComplete();
+    }
     
     Public Function InsertCliente(){
         $ClienteModel = new ClienteModel();
