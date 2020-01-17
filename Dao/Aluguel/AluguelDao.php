@@ -16,13 +16,16 @@ class AluguelDao extends BaseDao
     }
 
     Public Function ListarAluguel(){
-        $sql = "SELECT V.COD_VENDA AS COD_ALUGUEL,
+        $select = "SELECT V.COD_VENDA AS COD_ALUGUEL,
                        DATE_FORMAT(V.DTA_VENDA, '%d/%m/%Y') AS DTA_ALUGUEL,
                        U.NME_USUARIO,
                        V.COD_CLIENTE,
                        C.NME_CLIENTE,
                        V.COD_SITUACAO,
-                       S.DSC_SITUACAO
+                       S.DSC_SITUACAO,
+                        (SELECT SUM(VP.VLR_VENDA)
+                           FROM RE_VENDA_PRODUTO VP 
+                          WHERE VP.COD_VENDA = V.COD_VENDA) AS VLR_TOTAL
                   FROM RE_VENDA V
                  INNER JOIN EN_CLIENTE C
                     ON V.COD_CLIENTE = C.COD_CLIENTE
@@ -31,7 +34,24 @@ class AluguelDao extends BaseDao
                  INNER JOIN SE_USUARIO U
                     ON V.COD_USUARIO = U.COD_USUARIO
                  ORDER BY V.DTA_VENDA";
-        return $this->selectDB($sql, false);
+        return $this->selectDB($select, false);
+    }
+
+    Public Function ListarProdutosAluguel($codAluguel) {
+        $select = "SELECT VP.COD_VENDA_PRODUTO,
+                       VP.COD_PRODUTO_COR,
+                       CONCAT(P.DSC_PRODUTO,' ',C.DSC_COR) AS DSC_PRODUTO_COR,
+                       VP.QTD_VENDA,
+                       VP.VLR_VENDA
+                  FROM RE_VENDA_PRODUTO VP
+                 INNER JOIN RE_PRODUTO_COR PC
+                    ON VP.COD_PRODUTO_COR = PC.COD_PRODUTO_COR
+                 INNER JOIN EN_PRODUTO P
+                    ON PC.COD_PRODUTO = P.COD_PRODUTO
+                 INNER JOIN EN_COR C
+                    ON PC.COD_COR = C.COD_COR
+                 WHERE COD_VENDA =" . $codAluguel;
+        return $this->selectDB($select, false);
     }
 
     Public Function UpdateAluguel($codUsuario){

@@ -1,6 +1,6 @@
 $(function() {
-    $("#nroCpf").mask('999.999.999-99')
-    $("#nroTelefone").mask('(99) 99999-9999')
+    // $("#nroCpf").mask('999.999.999-99');
+    // $("#nroTelefone").mask('(99) 99999-9999');
     // $("#btnSalvarCliente").click(function(){
     //     if($("#nmeCliente").val() == '' || $("#nroTelefone").val() == ''){
     //         swal({

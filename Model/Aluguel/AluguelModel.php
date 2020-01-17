@@ -2,6 +2,7 @@
 include_once(PATH."Model/BaseModel.php");
 include_once(PATH."Dao/Aluguel/AluguelDao.php");
 include_once(PATH."Model/ProdutoAluguel/ProdutoAluguelModel.php");
+include_once(PATH."Resources/php/FuncoesMoeda.php");
 class AluguelModel extends BaseModel
 {
     public function AluguelModel(){
@@ -11,14 +12,23 @@ class AluguelModel extends BaseModel
         }
     }
 
-    Public Function ListarAluguel($Json=true){
+    Public Function ListarAluguel(){
         $dao = new AluguelDao();
         $lista = $dao->ListarAluguel();
-        if ($Json){
-            return json_encode($lista);
-        }else{
-            return $lista;        
+        if($lista[0]) {
+            $lista = FuncoesMoeda::FormataMoedaInArray($lista, 'VLR_TOTAL');
+            if($lista[1] != null) {
+                for ($i = 0;$i < count($lista[1]); $i++) {
+                    $produtos = $dao->ListarProdutosAluguel($lista[1][$i]['COD_ALUGUEL']);
+                    // var_dump($produtos);
+                    if($produtos[0]) {
+                        $lista[1][$i]['PRODUTOS'] = $produtos[1];
+                    }
+                }
+
+            }
         }
+        return json_encode($lista);
     }
     
     Public Function InsertAluguel(){
