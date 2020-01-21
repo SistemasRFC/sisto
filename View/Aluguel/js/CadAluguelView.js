@@ -1,6 +1,6 @@
 $(function() {
     $("#bntIncCliente").click(function(){
-        $("#modalCliente").modal('show');
+//        $("#modalCliente").modal('show');
     });
 
     $("#btnSalvarAluguel").click(function(){
@@ -33,12 +33,12 @@ $(function() {
         }
     });
     
-    $('.input-group.date').datepicker({
-    	format: 'dd/mm/yyyy',
-    	language: 'pt-BR',
-    	weekStart: 0,
-    	todayHighlight: true
-    });
+//    $('.input-group.date').datepicker({
+//    	format: 'dd/mm/yyyy',
+//    	language: 'pt-BR',
+//    	weekStart: 0,
+//    	todayHighlight: true
+//    });
 });
     
 function inserirAluguel(){
@@ -113,19 +113,31 @@ function montaComboSituacao(dados){
     }
 }
 
-function listarCampoCliente(){
-    ExecutaDispatch('Cliente', 'ListarClientesAutoComplete', undefined, montaCampoCliente);
+function selecionaClientes(){
+    var parametros = "verificaPermissao;N|nmeClienteAluguel;"+$("#nmeClienteAluguel").val();
+    ExecutaDispatch('Cliente', 'ListarClientesAutoComplete', parametros, montaDivClientes);
 }
 
-function montaCampoCliente(dados){
-    if(dados[0]){
-        clientes = dados[1];
-        autocomplete(document.getElementById("nmeCliente"), clientes);
-    }
+function montaDivClientes(lista){
+    $("#nmeClienteAluguel").jqxInput({ 
+        source: lista[1], 
+        placeHolder: "Cliente", 
+        displayMember: "TEXT", 
+        valueMember: "COD", 
+        width: '100%', 
+        height: 40
+    });
+    $("#nmeClienteAluguel").on('select', function (event) {
+        if (event.args) {
+            var item = event.args.item;
+            if (item) {
+                $("#codClienteAluguel").val(item.value);
+            }
+        }
+    });
 }
 
 $(document).ready(function(){
-    listarCampoCliente();
     $("#dtaAluguel").change(function () {
         if($(this).val() == ''){
             $("#cadProdutoCor").hide();
@@ -135,4 +147,17 @@ $(document).ready(function(){
         }
     });
     $("#dtaAluguel").change();
+
+    $("#nmeClienteAluguel").keyup(function(){
+        if ($(this).val().length>3){
+            selecionaClientes();
+        }
+    });
+    $("#nmeClienteAluguel").jqxInput({ 
+        placeHolder: "Cliente", 
+        displayMember: "TEXT", 
+        valueMember: "COD", 
+        width: '100%', 
+        height: 40
+    });    
 });
