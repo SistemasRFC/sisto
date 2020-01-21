@@ -54,7 +54,6 @@ function CarregaMenu(){
 }
 
 function MontaMenu(Dados){
-    console.log(Dados);
     var listaMenus='<ul class="navbar-nav mr-auto">';
     for(i=0;i<Dados.length;i++){
         if (parseInt(Dados[i].QTD_FILHOS)>0){
