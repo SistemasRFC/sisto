@@ -47,8 +47,7 @@ function inserirAluguel(){
         imageUrl: "../../Resources/images/preload.gif",
         showConfirmButton: false
     });
-    var qtdDisponivel = $('#comboboxProduto option:selected').attr('qtdDisponivel');
-    parametros = 'dtaAluguel;'+$("#dtaAluguel").val()+'|codCliente;'+$("#comboCliente").val()+'|codSituacao;'+$("#comboSituacao").val()+'|codProdutoCor;'+$("#comboboxProduto").val()+'|qtdProdutoAluguel;'+$("#qtdProdutoAluguel").val()+'|qtdDisponivel;'+qtdDisponivel;
+    parametros = 'dtaAluguel;'+$("#dtaAluguel").val()+'|codCliente;'+$("#codClienteAluguel").val()+'|codSituacao;8|codProdutoCor;'+$("#codProdutoAluguel").val()+'|qtdProdutoAluguel;'+$("#qtdProdutoAluguel").val();
     ExecutaDispatch('Aluguel', 'InsertAluguel', parametros, retornoInsertAluguel);
 }
 
@@ -90,9 +89,8 @@ function updateAluguel(){
         imageUrl: "../../Resources/images/preload.gif",
         showConfirmButton: false
     });
-    var qtdDisponivel = $('#comboboxProduto option:selected').attr('qtdDisponivel');
-    parametros = 'codAluguel;'+$("#codAluguel").val()+'|dtaAluguel;'+$("#dtaAluguel").val()+'|codCliente;'+$("#comboCliente").val();
-    parametros += '|codSituacao;'+$("#comboSituacao").val()+'|codProdutoCor;'+$("#comboboxProduto").val()+'|qtdProdutoAluguel;'+$("#qtdProdutoAluguel").val()+'|qtdDisponivel;'+qtdDisponivel;
+    parametros = 'codAluguel;'+$("#codAluguel").val()+'|dtaAluguel;'+$("#dtaAluguel").val()+'|codCliente;'+$("#codClienteAluguel").val();
+    parametros += '|codSituacao;8|codProdutoCor;'+$("#codProdutoAluguel").val()+'|qtdProdutoAluguel;'+$("#qtdProdutoAluguel").val();
     ExecutaDispatch('Aluguel', 'UpdateAluguel', parametros, retornoInsertAluguel);
 }
 
@@ -143,7 +141,7 @@ $(document).ready(function(){
             $("#cadProdutoCor").hide();
         }else{
             $("#cadProdutoCor").show();
-            listarComboboxProduto($(this).val());
+            // listarComboboxProduto($(this).val());
         }
     });
     $("#dtaAluguel").change();

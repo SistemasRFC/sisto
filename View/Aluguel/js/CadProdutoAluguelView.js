@@ -25,6 +25,30 @@ $(function() {
         }
     });
 });
+
+function selecionaProdutos(){
+    var parametros = "dtaAluguel;"+$("#dtaAluguel").val();
+    ExecutaDispatch('Produto', 'ListarProdutoCorAutoComplete', parametros, montaDivProdutos);
+}
+
+function montaDivProdutos(lista){
+    $("#dscProdutoAluguel").jqxInput({ 
+        source: lista[1], 
+        placeHolder: "Produto", 
+        displayMember: "TEXT", 
+        valueMember: "COD", 
+        width: '100%', 
+        height: 40
+    });
+    $("#dscProdutoAluguel").on('select', function (event) {
+        if (event.args) {
+            var item = event.args.item;
+            if (item) {
+                $("#codProdutoAluguel").val(item.value);
+            }
+        }
+    });
+}
   
 function insertProdutoAluguel(){
     swal({
@@ -159,23 +183,29 @@ function removeProdutoAluguel(){
     ExecutaDispatch('ProdutoAluguel', 'DeleteProdutoAluguel', 'codProdutoAluguel;'+$("#codProdutoAluguel").val(), retornoInsertProdutoAluguel);
 }
 
-function listarComboboxProduto(dtaAluguel = ''){
-    ExecutaDispatch('Produto', 'ListarProdutoCor', 'dtaAluguel;'+dtaAluguel , montaComboboxProduto);
-}
+// function listarComboboxProduto(dtaAluguel = ''){
+//     ExecutaDispatch('Produto', 'ListarProdutoCor', 'dtaAluguel;'+dtaAluguel , montaComboboxProduto);
+// }
 
-function montaComboboxProduto(dados){
-    if(dados[0]){
-        dados = dados[1];
-         combo = '<select id="comboboxProduto" class="form-control">';
-         combo += '<option value="" disabled selected hidden></option>';
-        for (i=0;i<dados.length;i++){
-            combo += '<option value="'+dados[i].COD_PRODUTO_COR+'" qtdDisponivel="'+dados[i].QTD_DISPONIVEL+'">'+dados[i].DSC_PRODUTO_COR+' - '+dados[i].QTD_DISPONIVEL+'</option>';
-        }
-         combo +='</select>';
-         $("#divComboboxProduto").html(combo);
-    }   
-}
+// function montaComboboxProduto(dados){
+//     if(dados[0]){
+//         dados = dados[1];
+//          combo = '<select id="comboboxProduto" class="form-control">';
+//          combo += '<option value="" disabled selected hidden></option>';
+//         for (i=0;i<dados.length;i++){
+//             combo += '<option value="'+dados[i].COD_PRODUTO_COR+'" qtdDisponivel="'+dados[i].QTD_DISPONIVEL+'">'+dados[i].DSC_PRODUTO_COR+' - '+dados[i].QTD_DISPONIVEL+'</option>';
+//         }
+//          combo +='</select>';
+//          $("#divComboboxProduto").html(combo);
+//     }   
+// }
 
 $(document).ready(function(){
-    listarComboboxProduto();
+    // listarComboboxProduto();
+
+    $("#dscProdutoAluguel").keyup(function(){
+        if ($(this).val().length>3){
+            selecionaProdutos();
+        }
+    });
 });

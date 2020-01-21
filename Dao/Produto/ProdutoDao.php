@@ -67,9 +67,9 @@ class ProdutoDao extends BaseDao
         return $this->insertDB($sql);
     }
 
-    Public Function ListarProdutoCor(){
-        $sql = "SELECT PC.COD_PRODUTO_COR,
-                       CONCAT(P.DSC_PRODUTO,' ',C.DSC_COR) AS DSC_PRODUTO_COR,
+    Public Function ListarProdutoCorAutoComplete(){
+        $select = "SELECT PC.COD_PRODUTO_COR AS COD,
+                       CONCAT(P.DSC_PRODUTO,' ',C.DSC_COR, ' Estoque: ', (PC.QTD_PRODUTO_COR-COALESCE(VP.QTD_VENDA, 0))) AS TEXT,
                        (PC.QTD_PRODUTO_COR-COALESCE(VP.QTD_VENDA, 0)) AS QTD_DISPONIVEL
                   FROM RE_PRODUTO_COR PC
                  INNER JOIN EN_PRODUTO P
@@ -83,10 +83,10 @@ class ProdutoDao extends BaseDao
                               INNER JOIN RE_VENDA V
                                  ON VP.COD_VENDA = V.COD_VENDA 
                               WHERE V.DTA_VENDA = '".$this->Populate('dtaAluguel', 'D')."') AS VP
-                    ON PC.COD_PRODUTO_COR = VP.COD_PRODUTO_COR";
-       $sql .= " ORDER BY P.DSC_PRODUTO, C.DSC_COR, QTD_DISPONIVEL";
+                    ON PC.COD_PRODUTO_COR = VP.COD_PRODUTO_COR
+                 ORDER BY P.DSC_PRODUTO, C.DSC_COR, QTD_DISPONIVEL";
 //       echo $sql;die;
-        return $this->selectDB($sql, false);
+        return $this->selectDB($select, false);
     }
     
     Public Function ListarProdutosPorDia($dta, $codProduto=75){

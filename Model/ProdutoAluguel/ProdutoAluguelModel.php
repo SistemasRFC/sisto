@@ -25,33 +25,18 @@ class ProdutoAluguelModel extends BaseModel
         if ($codAluguel==null){
             $codAluguel = $dao->Populate('codAluguel','I');
         }
-        if($dao->Populate('qtdProdutoAluguel', 'I') <= $dao->Populate('qtdDisponivel', 'I')){
-            $result = $dao->InsertProdutoAluguel($codAluguel);
-        }else{
-            $result[0] = false;
-            $result[1] = "Quantidade informada acima da quantidade disponível";
-        }
+        $result = $dao->InsertProdutoAluguel($codAluguel);
         return json_encode($result);        
     }
 
     Public Function UpdateProdutoAluguel($codAluguel){
         $dao = new ProdutoAluguelDao();
         if($dao->Populate('codProdutoAluguel', 'I') == null){
-            if($dao->Populate('qtdProdutoAluguel', 'I') <= $dao->Populate('qtdDisponivel', 'I')){
-                $result = $dao->InsertProdutoAluguel($codAluguel);
-            }else{
-                $result[0] = false;
-                $result[1] = "Quantidade informada acima da quantidade disponível";
-            }
+            $result = $dao->InsertProdutoAluguel($codAluguel);
         }else{
             $result = $dao->DeleteProdutoAluguel();
             if($result[0]){
-                if($dao->Populate('qtdProdutoAluguel', 'I') <= $dao->Populate('qtdDisponivel', 'I')){
-                    $result = $dao->InsertProdutoAluguel($codAluguel);
-                }else{
-                    $result[0] = false;
-                    $result[1] = "Quantidade informada acima da quantidade disponível";
-                }
+                $result = $dao->InsertProdutoAluguel($codAluguel);
             }
         }
         $result = $dao->UpdateProdutoAluguel();

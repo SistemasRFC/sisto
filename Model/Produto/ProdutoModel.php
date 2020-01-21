@@ -95,9 +95,9 @@ class ProdutoModel extends BaseModel
         return json_encode($result);
     }
 
-    Public Function ListarProdutoCor($Json=true){
+    Public Function ListarProdutoCorAutoComplete($Json=true){
         $dao = new ProdutoDao();
-        $lista = $dao->ListarProdutoCor();
+        $lista = $dao->ListarProdutoCorAutoComplete();
         if ($Json){
             return json_encode($lista);
         }else{

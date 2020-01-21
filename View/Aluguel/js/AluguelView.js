@@ -2,10 +2,11 @@ $(function() {
     $("#btnNovoAluguel").click(function(){
         $("#codAluguel").val('');
         $("#dtaAluguel").val('');
-        $("#comboCliente").val('');
-        $("#comboSituacao").val('');
+        $("#codClienteAluguel").val('');
+        $("#nmeClienteAluguel").val('');
         $("#tabelaProdutosAluguel").hide();
-        $("#comboboxProduto").val('');
+        $("#codProdutoAluguel").val('');
+        $("#dscProdutoAluguel").val('');
         $("#qtdProdutoAluguel").val('');
         $("#cadProdutoCor").hide();
     });

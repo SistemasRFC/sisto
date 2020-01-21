@@ -32,9 +32,9 @@ class ProdutoController extends BaseController
         echo $ProdutoModel->InsertQtdProduto();
     }
 
-    Public Function ListarProdutoCor(){
+    Public Function ListarProdutoCorAutoComplete(){
         $ProdutoModel = new ProdutoModel();
-        echo $ProdutoModel->ListarProdutoCor();
+        echo $ProdutoModel->ListarProdutoCorAutoComplete();
     }
     
     Public Function ListarProdutosPorDia(){

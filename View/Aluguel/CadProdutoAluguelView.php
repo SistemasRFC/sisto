@@ -20,10 +20,19 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-6">
-            <label for="search"><b>Produto: </b></label>
-            <!-- Transformar para ficar igual campo do cliente-->
-            <div id="divComboboxProduto"></div>
+            <form autocomplete="off">
+                <label><b>Produto</b></label><br>
+                <input type='hidden' id='codProdutoAluguel' class='persist'>
+                <input id="dscProdutoAluguel" class='form-control'/>
+            </form>
         </div>
+        <div class="col-1" style="padding: 0px;padding-top: 32px;">
+            <button id="bntIncProduto" class="btn btn-default" title="Incluir Produto" style="border: 1px solid #ccc;cursor: pointer;">...</button>
+        </div>
+            <!-- <label for="search"><b>Produto: </b></label> -->
+            <!-- Transformar para ficar igual campo do cliente-->
+            <!-- <div id="divComboboxProduto"></div> -->
+        <!-- </div> -->
         <div class="col-2">
             <label><b>Quantidade</b></label>
             <input type="text" id="qtdProdutoAluguel" class="form-control">
