@@ -3,10 +3,15 @@
     <head>
         <?php include "../../View/Scripts.php"; ?>
         <!-- DatePicker -->
+        <link rel="stylesheet" href="../../Resources/jqx/jqwidgets/styles/jqx.base.css" type="text/css" />
         <link href="../../Resources/DTPicker/css/bootstrap-datepicker3.min.css" rel="stylesheet">
         <script src="../../Resources/DTPicker/js/bootstrap-datepicker.min.js?rdm=<?php echo time(); ?>"></script>
         <script src="../../Resources/DTPicker/locales/bootstrap-datepicker.pt-BR.min.js?rdm=<?php echo time(); ?>"></script>
         <script src="../../View/Aluguel/js/AluguelView.js?rdm=<?php echo time(); ?>"></script>
+        <script type="text/javascript" src="../../Resources/jqx/scripts/jquery-1.11.1.min.js"></script>
+        <script type="text/javascript" src="../../Resources/jqx/jqwidgets/jqxcore.js"></script>
+        <script type="text/javascript" src="../../Resources/jqx/jqwidgets/jqxdata.js"></script>
+        <script type="text/javascript" src="../../Resources/jqx/jqwidgets/jqxinput.js"></script>        
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     </head>
     <body>

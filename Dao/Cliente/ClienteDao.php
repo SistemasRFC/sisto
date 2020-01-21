@@ -23,7 +23,8 @@ class ClienteDao extends BaseDao
     Public Function ListarClientesAutoComplete(){
         $select = " SELECT COD_CLIENTE AS COD,
                            NME_CLIENTE AS TEXT
-                      FROM EN_CLIENTE ";
+                      FROM EN_CLIENTE
+                     WHERE NME_CLIENTE LIKE '%".$this->Populate('nmeClienteAluguel')."%'";
 
         return $this->selectDB($select, false);
     }

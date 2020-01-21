@@ -13,10 +13,9 @@
     <div class="row">
         <div class="col-6">
             <form autocomplete="off">
-                <label><b>Cliente</b></label>
-                <div class="autocomplete" >
-                    <input id="nmeCliente" class="form-control" type="text" name="nmeCliente" placeholder="Nome...">
-                </div>
+                <label><b>Cliente</b></label><br>
+                <input type='hidden' id='codClienteAluguel' class='persist'>
+                <input id="nmeClienteAluguel" class='form-control'/>
             </form>
         </div>
         <div class="col-1" style="padding: 0px;padding-top: 32px;">
