@@ -7,13 +7,13 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-6">
+        <div class="col-10 col-sm-10 col-md-6 col-lg-6">
             <input id="dscCor" type="text" class="form-control">
         </div>
     </div>    
     <div class="row">&nbsp;</div>
     <div class="row">
-        <div class="col-4">
+        <div class="col-4 col-sm-4 col-md-4 col-lg-4">
             <div class="checkbox">
                 <label><input type="checkbox" id="indCorAtivo"><b> Ativo</b></label>
             </div>

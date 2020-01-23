@@ -1,6 +1,7 @@
 $(function() {
+    $("#dtaAluguel").jqxDateTimeInput({ width: '300px', height: '40px', formatString: 'dd/MM/yyyy'});
     $("#bntIncCliente").click(function(){
-//        $("#modalCliente").modal('show');
+       $("#modalCliente").modal('show');
     });
 
     $("#btnSalvarAluguel").click(function(){
@@ -74,11 +75,10 @@ function retornoInsertAluguel(retorno){
 }
 
 
-function carregaCamposAluguel(codAluguel, dtaAluguel, codCliente, codSituacao){
+function carregaCamposAluguel(codAluguel, dtaAluguel, codCliente){
     $("#codAluguel").val(codAluguel);
     $("#dtaAluguel").val(dtaAluguel).change;
     $("#comboCliente").val(codCliente);
-    $("#comboSituacao").val(codSituacao);
     listaProdutosAluguel(codAluguel);
     $("#cadProdutoCor").show();
 }

@@ -47,7 +47,7 @@ function montaGridAluguel(dados){
                 tabela += "<td style='text-align: center;'>"+dados[i].DSC_SITUACAO+"</td>";
                 tabela += "<td style='text-align: right;'>R$ "+dados[i].VLR_TOTAL+"</td>";
                 tabela += "<td style='text-align: center;'>";
-                tabela += " &nbsp;<a href=\"javascript:carregaCamposAluguel('"+dados[i].COD_ALUGUEL+"', '"+dados[i].DTA_ALUGUEL+"', '"+dados[i].COD_CLIENTE+"', '"+dados[i].COD_SITUACAO+"');\">Editar</a>";
+                tabela += " &nbsp;<a href=\"javascript:carregaCamposAluguel('"+dados[i].COD_ALUGUEL+"', '"+dados[i].DTA_ALUGUEL+"', '"+dados[i].COD_CLIENTE+"');\">Editar</a>";
                 tabela += " | <a href=\"javascript:alteraStatusAluguel('"+dados[i].COD_ALUGUEL+"', '9');\">Entregar</a><br>";
                 tabela += "  <a href=\"javascript:alteraStatusAluguel('"+dados[i].COD_ALUGUEL+"', '6');\">Buscar</a>";
                 tabela += " | <a href=\"javascript:alteraStatusAluguel('"+dados[i].COD_ALUGUEL+"', '7');\">Cancelar</a>";
@@ -58,32 +58,32 @@ function montaGridAluguel(dados){
             tabela += '</tbody>';
             tabela += '</table>';
             $("#tabelaAlugueis").html(tabela);
-//            $('#tbAluguel').DataTable({
-//                "ordering": false,
-//                "searching": false,
-//                "language": {
-//                    "emptyTable": "Nenhum registro encontrado",
-//                    "info": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
-//                    "infoEmpty": "Mostrando 0 até 0 de 0 registros",
-//                    "infoFiltered": "(Filtrados de _MAX_ registros)",
-//                    "infoPostFix": "",
-//                    "infoThousands": ".",
-//                    "lengthMenu": "_MENU_ resultados por página",
-//                    "loadingRecords": "Carregando...",
-//                    "processing": "Processando...",
-//                    "zeroRecords": "Nenhum registro encontrado",
-//                    "paginate": {
-//                        "next": "Próximo",
-//                        "previous": "Anterior",
-//                        "first": "Primeiro",
-//                        "last": "Último"
-//                    },
-//                    "aria": {
-//                        "sortAscending": ": Ordenar colunas de forma ascendente",
-//                        "sortDescending": ": Ordenar colunas de forma descendente"
-//                    }
-//                }
-//            });
+           $('#tbAluguel').DataTable({
+               "ordering": false,
+               "searching": false,
+               "language": {
+                   "emptyTable": "Nenhum registro encontrado",
+                   "info": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+                   "infoEmpty": "Mostrando 0 até 0 de 0 registros",
+                   "infoFiltered": "(Filtrados de _MAX_ registros)",
+                   "infoPostFix": "",
+                   "infoThousands": ".",
+                   "lengthMenu": "_MENU_ resultados por página",
+                   "loadingRecords": "Carregando...",
+                   "processing": "Processando...",
+                   "zeroRecords": "Nenhum registro encontrado",
+                   "paginate": {
+                       "next": "Próximo",
+                       "previous": "Anterior",
+                       "first": "Primeiro",
+                       "last": "Último"
+                   },
+                   "aria": {
+                       "sortAscending": ": Ordenar colunas de forma ascendente",
+                       "sortDescending": ": Ordenar colunas de forma descendente"
+                   }
+               }
+           });
         }else{
             var tabela = 'Não há alugueis!';            
             $("#tabelaAlugueis").html(tabela);

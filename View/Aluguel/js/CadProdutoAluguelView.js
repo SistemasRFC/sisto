@@ -85,7 +85,7 @@ function retornoInsertProdutoAluguel(retorno){
 
 function carregaCamposProdutoAluguel(codProdutoAluguel, codProdutoCor, qtdProdutoAluguel){
     $('#codProdutoAluguel').val(codProdutoAluguel);
-    $('#comboboxProduto').val(codProdutoCor);
+    $('#codProdutoAluguel').val(codProdutoCor);
     $('#qtdProdutoAluguel').val(qtdProdutoAluguel);
 }
 
@@ -108,6 +108,7 @@ function montaGridProdutosAluguel(dados){
             tabela += '<th><b>Ação</b></th>';
             tabela += '</tr>';
             tabela += '</thead><tbody>';
+            var totalFinal = 0;
             for (i=0;i<dados.length;i++){
                 tabela += '<tr>';
                 tabela += '<td>'+dados[i].DSC_PRODUTO_COR+'</td>';
@@ -117,7 +118,7 @@ function montaGridProdutosAluguel(dados){
                 tabela += "<td><a href=\"javascript:carregaCamposProdutoAluguel('"+dados[i].COD_PRODUTO_ALUGUEL+"', '"+dados[i].COD_PRODUTO_COR+"', '"+dados[i].QTD_PRODUTO_ALUGUEL+"');\">Editar</a> \n\
                                &nbsp;&nbsp; <a href=\"javascript:removeProdutoAluguel('"+dados[i].COD_PRODUTO_ALUGUEL+"');\">Excluir</a></td>";
                 tabela += '</tr>';
-
+                totalFinal = parseInt(totalFinal) + parseInt(dados[i].VLR_ALUGUEL);
             }
             tabela += '</tbody>';
             tabela += '<tfoot>';

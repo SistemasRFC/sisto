@@ -10,26 +10,22 @@
         <input type="hidden" id="codSituacao">
         <div class="container-fluid">
             <div class="row">&nbsp;</div>
-            <div class="row">&nbsp;</div>
-            <div class="row">&nbsp;</div>
-            <div class="row">&nbsp;</div>
             <div class="row">
-                <div class="col-1">
+                <div class="col-2 col-sm-2 col-md-1 col-lg-1">
                     <input type="button" id="btnNovaSituacao" class="btn btn-secondary" value="Nova Situação">
                 </div>
             </div>
-            <div class="row">&nbsp;</div>
         </div>
         <div class="container">
             <div class="row">
-                <div class="col-12">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                     <?php include_once "CadSituacaoView.php";?>
                 </div>
             </div>
         </div>
         <div class="container">
             <div class="row">
-                <div class="col-12">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                     <div id="tabelaSituacao" class="table-responsive"></div>
                 </div>
             </div>

@@ -1,6 +1,6 @@
 <script src="../../View/MenuPrincipal/js/Cabecalho.js?rdm=<?php echo time(); ?>"></script>
 <header>
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" id="MenuTop">
+    <nav class="navbar navbar-expand navbar-dark bg-dark" style="position: initial;" id="MenuTop">
         <a class="navbar-brand" href="#">Dashboard</a>
 
         <div class="collapse navbar-collapse" id="menuTop">

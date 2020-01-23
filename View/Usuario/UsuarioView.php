@@ -11,17 +11,17 @@
         <div class="container-fluid">
             <div class="row">&nbsp;</div>
             <div class="row">
-                <div class="col-1">
-                    <input type="button" id="btnNovoUsuario" class="btn btn-secondary" value="Novo Usuario">
-                </div>
+              <div class="col-2 col-sm-2 col-md-1 col-lg-1">
+                <input type="button" id="btnNovoUsuario" class="btn btn-secondary" value="Novo Usuario">
+              </div>
             </div>
             <div class="row">&nbsp;</div>
         </div>
-        <div class="container-fluid">
+        <div class="container">
             <div class="row">
-                <div class="col-6">
-                    <div id="tabelaUsuario" class="table-responsive"></div>
-                </div>
+              <div class="col-12 col-sm-12 col-md-8 col-lg-8">
+                <div id="tabelaUsuario" class="table-responsive"></div>
+              </div>
             </div>
         </div>
     </body>

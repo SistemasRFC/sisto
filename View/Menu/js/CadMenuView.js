@@ -35,37 +35,6 @@ function salvarMenu(){
                     "codMenuPai;"+$("#codMenuPai").val()+"|"+
                     "indAtivo;"+indAtivo+"|"+
                     "indVisible;"+indVisible, trataRetornoSalvar);
-
-  
-//    $.post('../../Dispatch.php',
-//           {
-//               method: 'SalvarMenu',
-//               controller: 'Menu',
-//               dscMenu: $("#dscMenu").val(),
-//               codMenu: $("#codMenu").val(),
-//               nmeController: $("#nmeController").val(),
-//               nmeMethod: $("#nmeMethod").val(),
-//               codMenuPai: $("#codMenuPai").val(),
-//               indAtivo: indAtivo,
-//               indVisible: indVisible
-//           },
-//           function(retorno){
-//                retorno = eval ('('+retorno+')');
-//                if (retorno[0]==true){
-//                    $("#codMenu").val(retorno[2]);
-//                    swal.close();
-//                    carregarListaMenus();
-//                }else{
-//                    $(".jquery-waiting-base-container").fadeOut({modo:"fast"});
-//                    swal({
-//                        title: "Erro!",
-//                        text: retorno[1],
-//                        type: "error",
-//                        confirmButtonText: "Fechar"
-//                    });
-//                }
-//           }
-//    );
 }
 
 function trataRetornoSalvar(retorno){
@@ -106,11 +75,15 @@ function ListarControllers(){
 }
 
 function carregarListaControllers(retorno){
-    var tabela = '<table>';
+    var tabela = '<div class="row">';
+    tabela += ' <div class="col-12 col-sm-12 col-md-12 col-lg-12">';
+    tabela += '  <table>';
     for(i=0;i<retorno.length;i++){
-        tabela += '<tr><td><a href="javascript:preencheCampo(\'nmeController\', \''+retorno[i].nmeArquivo+'\', \'modalControllers\');">'+retorno[i].nmeArquivo+'</a></td></tr>';
+        tabela += '   <tr><td><a href="javascript:preencheCampo(\'nmeController\', \''+retorno[i].nmeArquivo+'\', \'modalControllers\');">'+retorno[i].nmeArquivo+'</a></td></tr>';
     }
-    tabela += '</table>'; 
+    tabela += '  </table>'; 
+    tabela += ' </div>';
+    tabela += '</div>';
     $("#conteudoController").html(tabela);
     $('#modalControllers').modal('show');
 }
@@ -160,11 +133,10 @@ function preencheCampo(Campo, Valor, modal){
 }
 
 function carregaComboMenuPai(Dados){
-    if (!Dados[0]){
-        var DropDown = '';
-    }else{
+    var DropDown = '';
+    if (Dados[0]){
         Dados = Dados[1];
-        var DropDown = '<select class="form-control" id="codMenuPai">';
+        DropDown += '<select class="form-control" id="codMenuPai">';
         DropDown += ' <option value="-1">Selecione</option>';
         for (i=0;i<Dados.length;i++){
             DropDown += ' <option value="'+Dados[i].COD_MENU+'">'+Dados[i].DSC_MENU+'</option>';

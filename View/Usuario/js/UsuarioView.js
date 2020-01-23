@@ -28,7 +28,7 @@ function montaGridUsuario(dados){
         tabela += '<th>Login</th>';
         tabela += '<th>Usuario</th>';
         tabela += '<th>Perfil</th>';
-        tabela += '<th>Ativo?</th>';
+        tabela += '<th>Ativo</th>';
         tabela += '<th>Ação</th>';
         tabela += '</tr>';
         tabela += '</thead>';

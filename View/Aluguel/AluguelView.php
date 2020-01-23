@@ -8,19 +8,15 @@
         <script src="../../Resources/DTPicker/js/bootstrap-datepicker.min.js?rdm=<?php echo time(); ?>"></script>
         <script src="../../Resources/DTPicker/locales/bootstrap-datepicker.pt-BR.min.js?rdm=<?php echo time(); ?>"></script>
         <script src="../../View/Aluguel/js/AluguelView.js?rdm=<?php echo time(); ?>"></script>
-        <script type="text/javascript" src="../../Resources/jqx/scripts/jquery-1.11.1.min.js"></script>
-        <script type="text/javascript" src="../../Resources/jqx/jqwidgets/jqxcore.js"></script>
-        <script type="text/javascript" src="../../Resources/jqx/jqwidgets/jqxdata.js"></script>
-        <script type="text/javascript" src="../../Resources/jqx/jqwidgets/jqxinput.js"></script>        
+        <script type="text/javascript" src="../../Resources/jqx/jqwidgets/jqxinput.js"></script>
+        <script type="text/javascript" src="../../Resources/jqx/jqwidgets/jqxdatetimeinput.js"></script>
+        <script type="text/javascript" src="../../Resources/jqx/jqwidgets/jqxcalendar.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     </head>
     <body>
         <?php include "../../View/MenuPrincipal/Cabecalho.php"; ?>
         <input type="hidden" id="codAluguel">
-        <div class="container-fluid" id="tdAluguel">
-            <div class="row">&nbsp;</div>
-            <div class="row">&nbsp;</div>
-            <div class="row">&nbsp;</div>
+        <div id="tdAluguel">
             <div class="row">&nbsp;</div>
             <div class="row">
                 <div class="col-1"></div>

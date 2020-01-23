@@ -4,61 +4,34 @@
     <input type="hidden" value="8" id="codSituacao" class="persist">
     <div class="row">&nbsp;</div>
     <div class="row">
-        <div class="col-3">
+        <div class="col-12 col-sm-12 col-md-3 col-lg-3">
             <label><b>Data</b></label>
-            <input type="text" class="form-control input-group date" id="dtaAluguel" >
+            <input type="text" id="dtaAluguel" class="form-control" />
+            <!-- <input type="text" class="form-control input-group date" id="dtaAluguel" > -->
         </div>
     </div>
     <div class="row">&nbsp;</div>
     <div class="row">
-        <div class="col-6">
-            <form autocomplete="off">
-                <label><b>Cliente</b></label><br>
-                <input type='hidden' id='codClienteAluguel' class='persist'>
-                <input id="nmeClienteAluguel" class='form-control'/>
-            </form>
+        <div class="col-11 col-xs-11 col-md-6 col-lg-6">
+            <label><b>Cliente</b></label><br>
+            <input type='hidden' id='codClienteAluguel' class='persist'>
+            <input id="nmeClienteAluguel" class='form-control'/>
         </div>
-        <div class="col-1" style="padding: 0px;padding-top: 32px;">
+        <div class="col-1 col-xs-1 col-md-1 col-lg-1" style="padding: 0px;padding-top: 32px;">
             <button id="bntIncCliente" class="btn btn-default" title="Incluir Cliente" style="border: 1px solid #ccc;cursor: pointer;">...</button>
         </div>
     </div>
-        <!-- <div class="col-5">
-            <b>Cliente</b>
-        </div> -->
-    <!-- <div class="row">
-        <div class="col-5">
-            <div id="divComboCliente"></div>
-        </div>
-    </div> -->
-    <!-- <div class="row">&nbsp;</div>
-    <div class="row">
-        <div class="col-4">
-            <b>Situação</b>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-4">
-            <div id="divComboSituacao"></div>
-        </div>
-    </div> -->
     <div class="row">&nbsp;</div>
-    <div class="row">
-
+</div>
+<div class="row" id="cadProdutoCor">
+    <div class="col-12 col-sm-12">
+        <?php include_once "CadProdutoAluguelView.php";?>
     </div>
 </div>
-<!-- <div class="container-fluid"> -->
-    <div class="row" id="cadProdutoCor">
-        <div class="col-12">
-            <?php include_once "CadProdutoAluguelView.php";?>
-        </div>
-    </div>
-<!-- </div> -->
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-9"></div>
-        <div class="col-2">
-            <button type="button" class="btn btn-primary" id="btnSalvarAluguel">Salvar Aluguel</button>
-        </div>
+<div class="row">
+    <div class="col-9 col-sm-9"></div>
+    <div class="col-3 col-sm-3">
+        <button type="button" class="btn btn-primary" id="btnSalvarAluguel">Salvar</button>
     </div>
 </div>
 </html>

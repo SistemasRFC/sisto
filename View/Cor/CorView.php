@@ -10,11 +10,8 @@
         <input type="hidden" id="codCor">
         <div class="container-fluid" id="tdCores">
             <div class="row">&nbsp;</div>
-            <div class="row">&nbsp;</div>
-            <div class="row">&nbsp;</div>
-            <div class="row">&nbsp;</div>
             <div class="row">
-                <div class="col-1">
+                <div class="col-2 col-sm-2 col-md-1 col-lg-1">
                     <input type="button" id="btnNovaCor" class="btn btn-secondary" value="Nova Cor">
                 </div>
             </div>

@@ -2,12 +2,14 @@
         <script src="../../Resources/jquery/jquery-1.10.1.min.js"></script>
         <script src="../../Resources/bootstrap/js/popper.min.js?rdm=<?php echo time();?>"></script>
         <script src="../../Resources/bootstrap/js/bootstrap.min.js?rdm=<?php echo time();?>"></script>
-        <link href="../../Resources/css/style.css?rdm=<?php echo time();?>" rel="stylesheet">
-
+        <!-- jqwidgets -->
+        <script type="text/javascript" src="../../Resources/jqx/jqwidgets/jqxcore.js"></script>
+        <script type="text/javascript" src="../../Resources/jqx/jqwidgets/jqxdata.js"></script>
         <!-- Bootstrap core CSS -->
         <link href="../../Resources/bootstrap/css/bootstrap.min.css?rdm=<?php echo time();?>" rel="stylesheet">
         <!-- Custom styles for this template -->
         <link href="../../Resources/bootstrap/css/dashboard.css?rdm=<?php echo time();?>" rel="stylesheet">
+        <link href="../../Resources/css/style.css?rdm=<?php echo time();?>" rel="stylesheet">
         <script src="../../Resources/swal/dist/sweetalert.min.js"></script>
         <link rel="stylesheet" type="text/css" href="../../Resources/swal/dist/sweetalert.css">         
         <!-- DataTables -->

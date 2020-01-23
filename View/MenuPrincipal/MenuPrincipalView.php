@@ -14,24 +14,17 @@
         <input type="hidden" id="codDemanda">
         <div class="container-fluid">
             <div class="row">&nbsp;</div>
-            <div class="row">&nbsp;</div>
-            <div class="row">&nbsp;</div>
-            <div class="row">&nbsp;</div>
             <div class="row">
                 <div class="col-12">
                     <h4>Aluguéis Agendados para Hoje</h4>
-                    <div class="container-fluid">
-                        <div id="tbAlugueisDia" class="table-responsive"></div>
-                    </div>
+                    <div id="tbAlugueisDia" class="table-responsive"></div>
                 </div>
             </div>
             <div class="row">&nbsp;</div>
             <div class="row">
                 <div class="col-12">
                     <h4>Aluguéis Agendados</h4>
-                    <div class="container-fluid">
-                        <div id="tbAlugueisAgendados" class="table-responsive"></div>
-                    </div>
+                    <div id="tbAlugueisAgendados" class="table-responsive"></div>
                 </div>
             </div>
             <div class="row">&nbsp;</div>

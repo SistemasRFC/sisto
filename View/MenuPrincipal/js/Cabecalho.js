@@ -54,7 +54,8 @@ function CarregaMenu(){
 }
 
 function MontaMenu(Dados){
-    var listaMenus='<ul class="navbar-nav mr-auto">';
+    var listaMenus = '<div class="collapse navbar-collapse">';
+    listaMenus += '<ul class="navbar-nav mr-auto">';
     for(i=0;i<Dados.length;i++){
         if (parseInt(Dados[i].QTD_FILHOS)>0){
             listaMenus += '<li class="nav-item dropdown">';
@@ -68,14 +69,15 @@ function MontaMenu(Dados){
             listaMenus += '</div></li>';
         }else if (parseInt(Dados[i].QTD_FILHOS)==0 && (Dados[i].COD_MENU_PAI==0 || Dados[i].COD_MENU_PAI==-1)){
             if (Dados[i].NME_CONTROLLER!=null){
-                listaMenus += '<li class="nav-item active"><a class="nav-link" href="javascript:RedirecionaController(\''+Dados[i].NME_CONTROLLER+'\', \''+Dados[i].NME_METHOD+'\');">'+Dados[i].DSC_MENU+'</a></li>';
+                listaMenus += '<li class="nav-item"><a class="nav-link" href="javascript:RedirecionaController(\''+Dados[i].NME_CONTROLLER+'\', \''+Dados[i].NME_METHOD+'\');">'+Dados[i].DSC_MENU+'</a></li>';
             }else{
-                listaMenus += '<li class="nav-item active"><a class="nav-link" href="#">'+Dados[i].DSC_MENU+'</a></li>';
+                listaMenus += '<li class="nav-item"><a class="nav-link" href="#">'+Dados[i].DSC_MENU+'</a></li>';
             }
             
         }
     }
-    listaMenus+='</ul>';
+    listaMenus += '</ul>';
+    listaMenus += '</div>';
     $("#MenuTop").html(listaMenus);
 }
 

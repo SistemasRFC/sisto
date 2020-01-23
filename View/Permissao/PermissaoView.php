@@ -1,59 +1,45 @@
 <html>
     <head>
-        <script src="../../Resources/jquery/jquery-1.10.1.min.js"></script>
-        <script src="../../Resources/bootstrap/js/popper.min.js"></script>
-        <script src="../../Resources/bootstrap/js/bootstrap.min.js"></script>
-        <!-- Bootstrap core CSS -->
-        <link href="../../Resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-        <!-- Custom styles for this template -->
-        <link href="../../Resources/bootstrap/css/dashboard.css" rel="stylesheet">
-        <script src="../../Resources/swal/dist/sweetalert.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="../../Resources/swal/dist/sweetalert.css">           
+        <?php include "../../View/Scripts.php"; ?>
         <script src="../../View/Permissao/js/PermissaoView.js?rdm=<?php echo time(); ?>"></script>
 
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     </head>
     <body>
-        <?php include "../../View/MenuPrincipal/Cabecalho.php"; ?>        
-        <table align="center" width="100%">
-            <tr>
-                <td>
-                    <table width="30%" border="0" align="left">
-                        <tr>
-                            <td class="style3">Perfil</td>
-                            <td class="styleTD1" id="tdCodPerfil">
-                            </td>
-                            <td><input type="button" class="btn-sm btn-primary" value="Carregar Lista" id="btnPesquisar"></td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>            
-            <tr>
-                <td>
-                    <br>
+        <?php include "../../View/MenuPrincipal/Cabecalho.php"; ?>
+        <div class="container-fluid" id="tdPermissoes">
+            <div class="row">&nbsp;</div>
+            <div class="row">
+                <div class="col-12 col-sm-6 col-md-3 col-lg-3">
+                    <label for="tdCodPerfil">Perfil</label>
+                    <div id="tdCodPerfil"></div>
+                </div>
+                <div class="col-12 col-sm-2 col-md-1 col-lg-1" style="text-align: right;">
+                        <input type="button" class="btn-sm btn-primary" value="Carregar Lista" id="btnPesquisar" style="margin-top: 30px;">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12" style="text-align: center;">
+                    <h4 style="padding-top: 8px;">Lista de Permissões do Sistema</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-sm-2 col-md-1 col-lg-1" style="padding-bottom: 6px;">
                     <input type="button" class="btnSalvarPermissao btn-sm btn-primary" value="Salvar Permissões">
-                    <br>
-                </td>
-            </tr>
-            <tr>
-                <td align="left">
-                    <span style="font-size: 20px; color: black;">Lista de Permissões do Sistema</span>
-                </td>
-            </tr>
-            <tr>
-                <td id="tdListaPermissaos" align="left">
-                    <div id="ListaPermissaos" style="overflow: auto; width: 90%"></div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <br>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12" id="tdListaPermissaos">
+                    <div id="ListaPermissaos" style="width: 90%;"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-sm-2 col-md-1 col-lg-1" style="padding-top: 8px;">
                     <input type="button" class="btnSalvarPermissao btn-sm btn-primary" value="Salvar Permissões">
-                    <br>
-                </td>
-            </tr>            
-        </table>
+                </div>
+            </div>
+        </div>
     </body>
 </html>
 

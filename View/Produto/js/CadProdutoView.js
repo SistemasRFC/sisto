@@ -96,20 +96,45 @@ function listarCoresProduto(codProduto){
 function montaGridCoresProduto(dados){
     if (dados[0]){
         dados = dados[1];
-        tabela = '<table width="100%">';
-        tabela += '<tr>';
-        tabela += '<td><b>Cor:</b></td>';
-        tabela += '<td><b>Valor:</b></td>';
-        tabela += '<td><b>Quantidade:</b></td>';
-        tabela += '</tr>';
+        tabela = "<div class='row'>";
+        tabela += " <div class='col-3 col-sm-4 col-md-2 col-lg-2'>";
+        tabela += "  <label><b>Cor:</b></label>";
+        tabela += " </div>";
+        tabela += " <div class='col-5 col-sm-4 col-md-2 col-lg-2'>";
+        tabela += "  <label><b>Valor:</b></label>";
+        tabela += " </div>";
+        tabela += " <div class='col-4 col-sm-4 col-md-2 col-lg-2'>";
+        tabela += "  <label><b>Quantidade:</b></label>";
+        tabela += " </div>";
+        tabela += "</div>";
         for(i=0;i<dados.length;i++){
-            tabela += "<tr>";
-            tabela += "<td width='150px' codCor='"+dados[i].COD_COR+"'><span>"+dados[i].DSC_COR+"</span></div><br></td>";
-            tabela += "<td><input type='text' id='"+dados[i].COD_COR+"' class='vlrProdutoCor' value='"+dados[i].VLR_PRODUTO_COR+"'></div><br></td>";
-            tabela += "<td><input type='text' codCor='"+dados[i].COD_COR+"' id='"+dados[i].COD_COR+"' class='qtdProdutoCor' value='"+dados[i].QTD_PRODUTO_COR+"'></div><br></td>";
-            tabela += "</tr>";
+            tabela += "<div class='row'>";
+            tabela += " <div class='col-3 col-sm-4 col-md-2 col-lg-2'>";
+            tabela += "  <label codCor='"+dados[i].COD_COR+"'>"+dados[i].DSC_COR+"</label>";
+            tabela += " </div>";
+            tabela += " <div class='col-5 col-sm-4 col-md-2 col-lg-2'>";
+            tabela += "  <input type='text' id='"+dados[i].COD_COR+"' class='vlrProdutoCor form-control' value='"+dados[i].VLR_PRODUTO_COR+"'>";
+            tabela += " </div>";
+            tabela += " <div class='col-4 col-sm-4 col-md-2 col-lg-2'>";
+            tabela += "  <input type='text' codCor='"+dados[i].COD_COR+"' id='"+dados[i].COD_COR+"' class='qtdProdutoCor form-control' value='"+dados[i].QTD_PRODUTO_COR+"'>";
+            tabela += " </div>";
+            tabela += "</div>";
         }
-        tabela += '</table>';
+
+        // tabela = '<table width="100%">';
+        // tabela += '<tr>';
+        // tabela += '<td><b>Cor:</b></td>';
+        // tabela += '<td><b>Valor:</b></td>';
+        // tabela += '<td><b>Quantidade:</b></td>';
+        // tabela += '</tr>';
+        // for(i=0;i<dados.length;i++){
+        //     tabela += "<tr>";
+        //     tabela += "<td width='150px' codCor='"+dados[i].COD_COR+"'><span>"+dados[i].DSC_COR+"</span></div><br></td>";
+        //     tabela += "<td><input type='text' id='"+dados[i].COD_COR+"' class='vlrProdutoCor' value='"+dados[i].VLR_PRODUTO_COR+"'></div><br></td>";
+        //     tabela += "<td><input type='text' codCor='"+dados[i].COD_COR+"' id='"+dados[i].COD_COR+"' class='qtdProdutoCor' value='"+dados[i].QTD_PRODUTO_COR+"'></div><br></td>";
+        //     tabela += "</tr>";
+        // }
+        // tabela += '</table>';
         $("#tbCoresProduto").html(tabela);
         for(i=0;i<dados.length;i++){
             if ($("#codProduto").val() == ''){

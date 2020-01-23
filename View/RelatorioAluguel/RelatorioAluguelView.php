@@ -9,45 +9,25 @@
         <?php include "../../View/MenuPrincipal/Cabecalho.php"; ?>
         <div class="container-fluid" id="tdProduto">
             <div class="row">
-                <div class="col-1">
-                    <label for="clienteRef">Cliente</label>
-                    <input type="text" id="clienteRef" name="clienteRef" class="form-control">
+                <div class="col-12 col-xs-12 col-md-12 col-lg-12" align="center">
+                    <h2>LISTA DE ALUGUÉIS POR CLIENTE</h2>
                 </div>
-                <div class="col-1">
+            </div>
+            <div class="row">
+                <div class="col-12 col-xs-6 col-md-4 col-lg-4">
+                    <label><b>Cliente</b></label><br>
+                    <input type='hidden' id='codCliente' class='persist'>
+                    <input id="nmeCliente" class='form-control'/>
+                </div>
+                <div class="col-2 col-xs-2 col-md-2 col-lg-2" align="right">
                     <button type="button" id="btnBuscar" class="btn btn-primary" title="Buscar alugueis cliente">Buscar</button>
                 </div>
             </div>
-        </div>
-        <!-- <div id="CadastroForm">
-        <table width="100%">
-            <tr>
-                <td>
-                    <table width="100%" class="TabelaCabecalho">
-                        <tr>
-                            <td width="20%" class="TDTitulo">
-                                Data Início
-                            </td>
-                            <td width="20%"  class="TDTitulo">
-                                Data Fim
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div id="dtaVendaInicio"></div>
-                            </td>
-                            <td>
-                                <div id="dtaVendaFim"></div>
-                            </td>
-                            <td width="20%" >
-                                <input type="button" id="btnPesquisa" value="Pesquisar">
-                            </td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
-        </table>
-            <div id="conteudo">
+            <div class="row">
+                <div class="col-12 col-xs-12 col-md-10 col-lg-10" align="center">
+                    <div id="listaAlugueisPorCliente"></div>
+                </div>
             </div>
-        </div> -->
+        </div>
     </body>
 </html>

@@ -8,9 +8,7 @@
     <body>
         <?php include "../../View/MenuPrincipal/Cabecalho.php"; ?>
         <input type="hidden" id="codCliente">
-        <div class="container-fluid" id="tdCliente">
-            <div class="row">&nbsp;</div>
-            <div class="row">&nbsp;</div>
+        <div id="tdCliente">
             <div class="row">&nbsp;</div>
             <div class="row">
                 <div class="col-1"></div>
