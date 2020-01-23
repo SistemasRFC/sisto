@@ -1,24 +1,16 @@
 <html>
     <head>
-        <title>Sistema de Gerenciamento de Recursos</title>
-        <link rel="stylesheet" href="../../Resources/jqx/jqwidgets/styles/jqx.base.css" type="text/css" />
+        <title>Sistema de Gerenciamento de Aluguéis</title>
+        <?php include "../../View/Scripts.php"; ?>
         <link rel="stylesheet" href="../../Resources/jqx/jqwidgets/styles/jqx.bootstrap.css" type="media" />
-        <link rel="stylesheet" type="text/css" href="../../Resources/css/style.css">        
-        <script src="../../Resources/jqx/scripts/jquery-1.10.2.min.js"></script>
-        <script type="text/javascript" src="../../Resources/jqx/jqwidgets/jqxcore.js"></script>
         <script type="text/javascript" src="../../Resources/jqx/jqwidgets/jqxinput.js"></script>
         <script type="text/javascript" src="../../Resources/jqx/jqwidgets/jqxpasswordinput.js"></script>
-        <script type="text/javascript" src="../../Resources/jqx/jqwidgets/jqxdata.js"></script>
         <script type="text/javascript" src="../../Resources/jqx/jqwidgets/jqxbuttons.js"></script>
-        <script type="text/javascript" src="../../Resources/jqx/jqwidgets/globalization/globalize.js"></script>
-        <script type="text/javascript" src="../../Resources/jqx/jqwidgets/jqxcore.js"></script>
-        <script type="text/javascript" src="../../Resources/jqx/jqwidgets/jqxwindow.js"></script>
-        <script type="text/javascript" src="../../Resources/jqx/scripts/gettheme.js"></script>
-        <script src="../../Resources/swal/dist/sweetalert.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="../../Resources/swal/dist/sweetalert.css">        
+        <!-- <script type="text/javascript" src="../../Resources/jqx/scripts/gettheme.js"></script> -->
+        
         <script src="js/AlteracaoSenhaView.js?rdm=<?php echo V; ?>"></script>
 
-        <meta http-equiv="Content-Type" content="text/html; charset=utf8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     </head>
     <body>
         <div id="CadastroForm">
