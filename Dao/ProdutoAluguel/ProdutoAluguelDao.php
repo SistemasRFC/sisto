@@ -52,6 +52,7 @@ class ProdutoAluguelDao extends BaseDao
 
     Public Function DeleteProdutoAluguel(){
         $sql = "DELETE FROM RE_VENDA_PRODUTO WHERE COD_VENDA_PRODUTO = ".$this->Populate('codProdutoAluguel','I')."";
-        return $this->insertDB($sql);
+        $retorno = $this->insertDB($sql);
+        return $retorno;
     }
 }

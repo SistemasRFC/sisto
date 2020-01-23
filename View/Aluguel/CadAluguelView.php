@@ -6,8 +6,7 @@
     <div class="row">
         <div class="col-12 col-sm-12 col-md-3 col-lg-3">
             <label><b>Data</b></label>
-            <input type="text" id="dtaAluguel" class="form-control" />
-            <!-- <input type="text" class="form-control input-group date" id="dtaAluguel" > -->
+            <input type="text" id="dtaAluguel" class="form-control refProduto" />
         </div>
     </div>
     <div class="row">&nbsp;</div>

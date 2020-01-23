@@ -69,13 +69,14 @@ function MontaMenu(Dados){
             listaMenus += '</div></li>';
         }else if (parseInt(Dados[i].QTD_FILHOS)==0 && (Dados[i].COD_MENU_PAI==0 || Dados[i].COD_MENU_PAI==-1)){
             if (Dados[i].NME_CONTROLLER!=null){
-                listaMenus += '<li class="nav-item"><a class="nav-link" href="javascript:RedirecionaController(\''+Dados[i].NME_CONTROLLER+'\', \''+Dados[i].NME_METHOD+'\');">'+Dados[i].DSC_MENU+'</a></li>';
+                listaMenus += '<li class="nav-item active"><a class="nav-link" href="javascript:RedirecionaController(\''+Dados[i].NME_CONTROLLER+'\', \''+Dados[i].NME_METHOD+'\');">'+Dados[i].DSC_MENU+'</a></li>';
             }else{
                 listaMenus += '<li class="nav-item"><a class="nav-link" href="#">'+Dados[i].DSC_MENU+'</a></li>';
             }
-            
         }
     }
+    listaMenus += ' <li class="nav-item"><a class="nav-link" href="../../index.php">Logoff</a></li>';
+    // listaMenus += ' <li class="nav-item active"><a class="nav-link" href="../../index.php"><img src="../../Resources/bootstrap/glyphicons_free/glyphicons/png/glyphicons-64-power.png" width="22px" /></a></li>';
     listaMenus += '</ul>';
     listaMenus += '</div>';
     $("#MenuTop").html(listaMenus);

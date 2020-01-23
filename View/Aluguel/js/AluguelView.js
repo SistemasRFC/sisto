@@ -6,9 +6,10 @@ $(function() {
         $("#nmeClienteAluguel").val('');
         $("#tabelaProdutosAluguel").hide();
         $("#codProdutoAluguel").val('');
+        $("#codProdutoCorAluguel").val('');
         $("#dscProdutoAluguel").val('');
         $("#qtdProdutoAluguel").val('');
-        $("#cadProdutoCor").hide();
+        // $("#cadProdutoCor").hide();
     });
 });
 
@@ -47,7 +48,7 @@ function montaGridAluguel(dados){
                 tabela += "<td style='text-align: center;'>"+dados[i].DSC_SITUACAO+"</td>";
                 tabela += "<td style='text-align: right;'>R$ "+dados[i].VLR_TOTAL+"</td>";
                 tabela += "<td style='text-align: center;'>";
-                tabela += " &nbsp;<a href=\"javascript:carregaCamposAluguel('"+dados[i].COD_ALUGUEL+"', '"+dados[i].DTA_ALUGUEL+"', '"+dados[i].COD_CLIENTE+"');\">Editar</a>";
+                tabela += " &nbsp;<a href=\"javascript:carregaCamposAluguel('"+dados[i].NME_CLIENTE+"', '"+dados[i].COD_ALUGUEL+"', '"+dados[i].DTA_ALUGUEL+"', '"+dados[i].COD_CLIENTE+"');\">Editar</a>";
                 tabela += " | <a href=\"javascript:alteraStatusAluguel('"+dados[i].COD_ALUGUEL+"', '9');\">Entregar</a><br>";
                 tabela += "  <a href=\"javascript:alteraStatusAluguel('"+dados[i].COD_ALUGUEL+"', '6');\">Buscar</a>";
                 tabela += " | <a href=\"javascript:alteraStatusAluguel('"+dados[i].COD_ALUGUEL+"', '7');\">Cancelar</a>";

@@ -1,7 +1,7 @@
 $(function() {
     $("#btnNovoProduto").click(function(){
-        $("#dscProduto").val('');
-//        $("#cadProduto").modal("show");
+        limparCamposProduto();
+        $("#cadProduto").modal("show");
     });
     
 });

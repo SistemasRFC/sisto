@@ -16,6 +16,13 @@ $(function() {
         }
     });
 });
+
+function limparCamposProduto() {
+    $("#codProduto").val('');
+    $("#dscProduto").val('');
+    $(".vlrProdutoCor").val('');
+    $(".qtdProdutoCor").val('');
+}
     
 function inserirProduto(){
     swal({
@@ -66,7 +73,7 @@ function carregaCamposProduto(codProduto, dscProduto){
     listarCoresProduto(codProduto);
     $("#codProduto").val(codProduto);
     $("#dscProduto").val(dscProduto);
-//    $("#cadProduto").modal('show');
+   $("#cadProduto").modal('show');
 }
 
 function updateProduto(){
@@ -100,10 +107,10 @@ function montaGridCoresProduto(dados){
         tabela += " <div class='col-3 col-sm-4 col-md-2 col-lg-2'>";
         tabela += "  <label><b>Cor:</b></label>";
         tabela += " </div>";
-        tabela += " <div class='col-5 col-sm-4 col-md-2 col-lg-2'>";
+        tabela += " <div class='col-5 col-sm-4 col-md-4 col-lg-4'>";
         tabela += "  <label><b>Valor:</b></label>";
         tabela += " </div>";
-        tabela += " <div class='col-4 col-sm-4 col-md-2 col-lg-2'>";
+        tabela += " <div class='col-4 col-sm-4 col-md-4 col-lg-4'>";
         tabela += "  <label><b>Quantidade:</b></label>";
         tabela += " </div>";
         tabela += "</div>";
@@ -112,10 +119,10 @@ function montaGridCoresProduto(dados){
             tabela += " <div class='col-3 col-sm-4 col-md-2 col-lg-2'>";
             tabela += "  <label codCor='"+dados[i].COD_COR+"'>"+dados[i].DSC_COR+"</label>";
             tabela += " </div>";
-            tabela += " <div class='col-5 col-sm-4 col-md-2 col-lg-2'>";
+            tabela += " <div class='col-5 col-sm-4 col-md-4 col-lg-4'>";
             tabela += "  <input type='text' id='"+dados[i].COD_COR+"' class='vlrProdutoCor form-control' value='"+dados[i].VLR_PRODUTO_COR+"'>";
             tabela += " </div>";
-            tabela += " <div class='col-4 col-sm-4 col-md-2 col-lg-2'>";
+            tabela += " <div class='col-4 col-sm-4 col-md-4 col-lg-4'>";
             tabela += "  <input type='text' codCor='"+dados[i].COD_COR+"' id='"+dados[i].COD_COR+"' class='qtdProdutoCor form-control' value='"+dados[i].QTD_PRODUTO_COR+"'>";
             tabela += " </div>";
             tabela += "</div>";
