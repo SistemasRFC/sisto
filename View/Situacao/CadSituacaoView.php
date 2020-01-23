@@ -1,4 +1,4 @@
-<script src="../../View/Situacao/js/CadSituacaoView.js?rdm=<?php echo time(); ?>"></script>
+<script src="../../View/Situacao/js/CadSituacaoView.js?rdm=<?php echo V; ?>"></script>
 
 <div class="row">&nbsp;</div>
 <div class="row">

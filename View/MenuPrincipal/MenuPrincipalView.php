@@ -6,7 +6,7 @@
 
         <title>Menu Principal</title>
         <?php include "../../View/Scripts.php"; ?>
-        <script src="../../View/MenuPrincipal/js/MenuPrincipalView.js?rdm=<?php echo time(); ?>"></script>
+        <script src="../../View/MenuPrincipal/js/MenuPrincipalView.js?rdm=<?php echo V; ?>"></script>
     </head>
 
     <body>

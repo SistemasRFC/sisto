@@ -1,4 +1,4 @@
-<script src="../../View/Menu/js/CadMenuView.js?rdm=<?php echo time(); ?>"></script>
+<script src="../../View/Menu/js/CadMenuView.js?rdm=<?php echo V; ?>"></script>
 <input type="hidden" id="codMenu">
 <div class="container-fluid">
     <div class="row">

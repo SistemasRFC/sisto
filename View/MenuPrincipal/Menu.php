@@ -1,4 +1,4 @@
-<script src="../../View/MenuPrincipal/js/Menu.js?rdm=<?php echo time(); ?>"></script>
+<script src="../../View/MenuPrincipal/js/Menu.js?rdm=<?php echo V; ?>"></script>
 <nav class="col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar">
     <ul class="nav nav-pills flex-column" id="menu">
         <li data-toggle="collapse" data-target="#products" class="collapsed active">

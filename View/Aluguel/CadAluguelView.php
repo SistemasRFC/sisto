@@ -1,5 +1,5 @@
 <html>
-<script src="../../View/Aluguel/js/CadAluguelView.js?rdm=<?php echo time(); ?>"></script>
+<script src="../../View/Aluguel/js/CadAluguelView.js?rdm=<?php echo V; ?>"></script>
 <div class="container-fluid">
     <input type="hidden" value="8" id="codSituacao" class="persist">
     <div class="row">&nbsp;</div>

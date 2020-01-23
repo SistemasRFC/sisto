@@ -1,4 +1,4 @@
-<script src="../../View/Cliente/js/CadClienteView.js?rdm=<?php echo time(); ?>"></script>
+<script src="../../View/Cliente/js/CadClienteView.js?rdm=<?php echo V; ?>"></script>
 <div class="container-fluid">
     <input id="codCliente" type="hidden" class="form-control">
     <div class="row">

@@ -2,7 +2,7 @@
     <head>
         <title>Menu - SISTO</title>
         <?php include "../../View/Scripts.php"; ?>
-        <script src="../../View/Menu/js/MenuView.js?rdm=<?php echo time(); ?>"></script>
+        <script src="../../View/Menu/js/MenuView.js?rdm=<?php echo V; ?>"></script>
 
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     </head>

@@ -12,8 +12,8 @@
         <link href="../../Resources/bootstrap/css/dashboard.css" rel="stylesheet">
         <script src="../../Resources/swal/dist/sweetalert.min.js"></script>
         <link rel="stylesheet" type="text/css" href="../../Resources/swal/dist/sweetalert.css">          
-        <title>Gerar Arquivos - Demandas</title>
-        <script src="../../View/MontaFile/JavaScript/MontaFileView.js?rdm=<?php echo time(); ?>"></script>        
+        <title>Gerar Arquivos - Sisto</title>
+        <script src="../../View/MontaFile/JavaScript/MontaFileView.js?rdm=<?php echo V; ?>"></script>        
     </head>
     <body>
         <?php include_once "../../View/MenuPrincipal/Cabecalho.php"; ?>

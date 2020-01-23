@@ -16,7 +16,7 @@
         <script type="text/javascript" src="../../Resources/jqx/scripts/gettheme.js"></script>
         <script src="../../Resources/swal/dist/sweetalert.min.js"></script>
         <link rel="stylesheet" type="text/css" href="../../Resources/swal/dist/sweetalert.css">        
-        <script src="js/AlteracaoSenhaView.js"></script>
+        <script src="js/AlteracaoSenhaView.js?rdm=<?php echo V; ?>"></script>
 
         <meta http-equiv="Content-Type" content="text/html; charset=utf8">
     </head>

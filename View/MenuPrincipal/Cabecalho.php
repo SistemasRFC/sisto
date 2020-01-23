@@ -1,4 +1,4 @@
-<script src="../../View/MenuPrincipal/js/Cabecalho.js?rdm=<?php echo time(); ?>"></script>
+<script src="../../View/MenuPrincipal/js/Cabecalho.js?rdm=<?php echo V; ?>"></script>
 <header>
     <nav class="navbar navbar-expand navbar-dark bg-dark" style="position: initial;" id="MenuTop">
         <a class="navbar-brand" href="#">Dashboard</a>

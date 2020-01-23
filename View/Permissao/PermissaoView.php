@@ -1,7 +1,7 @@
 <html>
     <head>
         <?php include "../../View/Scripts.php"; ?>
-        <script src="../../View/Permissao/js/PermissaoView.js?rdm=<?php echo time(); ?>"></script>
+        <script src="../../View/Permissao/js/PermissaoView.js?rdm=<?php echo V; ?>"></script>
 
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     </head>

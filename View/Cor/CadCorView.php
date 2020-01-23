@@ -1,4 +1,4 @@
-<script src="../../View/Cor/js/CadCorView.js?rdm=<?php echo time(); ?>"></script>
+<script src="../../View/Cor/js/CadCorView.js?rdm=<?php echo V; ?>"></script>
 <div class="container-fluid">
     <div class="row">&nbsp;</div>
     <div class="row">

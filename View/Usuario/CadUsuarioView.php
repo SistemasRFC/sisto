@@ -1,4 +1,4 @@
-<script src="../../View/Usuario/js/CadUsuarioView.js?rdm=<?php echo time(); ?>"></script>
+<script src="../../View/Usuario/js/CadUsuarioView.js?rdm=<?php echo V; ?>"></script>
 <div class="container-fluid">
     <div class="row">
         <div class="col-12 col-sm-12 col-md-8 col-lg-8">
