@@ -33,6 +33,14 @@
         <button type="button" class="btn btn-primary" id="btnSalvarAluguel">Salvar</button>
     </div>
 </div>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div id="tabelaProdutosAluguel" class="table-responsive"></div>
+        </div>
+    </div>
+    <div class="row">&nbsp;</div>
+</div>
 </html>
 <div class="modal fade bd-example-modal-lg" id="modalCliente" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">

@@ -95,8 +95,8 @@ function updateAluguel(){
         imageUrl: "../../Resources/images/preload.gif",
         showConfirmButton: false
     });
-    parametros = 'codAluguel;'+$("#codAluguel").val()+'|dtaAluguel;'+$("#dtaAluguel").val()+'|codCliente;'+$("#codClienteAluguel").val();
-    parametros += '|codProdutoCor;'+$("#codProdutoCorAluguel").val()+'|qtdProdutoAluguel;'+$("#qtdProdutoAluguel").val();
+    parametros = 'codVenda;'+$("#codAluguel").val()+'|dtaAluguel;'+$("#dtaAluguel").val()+'|codCliente;'+$("#codClienteAluguel").val();
+    parametros += '|codProdutoCor;'+$("#codProdutoCorAluguel").val()+'|qtdProdutoAluguel;'+$("#qtdProdutoAluguel").val()+"|codSituacao;8";
     ExecutaDispatch('Aluguel', 'UpdateAluguel', parametros, retornoInsertAluguel);
 }
 
@@ -123,25 +123,28 @@ function selecionaClientes(){
 }
 
 function montaDivClientes(lista){
-    $("#nmeClienteAluguel").jqxInput({ 
-        source: lista[1], 
-        placeHolder: "Cliente", 
-        displayMember: "TEXT", 
-        valueMember: "COD", 
-        width: '100%', 
-        height: 40
-    });
-    $("#nmeClienteAluguel").on('select', function (event) {
-        if (event.args) {
-            var item = event.args.item;
-            if (item) {
-                $("#codClienteAluguel").val(item.value);
+    if (lista[1]!=null){
+        $("#nmeClienteAluguel").jqxInput({ 
+            source: lista[1], 
+            placeHolder: "Cliente", 
+            displayMember: "TEXT", 
+            valueMember: "COD", 
+            width: '100%', 
+            height: 40
+        });
+        $("#nmeClienteAluguel").on('select', function (event) {
+            if (event.args) {
+                var item = event.args.item;
+                if (item) {
+                    $("#codClienteAluguel").val(item.value);
+                }
             }
-        }
-    });
+        });
+    }
 }
 
 $(document).ready(function(){
+    $("#dtaAluguel").val('');
     $("#dtaAluguel").change(function () {
         if($(this).val() == ''){
             $("#cadProdutoCor").hide();

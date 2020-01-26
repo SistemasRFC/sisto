@@ -47,7 +47,7 @@ class AluguelModel extends BaseModel
         $dao = new AluguelDao();
         $result = $dao->UpdateAluguel($_SESSION['cod_usuario']);
         if ($result[0]){
-            $codAluguel = $dao->Populate('codAluguel', 'I');
+            $codAluguel = $dao->Populate('codVenda', 'I');
             $produtoAluguelModel = new ProdutoAluguelModel();
             if($dao->Populate('codProdutoAluguel', 'I') == ''){
                 if($dao->Populate('codProdutoCor', 'I') != ''){

@@ -55,12 +55,13 @@ class AluguelDao extends BaseDao
     }
 
     Public Function UpdateAluguel($codUsuario){
-        $sql = "UPDATE RE_VENDA SET DTA_VENDA ='".$this->Populate('dtaAluguel', 'D')."',
-                                    COD_USUARIO ='".$codUsuario."',
-                                    COD_CLIENTE ='".$this->Populate('codCliente', 'I')."',
-                                    COD_SITUACAO ='".$this->Populate('codSituacao', 'I')."'
-                              WHERE COD_VENDA ='".$this->Populate('codAluguel', 'I')."'";
-        return $this->insertDB($sql);
+//        $sql = "UPDATE RE_VENDA SET DTA_VENDA ='".$this->Populate('dtaAluguel', 'D')."',
+//                                    COD_USUARIO ='".$codUsuario."',
+//                                    COD_CLIENTE ='".$this->Populate('codCliente', 'I')."',
+//                                    COD_SITUACAO ='".$this->Populate('codSituacao', 'I')."'
+//                              WHERE COD_VENDA ='".$this->Populate('codAluguel', 'I')."'";
+//        return $this->insertDB($sql);
+        return $this->MontarUpdate();
     }
 
     Public Function InsertAluguel($codUsuario){

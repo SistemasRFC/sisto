@@ -58,7 +58,7 @@ function montaDivProdutos(lista){
         if (event.args) {
             var item = event.args.item;
             if (item) {
-                $("#codProdutoCorAluguel").val(item.value);
+                $("#codProdutoCorAluguel").val(item.value).change();
             }
         }
     });
