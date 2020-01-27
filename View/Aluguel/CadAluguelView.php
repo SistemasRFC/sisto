@@ -28,8 +28,7 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-9 col-sm-9"></div>
-    <div class="col-3 col-sm-3">
+    <div class="col-12 col-xs-11 col-md-11 col-lg-11" align="right">
         <button type="button" class="btn btn-primary" id="btnSalvarAluguel">Salvar</button>
     </div>
 </div>

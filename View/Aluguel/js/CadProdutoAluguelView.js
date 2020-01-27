@@ -1,5 +1,9 @@
 $(function() {
     $("#bntIncProduto").click(function(){
+        $("#codProduto").val('');
+        $("#dscProduto").val('');
+        $(".vlrProdutoCor").val('');
+        $(".qtdProdutoCor").val('');
         $("#modalProduto").modal('show');
     });
 });
@@ -9,7 +13,7 @@ function montaTabelaProduto(retorno) {
     if(retorno[0]){
         dados = retorno[1];
         if(dados != null){
-            html += "<table border='1'>";
+            html += "<table width='100%' border='1'>";
             html += " <tr>";
             html += "  <th colspan='7' style='text-align: center;background-color: #ddd'>";
             html += "   Quantidade já reservada por dia";
@@ -57,35 +61,38 @@ function montaDivProdutos(lista){
     $("#dscProdutoAluguel").on('select', function (event) {
         if (event.args) {
             var item = event.args.item;
+            var codigo = item.value.split(';');
+            var cod = codigo[0];
+            var valor = codigo[1];
             if (item) {
-                $("#codProdutoCorAluguel").val(item.value).change();
+                $("#codProdutoCorAluguel").val(cod).change();
+                $("#vlrProdutoAluguel").val(valor);
             }
         }
     });
 }
-  
-function insertProdutoAluguel(){
-    swal({
-        title: "Aguarde, salvando registro!",
-        imageUrl: "../../Resources/images/preload.gif",
-        showConfirmButton: false
-    });
-    parametros = 'codAluguel;'+$("#codAluguel").val()+'|codProdutoCor;'+$("#codProdutoCorAluguel").val()+'|qtdProdutoAluguel;'+$("#qtdProdutoAluguel").val()+'|qtdDisponivel;'+$(".qtdDisponivel").val();
-    ExecutaDispatch('ProdutoAluguel', 'InsertProdutoAluguel', parametros, retornoInsertProdutoAluguel);
+
+function carregaCamposProdutoAluguel(codProdutoAluguel, dscProdutoCor, codProdutoCor, qtdProdutoAluguel, vlrProdutoAluguel){
+    $('#codProdutoAluguel').val(codProdutoAluguel);
+    $('#dscProdutoAluguel').val(dscProdutoCor);
+    $('#codProdutoCorAluguel').val(codProdutoCor).change();
+    $('#qtdProdutoAluguel').val(qtdProdutoAluguel);
+    $('#vlrProdutoAluguel').val(vlrProdutoAluguel);
 }
 
-function retornoInsertProdutoAluguel(retorno){
+function listaProdutosAluguel(codAluguel){
+    ExecutaDispatch('ProdutoAluguel','ListarProdutoAluguel','codAluguel;'+codAluguel, montaGridProdutosAluguel);
+}
+
+function retornoInsertProduto(retorno){
     if (retorno[0]){
-        $('#codProdutoAluguel').val('');
-        $('#codProdutoCorAluguel').val('');
-        $('#qtdProdutoAluguel').val('');
-        listaProdutosAluguel();
+        $("#modalProduto").modal("hide");
         swal({
             title: "Sucesso!",
             text: "Registro salvo com sucesso!",
             type: "success",
             confirmButtonText: "Fechar"
-        });
+        });        
     }else{
         $(".jquery-waiting-base-container").fadeOut({modo:"fast"});
         swal({
@@ -95,17 +102,6 @@ function retornoInsertProdutoAluguel(retorno){
             confirmButtonText: "Fechar"
         });
     }
-}
-
-function carregaCamposProdutoAluguel(codProdutoAluguel, dscProdutoCor, codProdutoCor, qtdProdutoAluguel){
-    $('#codProdutoAluguel').val(codProdutoAluguel);
-    $('#dscProdutoAluguel').val(dscProdutoCor);
-    $('#codProdutoCorAluguel').val(codProdutoCor).change();
-    $('#qtdProdutoAluguel').val(qtdProdutoAluguel);
-}
-
-function listaProdutosAluguel(codAluguel){
-    ExecutaDispatch('ProdutoAluguel','ListarProdutoAluguel','codAluguel;'+codAluguel, montaGridProdutosAluguel);
 }
 
 function montaGridProdutosAluguel(dados){
@@ -128,9 +124,9 @@ function montaGridProdutosAluguel(dados){
                 tabela += '<tr>';
                 tabela += '<td>'+dados[i].DSC_PRODUTO_COR+'</td>';
                 tabela += '<td>'+dados[i].QTD_PRODUTO_ALUGUEL+'</td>';
-                tabela += '<td>R$ '+dados[i].VLR_PRODUTO_COR+'</td>';
+                tabela += '<td>R$ '+dados[i].VLR_PRODUTO_ALUGUEL+'</td>';
                 tabela += '<td>R$ '+dados[i].VLR_ALUGUEL+'</td>';
-                tabela += "<td><a href=\"javascript:carregaCamposProdutoAluguel('"+dados[i].COD_PRODUTO_ALUGUEL+"', '"+dados[i].DSC_PRODUTO_COR+"', '"+dados[i].COD_PRODUTO_COR+"', '"+dados[i].QTD_PRODUTO_ALUGUEL+"');\">Editar</a> \n\
+                tabela += "<td><a href=\"javascript:carregaCamposProdutoAluguel('"+dados[i].COD_PRODUTO_ALUGUEL+"', '"+dados[i].DSC_PRODUTO_COR+"', '"+dados[i].COD_PRODUTO_COR+"', '"+dados[i].QTD_PRODUTO_ALUGUEL+"', '"+dados[i].VLR_PRODUTO_ALUGUEL+"');\">Editar</a> \n\
                                &nbsp;&nbsp; <a href=\"javascript:removeProdutoAluguel('"+dados[i].COD_PRODUTO_ALUGUEL+"');\">Excluir</a></td>";
                 tabela += '</tr>';
                 totalFinal = parseInt(totalFinal) + parseInt(dados[i].VLR_ALUGUEL);
@@ -180,23 +176,38 @@ function montaGridProdutosAluguel(dados){
     }
 }
 
-//function updateProdutoAluguel(){
-//    swal({
-//        title: "Aguarde, salvando registro!",
-//        imageUrl: "../../Resources/images/preload.gif",
-//        showConfirmButton: false
-//    });
-//    parametros = 'codProdutoAluguel;'+$("#codProdutoAluguel").val()+'|codProdutoCor;'+$("#codProdutoCorAluguel").val()+'|qtdProdutoAluguel;'+$("#qtdProdutoAluguel").val()+'|qtdDisponivel;'+$(".qtdDisponivel").val();
-//    ExecutaDispatch('ProdutoAluguel', 'UpdateProdutoAluguel', parametros, retornoInsertProdutoAluguel);
-//}
-
 function removeProdutoAluguel(codProdutoAluguel){
     swal({
         title: "Aguarde, salvando registro!",
         imageUrl: "../../Resources/images/preload.gif",
         showConfirmButton: false
     });
-    ExecutaDispatch('ProdutoAluguel', 'DeleteProdutoAluguel', 'codProdutoAluguel;'+codProdutoAluguel+'|', retornoInsertProdutoAluguel);
+    ExecutaDispatch('ProdutoAluguel', 'DeleteProdutoAluguel', 'codProdutoAluguel;'+codProdutoAluguel+'|', retornoDeleteProdutoAluguel);
+}
+
+function retornoDeleteProdutoAluguel(retorno){
+    if (retorno[0]){
+        listaProdutosAluguel($("#codAluguel").val());
+        $("#codProdutoAluguel").val('');
+        $("#codProdutoCorAluguel").val('');
+        $("#dscProdutoAluguel").val('');
+        $("#qtdProdutoAluguel").val('');
+        $("#vlrProdutoAluguel").val('');
+        swal({
+            title: "Sucesso!",
+            text: "Produto removido com sucesso!",
+            type: "success",
+            confirmButtonText: "Fechar"
+        });
+    }else{
+        $(".jquery-waiting-base-container").fadeOut({modo:"fast"});
+        swal({
+            title: "Erro!",
+            text: retorno[1],
+            type: "error",
+            confirmButtonText: "Fechar"
+        });
+    }
 }
 
 $(document).ready(function(){
@@ -216,4 +227,5 @@ $(document).ready(function(){
             $("#tabelaRefProduto").hide('fade');
         }
     });
+
 });

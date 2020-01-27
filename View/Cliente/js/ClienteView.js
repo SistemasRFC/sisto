@@ -22,6 +22,33 @@ $(function() {
     });
 });
 
+function retornoInsertCliente(retorno){
+    if (retorno[0]){
+        $("#codCliente").val(0);
+        $("#nmeCliente").val('');
+        $("#nroCpf").val('');
+        $("#nroTelefone").val('');
+        $("#txtEmail").val('');
+        $("#dscEndereco").val('');
+        carregaGridClientes();
+        $("#modalCadCliente").modal('hide');
+        swal({
+            title: "Sucesso!",
+            text: "Registro salvo com sucesso!",
+            type: "success",
+            confirmButtonText: "Fechar"
+        });
+    }else{
+        $(".jquery-waiting-base-container").fadeOut({modo:"fast"});
+        swal({
+            title: "Erro!",
+            text: retorno[1],
+            type: "error",
+            confirmButtonText: "Fechar"
+        });
+    }
+}
+
 function carregaGridClientes(){
     ExecutaDispatch('Cliente', 'ListarClientes', undefined, montaGridClientes);
 }

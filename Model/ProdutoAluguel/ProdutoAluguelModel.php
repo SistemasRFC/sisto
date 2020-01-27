@@ -15,7 +15,7 @@ class ProdutoAluguelModel extends BaseModel
         $dao = new ProdutoAluguelDao();
         $lista = $dao->ListarProdutoAluguel();
         if($lista[0]) {
-            $lista = FuncoesMoeda::FormataMoedaInArray($lista, 'VLR_PRODUTO_COR');
+            $lista = FuncoesMoeda::FormataMoedaInArray($lista, 'VLR_PRODUTO_ALUGUEL');
             $lista = FuncoesMoeda::FormataMoedaInArray($lista, 'VLR_ALUGUEL');
         }
         return json_encode($lista);

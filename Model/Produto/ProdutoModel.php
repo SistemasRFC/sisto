@@ -39,9 +39,11 @@ class ProdutoModel extends BaseModel
             $codVenda = $result[2];
             $array = explode("$", $_POST['codCor']);
             for ($i=0;$i<count($array)-1;$i++){
-            $registro=explode('#',$array[$i]);
-            $registro[1] = str_replace(",", ".", str_replace(".", "", $registro[1]));
-            $result = $dao->InsertProdutoCor($codVenda, $registro[0], $registro[1], $registro[2]);    
+                $registro=explode('#',$array[$i]);
+                $registro[1] = str_replace(",", ".", str_replace(".", "", $registro[1]));
+                if($registro[1] && $registro[2]) {
+                    $result = $dao->InsertProdutoCor($codVenda, $registro[0], $registro[1], $registro[2]);
+                }
             }
             if($result[0]){
                 $dao->ComitaTransacao();
@@ -98,6 +100,12 @@ class ProdutoModel extends BaseModel
     Public Function ListarProdutoCorAutoComplete($Json=true){
         $dao = new ProdutoDao();
         $lista = $dao->ListarProdutoCorAutoComplete();
+        if($lista[0]) {
+            $total = count($lista[1]);
+            for($i =0; $i < $total; $i++) {
+                $lista[1][$i]['COD'] = $lista[1][$i]['COD'].';'.FuncoesMoeda::FormataMoeda($lista[1][$i]['VLR_PRODUTO_COR']);
+            }
+        }
         if ($Json){
             return json_encode($lista);
         }else{

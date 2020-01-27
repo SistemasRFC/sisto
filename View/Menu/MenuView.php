@@ -41,7 +41,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" style="overflow-y: auto;">
         <?php include_once "CadMenuView.php";?>
       </div>
       <div class="modal-footer">

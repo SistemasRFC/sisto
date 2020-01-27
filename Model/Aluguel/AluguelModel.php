@@ -50,9 +50,7 @@ class AluguelModel extends BaseModel
             $codAluguel = $dao->Populate('codVenda', 'I');
             $produtoAluguelModel = new ProdutoAluguelModel();
             if($dao->Populate('codProdutoAluguel', 'I') == ''){
-                if($dao->Populate('codProdutoCor', 'I') != ''){
-                    $result = json_decode($produtoAluguelModel->InsertProdutoAluguel($codAluguel));
-                }
+                $result = json_decode($produtoAluguelModel->InsertProdutoAluguel($codAluguel));
             }else{
                 $result = json_decode($produtoAluguelModel->UpdateProdutoAluguel($codAluguel));
             }

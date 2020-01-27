@@ -9,8 +9,15 @@ $(function() {
         $("#codProdutoCorAluguel").val('');
         $("#dscProdutoAluguel").val('');
         $("#qtdProdutoAluguel").val('');
+        $("#vlrProdutoAluguel").val('');
         // $("#cadProdutoCor").hide();
     });
+    
+    $("#btnListaAlugueis").click(function(){
+        carregaGridAluguel();
+        $("#modalListaAlugueis").modal('show');
+    });
+
 });
 
 function carregaGridAluguel(){
@@ -26,10 +33,10 @@ function montaGridAluguel(dados){
             tabela += '<tr>';
             tabela += " <th width='10%' style='text-align: center;'><b>Data</b></th>";
             tabela += " <th width='24%'><b>Cliente</b></th>";
-            tabela += " <th width='32%'><b>Produtos</b></th>";
+            tabela += " <th width='37%'><b>Produtos</b></th>";
             tabela += " <th width='8%'><b>Situação</b></th>";
             tabela += " <th width='11%' style='text-align: center;'><b>Valor</b></th>";
-            tabela += " <th width='15%' style='text-align: right;'><b>Ações</b></th>";
+            tabela += " <th width='8%' style='text-align: right;'><b>Ações</b></th>";
             tabela += '</tr>';
             tabela += '</thead><tbody>';
             for (i=0;i<dados.length;i++){
@@ -48,10 +55,9 @@ function montaGridAluguel(dados){
                 tabela += "<td style='text-align: center;'>"+dados[i].DSC_SITUACAO+"</td>";
                 tabela += "<td style='text-align: right;'>R$ "+dados[i].VLR_TOTAL+"</td>";
                 tabela += "<td style='text-align: center;'>";
-                tabela += " &nbsp;<a href=\"javascript:carregaCamposAluguel('"+dados[i].NME_CLIENTE+"', '"+dados[i].COD_ALUGUEL+"', '"+dados[i].DTA_ALUGUEL+"', '"+dados[i].COD_CLIENTE+"');\">Editar</a>";
-                tabela += " | <a href=\"javascript:alteraStatusAluguel('"+dados[i].COD_ALUGUEL+"', '9');\">Entregar</a><br>";
-                tabela += "  <a href=\"javascript:alteraStatusAluguel('"+dados[i].COD_ALUGUEL+"', '6');\">Buscar</a>";
-                tabela += " | <a href=\"javascript:alteraStatusAluguel('"+dados[i].COD_ALUGUEL+"', '7');\">Cancelar</a>";
+                tabela += " <a href=\"javascript:carregaCamposAluguel('"+dados[i].NME_CLIENTE+"', '"+dados[i].COD_ALUGUEL+"', '"+dados[i].DTA_ALUGUEL+"', '"+dados[i].COD_CLIENTE+"');\">Editar</a>";
+                tabela += " <a href=\"javascript:alteraStatusAluguel('"+dados[i].COD_ALUGUEL+"', '9');\">Entregar</a><br>";
+                tabela += " <a href=\"javascript:alteraStatusAluguel('"+dados[i].COD_ALUGUEL+"', '7');\">Cancelar</a>";
                 tabela += "</td>";
                 tabela += '</tr>';
 
@@ -60,8 +66,9 @@ function montaGridAluguel(dados){
             tabela += '</table>';
             $("#tabelaAlugueis").html(tabela);
            $('#tbAluguel').DataTable({
-               "ordering": false,
+               "ordering": true,
                "searching": false,
+               "paging": false,
                "language": {
                    "emptyTable": "Nenhum registro encontrado",
                    "info": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
@@ -93,10 +100,10 @@ function montaGridAluguel(dados){
 }
 
 function alteraStatusAluguel(codAluguel, status) {
-    var parametros = 'codAluguel;'+codAluguel+'|codSituacao;'+status;
+    var parametros = 'codVenda;'+codAluguel+'|codSituacao;'+status;
     ExecutaDispatch('Aluguel', 'UpdateAluguel', parametros, retornoInsertAluguel);
 }
 
 $(document).ready(function(){
-    carregaGridAluguel();
+    $("#modalListaAlugueis").modal('hide');
 });

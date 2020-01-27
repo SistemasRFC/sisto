@@ -1,11 +1,17 @@
 $(function() {
     $("#dtaAluguel").jqxDateTimeInput({ width: '300px', height: '40px', formatString: 'dd/MM/yyyy'});
     $("#bntIncCliente").click(function(){
+        $("#codCliente").val(0);
+        $("#nmeCliente").val('');
+        $("#nroCpf").val('');
+        $("#nroTelefone").val('');
+        $("#txtEmail").val('');
+        $("#dscEndereco").val('');
        $("#modalCliente").modal('show');
     });
 
     $("#btnSalvarAluguel").click(function(){
-        if($("#dtaAluguel").val() == '' || $("#comboSituacao").val() == '' || $("#comboCliente").val() == ''){
+        if($("#dtaAluguel").val() == '' || $("#codClienteAluguel").val() == ''){
             swal({
                 title: "Aviso!",
                 text: "Preencha todos os Campos!",
@@ -41,7 +47,7 @@ function inserirAluguel(){
         imageUrl: "../../Resources/images/preload.gif",
         showConfirmButton: false
     });
-    parametros = 'dtaAluguel;'+$("#dtaAluguel").val()+'|codCliente;'+$("#codClienteAluguel").val()+'|codSituacao;8|codProdutoCor;'+$("#codProdutoCorAluguel").val()+'|qtdProdutoAluguel;'+$("#qtdProdutoAluguel").val();
+    parametros = 'dtaAluguel;'+$("#dtaAluguel").val()+'|codCliente;'+$("#codClienteAluguel").val()+'|codSituacao;8|codProdutoCor;'+$("#codProdutoCorAluguel").val()+'|qtdProdutoAluguel;'+$("#qtdProdutoAluguel").val()+'|vlrProdutoAluguel;'+$("#vlrProdutoAluguel").val();
     ExecutaDispatch('Aluguel', 'InsertAluguel', parametros, retornoInsertAluguel);
 }
 
@@ -54,6 +60,7 @@ function retornoInsertAluguel(retorno){
         $("#codProdutoCorAluguel").val('');
         $("#dscProdutoAluguel").val('');
         $("#qtdProdutoAluguel").val('');
+        $("#vlrProdutoAluguel").val('');
         swal({
             title: "Sucesso!",
             text: "Registro salvo com sucesso!",
@@ -79,7 +86,7 @@ function carregaCamposAluguel(nmeCliente, codAluguel, dtaAluguel, codCliente){
     $("#nmeClienteAluguel").val(nmeCliente);
     $("#codClienteAluguel").val(codCliente);
     listaProdutosAluguel(codAluguel);
-    // $("#cadProdutoCor").show();
+    $("#modalListaAlugueis").modal('hide');
 }
 
 function limpaCamposAluguel() {
@@ -87,6 +94,7 @@ function limpaCamposAluguel() {
     $("#codProdutoCorAluguel").val('');
     $("#dscProdutoAluguel").val('');
     $("#qtdProdutoAluguel").val('');
+    $("#vlrProdutoAluguel").val('');
 }
 
 function updateAluguel(){
@@ -96,7 +104,7 @@ function updateAluguel(){
         showConfirmButton: false
     });
     parametros = 'codVenda;'+$("#codAluguel").val()+'|dtaAluguel;'+$("#dtaAluguel").val()+'|codCliente;'+$("#codClienteAluguel").val();
-    parametros += '|codProdutoCor;'+$("#codProdutoCorAluguel").val()+'|qtdProdutoAluguel;'+$("#qtdProdutoAluguel").val()+"|codSituacao;8";
+    parametros += '|codProdutoAluguel;'+$("#codProdutoAluguel").val()+'|codProdutoCor;'+$("#codProdutoCorAluguel").val()+'|qtdProdutoAluguel;'+$("#qtdProdutoAluguel").val()+'|vlrProdutoAluguel;'+$("#vlrProdutoAluguel").val()+"|codSituacao;8";
     ExecutaDispatch('Aluguel', 'UpdateAluguel', parametros, retornoInsertAluguel);
 }
 
@@ -139,6 +147,27 @@ function montaDivClientes(lista){
                     $("#codClienteAluguel").val(item.value);
                 }
             }
+        });
+    }
+}
+
+function retornoInsertCliente(retorno){
+    if (retorno[0]){
+        $("#codClienteAluguel").val(retorno[2]);
+        $("#nmeClienteAluguel").val($("#nmeCliente").val());
+        $("#modalCliente").modal('hide');
+        swal({
+            title: "Sucesso!",
+            text: "Registro salvo com sucesso!",
+            type: "success",
+        });
+    }else{
+        $(".jquery-waiting-base-container").fadeOut({modo:"fast"});
+        swal({
+            title: "Erro!",
+            text: retorno[1],
+            type: "error",
+            confirmButtonText: "Fechar"
         });
     }
 }

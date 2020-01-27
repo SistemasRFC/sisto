@@ -44,31 +44,6 @@ function inserirProduto(){
     ExecutaDispatch('Produto', 'InsertProduto', parametros, retornoInsertProduto);
 }
 
-function retornoInsertProduto(retorno){
-    if (retorno[0]){
-        $("#codProduto").val('');
-        $("#dscProduto").val('');
-        $(".vlrProdutoCor").val('');
-        $(".qtdProdutoCor").val('');
-        carregaGridProdutos();
-        swal({
-            title: "Sucesso!",
-            text: "Registro salvo com sucesso!",
-            type: "success",
-            confirmButtonText: "Fechar"
-        });        
-//        $("#cadProduto").modal("hide");
-    }else{
-        $(".jquery-waiting-base-container").fadeOut({modo:"fast"});
-        swal({
-            title: "Erro!",
-            text: retorno[1],
-            type: "error",
-            confirmButtonText: "Fechar"
-        });
-    }
-}
-
 function carregaCamposProduto(codProduto, dscProduto){
     listarCoresProduto(codProduto);
     $("#codProduto").val(codProduto);

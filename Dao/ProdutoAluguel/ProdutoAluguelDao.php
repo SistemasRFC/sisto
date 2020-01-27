@@ -4,10 +4,10 @@ class ProdutoAluguelDao extends BaseDao
 {
     Protected $tableName = "RE_VENDA_PRODUTO";
     
-    Protected $columns = array ("codVenda"   => array("column" =>"COD_VENDA", "typeColumn" =>"I"),
-                                "codProdutoCor"   => array("column" =>"COD_PRODUTO_COR", "typeColumn" =>"I"),
-                                "qtdVenda"   => array("column" =>"QTD_VENDA", "typeColumn" =>"I"),
-                                "vlrVenda"   => array("column" =>"VLR_VENDA", "typeColumn" =>"F"));
+    Protected $columns = array ("codVenda"      => array("column" =>"COD_VENDA", "typeColumn" =>"I"),
+                                "codProdutoCor" => array("column" =>"COD_PRODUTO_COR", "typeColumn" =>"I"),
+                                "qtdVenda"      => array("column" =>"QTD_VENDA", "typeColumn" =>"I"),
+                                "vlrVenda"      => array("column" =>"VLR_VENDA", "typeColumn" =>"F"));
     
     Protected $columnKey = array("codVendaProduto"=> array("column" =>"COD_VENDA_PRODUTO", "typeColumn" => "I"));
     
@@ -20,8 +20,8 @@ class ProdutoAluguelDao extends BaseDao
                         VP.COD_PRODUTO_COR,
                         CONCAT(P.DSC_PRODUTO,' ',C.DSC_COR) AS DSC_PRODUTO_COR,
                         VP.QTD_VENDA AS QTD_PRODUTO_ALUGUEL,
-                        PC.VLR_PRODUTO_COR,
-                        VP.VLR_VENDA AS VLR_ALUGUEL
+                        VP.VLR_VENDA AS VLR_PRODUTO_ALUGUEL,
+                        (VP.VLR_VENDA*VP.QTD_VENDA) AS VLR_ALUGUEL
                    FROM RE_VENDA_PRODUTO VP
                   INNER JOIN RE_PRODUTO_COR PC
                      ON VP.COD_PRODUTO_COR = PC.COD_PRODUTO_COR
@@ -35,7 +35,8 @@ class ProdutoAluguelDao extends BaseDao
 
     Public Function UpdateProdutoAluguel(){
         $sql = "UPDATE RE_VENDA_PRODUTO SET COD_PRODUTO_COR = ".$this->Populate('codProdutoCor','I').",
-                                            QTD_VENDA = ".$this->Populate('qtdProdutoAluguel','I')."
+                                            QTD_VENDA = ".$this->Populate('qtdProdutoAluguel','I').",
+                                            VLR_VENDA = ".$this->Populate('vlrProdutoAluguel','F')."
                                       WHERE COD_VENDA_PRODUTO = ".$this->Populate('codProdutoAluguel','I')."";
         return $this->insertDB($sql);
     }
@@ -45,8 +46,7 @@ class ProdutoAluguelDao extends BaseDao
                                       VALUES (".$codAluguel.",
                                               ".$this->Populate('codProdutoCor','I').",
                                               ".$this->Populate('qtdProdutoAluguel','I').",
-                                              (SELECT VLR_PRODUTO_COR FROM RE_PRODUTO_COR 
-                                                WHERE COD_PRODUTO_COR = ".$this->Populate('codProdutoCor','I').")*".$this->Populate('qtdProdutoAluguel','I').")";
+                                              ".$this->Populate('vlrProdutoAluguel','F').")";
         return $this->insertDB($sql);
     }
 

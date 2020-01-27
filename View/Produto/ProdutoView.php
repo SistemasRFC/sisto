@@ -18,14 +18,6 @@
             </div>
             <div class="row">&nbsp;</div>
         </div>
-        <!-- <div class="container">
-            <div class="row">
-                <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-                    <?php// include_once "CadProdutoView.php";?>
-                </div>
-            </div>
-            <div class="row">&nbsp;</div>
-        </div> -->
         <div class="container">
             <div class="row">
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12">

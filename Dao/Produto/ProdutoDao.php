@@ -70,7 +70,8 @@ class ProdutoDao extends BaseDao
     Public Function ListarProdutoCorAutoComplete(){
         $select = "SELECT PC.COD_PRODUTO_COR AS COD,
                        CONCAT(P.DSC_PRODUTO,' ',C.DSC_COR, ' Estoque: ', (PC.QTD_PRODUTO_COR-COALESCE(VP.QTD_VENDA, 0))) AS TEXT,
-                       (PC.QTD_PRODUTO_COR-COALESCE(VP.QTD_VENDA, 0)) AS QTD_DISPONIVEL
+                       (PC.QTD_PRODUTO_COR-COALESCE(VP.QTD_VENDA, 0)) AS QTD_DISPONIVEL,
+                       PC.VLR_PRODUTO_COR
                   FROM RE_PRODUTO_COR PC
                  INNER JOIN EN_PRODUTO P
                     ON PC.COD_PRODUTO = P.COD_PRODUTO
@@ -92,14 +93,15 @@ class ProdutoDao extends BaseDao
     Public Function ListarProdutosPorDia($dta, $codProduto=75){
         $sql="";
         for($i=0;$i<7;$i++){
-            $sql .= "(SELECT '".$dta[$i]."' AS DTA_VENDA, COALESCE((SELECT COALESCE(SUM(VP.QTD_VENDA),0) AS QTD_VENDA
-                      FROM RE_VENDA V
-                     INNER JOIN RE_VENDA_PRODUTO VP
-                        ON V.COD_VENDA = VP.COD_VENDA
-                     WHERE DTA_VENDA = '".$this->ConverteDataForm($dta[$i])."'
-                       AND VP.COD_PRODUTO_COR=$codProduto
-                       AND V.COD_SITUACAO IN (8,9)
-                     GROUP BY DTA_VENDA),0) AS QTD_VENDA) UNION ALL";
+            $sql .= "(SELECT '".$dta[$i]."' AS DTA_VENDA,
+                             COALESCE((SELECT COALESCE(SUM(VP.QTD_VENDA),0) AS QTD_VENDA
+                        FROM RE_VENDA V
+                       INNER JOIN RE_VENDA_PRODUTO VP
+                          ON V.COD_VENDA = VP.COD_VENDA
+                       WHERE DTA_VENDA = '".$this->ConverteDataForm($dta[$i])."'
+                         AND VP.COD_PRODUTO_COR=$codProduto
+                         AND V.COD_SITUACAO IN (8,9)
+                       GROUP BY DTA_VENDA),0) AS QTD_VENDA) UNION ALL";
         }
         $sql = substr($sql, 0, strlen($sql)-strlen(" UNION ALL"));
 //        echo $sql;
