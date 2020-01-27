@@ -2,6 +2,7 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <title>Sistema de Gerenciamento de Aluguéis</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -15,7 +16,7 @@
     <!-- Custom styles for this template -->
     <link href="Resources/bootstrap/css/signin.css" rel="stylesheet">
     <script src="Resources/swal/dist/sweetalert.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="Resources/swal/dist/sweetalert.css">        
+    <link rel="stylesheet" type="text/css" href="Resources/swal/dist/sweetalert.css">
     <script src="index.js?rdm=<?php echo time();?>"></script>
   </head>
 

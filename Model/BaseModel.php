@@ -29,7 +29,7 @@ class BaseModel {
     Public Function RecuperaRequest($encript=false){
         $this->objRequest = new stdClass();
         foreach($_REQUEST as $key => $value){
-            $val = $encript?base64_encode($value):$value;
+            $val = $encript?md5($value):$value;
             $this->objRequest->$key = $val;
         }
     }

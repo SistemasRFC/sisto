@@ -21,8 +21,8 @@ class PerfilDao extends BaseDao
         return $this->MontarUpdate();
     }
 
-    Public Function InsertPerfil($codLoja){
-        return $this->MontarInsert($codLoja);
+    Public Function InsertPerfil(){
+        return $this->MontarInsert();
     }
 
     Public Function ListarPerfilAtivo(){    

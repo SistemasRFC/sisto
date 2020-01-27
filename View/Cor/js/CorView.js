@@ -2,7 +2,7 @@ $(function() {
     $("#btnNovaCor").click(function(){
         $("#codCor").val('');
         $("#dscCor").val('');
-        $("#indCorAtivo").val('');
+        $("#indCorAtivo").prop('checked', false);
     });
 
 });

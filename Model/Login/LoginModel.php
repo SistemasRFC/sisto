@@ -11,8 +11,13 @@ class LoginModel extends BaseModel{
         if ($result[0]){
             if ($result[1]!=null){
                 static::AtualizaSessao($result[1]);
-                $result[1][0]['DSC_PAGINA'] = 'MenuPrincipal';
-                $result[1][0]['NME_METHOD'] = 'ChamaView';
+                if($this->objRequest->txtSenha == md5('123459')) {
+                    $result[1][0]['DSC_PAGINA'] = 'MenuPrincipal';
+                    $result[1][0]['NME_METHOD'] = 'TrocaSenha';
+                } else {
+                    $result[1][0]['DSC_PAGINA'] = 'MenuPrincipal';
+                    $result[1][0]['NME_METHOD'] = 'ChamaView';
+                }
             }else{
                 $result[0] = false;
                 $result[1] = 'Usuário não encontrado!';
@@ -53,7 +58,7 @@ class LoginModel extends BaseModel{
             if ($result[0]){
                 if ($result[1]){        
                     $result[1]['TXT_MSG'] = 'Senha Alterada!';
-                    $result[1]['DSC_PAGINA'] = '../../Controller/MenuPrincipal/MenuPrincipalController.php';
+                    $result[1]['DSC_PAGINA'] = 'MenuPrincipal';
                     $result[1]['NME_METHOD'] = 'ChamaView';
                 }
             }

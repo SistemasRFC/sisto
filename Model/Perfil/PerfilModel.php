@@ -10,19 +10,15 @@ class PerfilModel extends BaseModel
         }
     }
 
-    Public Function ListarPerfil($Json=true){
+    Public Function ListarPerfil(){
         $dao = new PerfilDao();
-        $lista = $dao->ListarPerfil($_SESSION['cod_loja']);
-        if ($Json){
-            return json_encode($lista);
-        }else{
-            return $lista;        
-        }
+        $lista = $dao->ListarPerfil();
+        return json_encode($lista);
     }
     
     Public Function InsertPerfil(){
         $dao = new PerfilDao();        
-        $result = $dao->InsertPerfil($_SESSION['cod_loja']);
+        $result = $dao->InsertPerfil();
         return json_encode($result);        
     }
 
@@ -32,14 +28,10 @@ class PerfilModel extends BaseModel
         return json_encode($result);
     }
 
-    Public Function ListarPerfilAtivo($Json=true){
+    Public Function ListarPerfilAtivo(){
         $dao = new PerfilDao();
         $lista = $dao->ListarPerfilAtivo();
-        if ($Json){
-            return json_encode($lista);
-        }else{
-            return $lista;        
-        }
+        return json_encode($lista);
     }	
     
 }

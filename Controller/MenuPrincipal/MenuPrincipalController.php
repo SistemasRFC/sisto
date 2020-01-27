@@ -10,8 +10,8 @@ class MenuPrincipalController extends BaseController{
     }
     
     Public Function TrocaSenha(){
-        $params = array();        
-        echo ($this->gen_redirect_and_form('/View/Login/AlteracaoSenhaView.php', $params));                        
+        $params = array();
+        echo ($this->gen_redirect_and_form(BaseController::getPath().'/View/Login/AlteracaoSenhaView.php', $params));                        
     }
     
     Public Function CarregaMenu(){
