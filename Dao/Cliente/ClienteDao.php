@@ -8,7 +8,8 @@ class ClienteDao extends BaseDao
                                 "nroTelefone"   => array("column" =>"NRO_TELEFONE", "typeColumn" =>"S"),
                                 "txtEmail"      => array("column" =>"TXT_EMAIL", "typeColumn" =>"S"),
                                 "nroCpf"        => array("column" =>"NRO_CPF", "typeColumn" =>"S"),
-                                "dscEndereco"   => array("column" =>"DSC_ENDERECO", "typeColumn" =>"S"));
+                                "dscEndereco"   => array("column" =>"DSC_ENDERECO", "typeColumn" =>"S"),
+                                "dtaNascimento"   => array("column" =>"DTA_NASCIMENTO", "typeColumn" =>"D"));
     
     Protected $columnKey = array("codCliente"   => array("column" =>"COD_CLIENTE", "typeColumn" => "I"));
     
@@ -29,8 +30,8 @@ class ClienteDao extends BaseDao
         return $this->selectDB($select, false);
     }
 
-    Public Function UpdateCliente(){
-        return $this->MontarUpdate();
+    Public Function UpdateCliente(stdClass $obj){
+        return $this->MontarUpdate($obj);
     }
 
     Public Function InsertCliente(){

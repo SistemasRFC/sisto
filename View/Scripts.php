@@ -11,6 +11,10 @@ DEFINE('V', time());
         <!-- jqwidgets -->
         <script type="text/javascript" src="../../Resources/jqx/jqwidgets/jqxcore.js"></script>
         <script type="text/javascript" src="../../Resources/jqx/jqwidgets/jqxdata.js"></script>
+        <script type="text/javascript" src="../../Resources/jqx/jqwidgets/jqxinput.js"></script>
+        <script type="text/javascript" src="../../Resources/jqx/jqwidgets/jqxdatetimeinput.js"></script>
+        <script type="text/javascript" src="../../Resources/jqx/jqwidgets/jqxcalendar.js"></script>
+        <script type="text/javascript" src="../../Resources/jqx/jqwidgets/jqxmaskedinput.js"></script>
         <!-- Bootstrap core CSS -->
         <link href="../../Resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="../../Resources/jqx/jqwidgets/styles/jqx.base.css" type="text/css" />        
@@ -22,5 +26,6 @@ DEFINE('V', time());
         <!-- DataTables -->
         <link rel="stylesheet" type="text/css" href="../../Resources/datatable/datatable.css"/>
         <script type="text/javascript" src="../../Resources/datatable/datatable.js"></script>
+        <script src="../../View/MenuPrincipal/js/FuncoesGerais.js?rdm=<?php echo V; ?>"></script>
         
 </html>

@@ -7,7 +7,6 @@
     </head>
     <body>
         <?php include "../../View/MenuPrincipal/Cabecalho.php"; ?>
-        <input type="hidden" id="codCliente">
         <div id="tdCliente">
             <div class="row">&nbsp;</div>
             <div class="row">
@@ -18,14 +17,6 @@
             </div>
             <div class="row">&nbsp;</div>
         </div>
-        <!-- <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <?php //include_once "CadClienteView.php";?>
-                </div>
-            </div>
-            <div class="row">&nbsp;</div>
-        </div> -->
         <div class="container">
             <div class="row">
                 <div class="col-12">

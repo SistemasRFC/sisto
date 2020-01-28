@@ -1,53 +1,27 @@
-$(function() {
-    // $("#nroCpf").mask('999.999.999-99');
-    // $("#nroTelefone").mask('(99) 99999-9999');
-    // $("#btnSalvarCliente").click(function(){
-    //     if($("#nmeCliente").val() == '' || $("#nroTelefone").val() == ''){
-    //         swal({
-    //             title: "Aviso!",
-    //             text: "Preencha os campos: Nome e Telefone!",
-    //             type: "info",
-    //             confirmButtonText: "Fechar"
-    //         }); 
-    //     }else{
-    //         if($("#codCliente").val() === ''){
-    //             inserirCliente();
-    //         }else{
-    //             updateCliente();
-    //         }   
-    //     }
-    // });
+$(function () {
+    $("#dtaNascimento").jqxDateTimeInput({ width: '100%', height: '40px', formatString: 'dd/MM/yyyy', value: null });
+    $("#nroCpf").jqxMaskedInput({ width: '100%', height: '40px', mask: '###.###.###-##' });
+    $("#nroTelefone").jqxMaskedInput({ width: '100%', height: '40px', mask: '(##) #####-####' });
 });
-    
-function inserirCliente(){
-    swal({
-        title: "Aguarde, salvando registro!",
-        imageUrl: "../../Resources/images/preload.gif",
-        showConfirmButton: false
-    });
-    parametros = 'nmeCliente;'+$("#nmeCliente").val()+'|nroTelefone;'+$("#nroTelefone").val()+'|txtEmail;'+$("#txtEmail").val();
-    parametros += '|nroCpf;'+$("#nroCpf").val()+'|dscEndereco;'+$("#dscEndereco").val();
-    ExecutaDispatch('Cliente', 'InsertCliente', parametros, retornoInsertCliente);
+
+function inserirCliente() {
+    var params = retornaParametros('cadCliente');
+    ExecutaDispatch('Cliente', 'InsertCliente', params, retornoInsertCliente, 'Aguarde, cadastrando Cliente', 'Cliente cadastrado com sucesso!');
 }
 
 
-function carregaCamposCliente(codCliente, nmeCliente, nroCpf, nroTelefone, txtEmail, dscEndereco){
+function carregaCamposCliente(codCliente, nmeCliente, nroCpf, nroTelefone, txtEmail, dscEndereco, dtaNascimento) {
     $("#codCliente").val(codCliente);
     $("#nmeCliente").val(nmeCliente);
     $("#nroCpf").val(nroCpf);
     $("#nroTelefone").val(nroTelefone);
     $("#txtEmail").val(txtEmail);
     $("#dscEndereco").val(dscEndereco);
+    $("#dtaNascimento").val(dtaNascimento);
     $("#modalCadCliente").modal('show');
 }
 
-function updateCliente(){
-    swal({
-        title: "Aguarde, salvando registro!",
-        imageUrl: "../../Resources/images/preload.gif",
-        showConfirmButton: false
-    });
-    parametros = 'codCliente;'+$("#codCliente").val()+'|nmeCliente;'+$("#nmeCliente").val()+'|nroTelefone;'+$("#nroTelefone").val();
-    parametros += '|txtEmail;'+$("#txtEmail").val()+'|nroCpf;'+$("#nroCpf").val()+'|dscEndereco;'+$("#dscEndereco").val();
-    ExecutaDispatch('Cliente', 'UpdateCliente', parametros, retornoInsertCliente);
+function updateCliente() {
+    var params = retornaParametros('cadCliente');
+    ExecutaDispatch('Cliente', 'UpdateCliente', params, retornoInsertCliente, 'Aguarde, atualizando cadastro', 'Cadastro atualizado com sucesso!');
 }

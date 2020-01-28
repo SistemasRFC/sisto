@@ -16,7 +16,7 @@ class BaseModel {
         return false;
     }
     
-    Public Function PopulaObjetoComRequest($columns, $dao){
+    Public Function PopulaObjetoComRequest($columns){
         $this->objRequest = new stdClass();
         foreach($columns as $key => $value){
             $campo = BaseDao::Populate($key, $value['typeColumn']);

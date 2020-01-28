@@ -22,31 +22,16 @@ $(function() {
     });
 });
 
-function retornoInsertCliente(retorno){
-    if (retorno[0]){
-        $("#codCliente").val(0);
-        $("#nmeCliente").val('');
-        $("#nroCpf").val('');
-        $("#nroTelefone").val('');
-        $("#txtEmail").val('');
-        $("#dscEndereco").val('');
-        carregaGridClientes();
-        $("#modalCadCliente").modal('hide');
-        swal({
-            title: "Sucesso!",
-            text: "Registro salvo com sucesso!",
-            type: "success",
-            confirmButtonText: "Fechar"
-        });
-    }else{
-        $(".jquery-waiting-base-container").fadeOut({modo:"fast"});
-        swal({
-            title: "Erro!",
-            text: retorno[1],
-            type: "error",
-            confirmButtonText: "Fechar"
-        });
-    }
+function retornoInsertCliente(){
+    $("#codCliente").val(0);
+    $("#nmeCliente").val('');
+    $("#nroCpf").val('');
+    $("#nroTelefone").val('');
+    $("#txtEmail").val('');
+    $("#dscEndereco").val('');
+    $("#dtaNascimento").val('');
+    carregaGridClientes();
+    $("#modalCadCliente").modal('hide');
 }
 
 function carregaGridClientes(){
@@ -73,7 +58,7 @@ function montaGridClientes(dados){
             tabela += '<td>'+dados[i].NRO_CPF+'</td>';
             tabela += '<td>'+dados[i].NRO_TELEFONE+'</td>';
             tabela += '<td>'+dados[i].DSC_ENDERECO+'</td>';
-            tabela += "<td><a href=\"javascript:carregaCamposCliente('"+dados[i].COD_CLIENTE+"', '"+dados[i].NME_CLIENTE+"', '"+dados[i].NRO_CPF+"', '"+dados[i].NRO_TELEFONE+"', '"+dados[i].TXT_EMAIL+"', '"+dados[i].DSC_ENDERECO+"');\">Editar</a></td>";
+            tabela += "<td><a href=\"javascript:carregaCamposCliente('"+dados[i].COD_CLIENTE+"', '"+dados[i].NME_CLIENTE+"', '"+dados[i].NRO_CPF+"', '"+dados[i].NRO_TELEFONE+"', '"+dados[i].TXT_EMAIL+"', '"+dados[i].DSC_ENDERECO+"', '"+dados[i].DTA_NASCIMENTO+"');\">Editar</a></td>";
             tabela += '</tr>';
 
         }
@@ -117,6 +102,7 @@ function limparCampos() {
     $("#nroTelefone").val(''); 
     $("#txtEmail").val(''); 
     $("#dscEndereco").val(''); 
+    $("#dtaNascimento").val(''); 
 }
 
 $(document).ready(function(){

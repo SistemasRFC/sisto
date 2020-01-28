@@ -34,7 +34,8 @@ class ClienteModel extends BaseModel
 
     Public Function UpdateCliente(){
         $dao = new ClienteDao();
-        $result = $dao->UpdateCliente();
+        BaseModel::PopulaObjetoComRequest($dao->getColumns());
+        $result = $dao->UpdateCliente($this->objRequest);
         return json_encode($result);
     }	
     

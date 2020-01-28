@@ -91,48 +91,49 @@ function RedirecionaView(Controller, Method, Parametro){
 }
 
 //    "codCliente;"+$("#codCliente").val()+"|nmeCliente;"+$("#nmeCliente").val();
-function ExecutaDispatch(Controller, Method, Parametros, Callback){
-    var obj = new Object();
-    Object.defineProperty(obj, 'method', {
-        __proto__: null,
-        enumerable : true,
-        configurable : true,
-        value: Method
-    });    
-    Object.defineProperty(obj, 'controller', {
-        __proto__: null,
-        enumerable : true,
-        configurable : true,
-        value: Controller
-    });        
-    if (Parametros != undefined){
-        var dados = Parametros.split('|'); 
-        for (i=0;i<dados.length;i++){
-            var campos = dados[i].split(';');
-            Object.defineProperty(obj, campos[0], {
-                                __proto__: null,
-                                enumerable : true,
-                                configurable : true,
-                                value: campos[1] });
-        }    
-    }
-    $.post('../../Dispatch.php',
-        obj,
-        function(retorno){
-             retorno = eval ('('+retorno+')');
-             if (retorno[0]==true){
-                 if (Callback!=undefined){
-                     Callback(retorno);
-                 }
-             }else{
-                 $(".jquery-waiting-base-container").fadeOut({modo:"fast"});
-                 swal({
-                     title: "Erro!",
-                     text: retorno[1],
-                     type: "error",
-                     confirmButtonText: "Fechar"
-                 });
-             }
-        }
-    );     
-}
+
+// function ExecutaDispatch(Controller, Method, Parametros, Callback){
+//     var obj = new Object();
+//     Object.defineProperty(obj, 'method', {
+//         __proto__: null,
+//         enumerable : true,
+//         configurable : true,
+//         value: Method
+//     });    
+//     Object.defineProperty(obj, 'controller', {
+//         __proto__: null,
+//         enumerable : true,
+//         configurable : true,
+//         value: Controller
+//     });        
+//     if (Parametros != undefined){
+//         var dados = Parametros.split('|'); 
+//         for (i=0;i<dados.length;i++){
+//             var campos = dados[i].split(';');
+//             Object.defineProperty(obj, campos[0], {
+//                                 __proto__: null,
+//                                 enumerable : true,
+//                                 configurable : true,
+//                                 value: campos[1] });
+//         }    
+//     }
+//     $.post('../../Dispatch.php',
+//         obj,
+//         function(retorno){
+//              retorno = eval ('('+retorno+')');
+//              if (retorno[0]==true){
+//                  if (Callback!=undefined){
+//                      Callback(retorno);
+//                  }
+//              }else{
+//                  $(".jquery-waiting-base-container").fadeOut({modo:"fast"});
+//                  swal({
+//                      title: "Erro!",
+//                      text: retorno[1],
+//                      type: "error",
+//                      confirmButtonText: "Fechar"
+//                  });
+//              }
+//         }
+//     );     
+// }
