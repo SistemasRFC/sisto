@@ -27,6 +27,11 @@ class AluguelController extends BaseController
         echo $AluguelModel->UpdateAluguel();
     }
 
+    Public Function UpdateStatusAluguel(){
+        $AluguelModel = new AluguelModel();
+        echo $AluguelModel->UpdateStatusAluguel();
+    }
+
     Public Function ListarAlugueisDia(){
         $AluguelModel = new AluguelModel();
         echo $AluguelModel->ListarAlugueisDia();

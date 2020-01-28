@@ -61,6 +61,7 @@ function retornoInsertAluguel(retorno){
         $("#dscProdutoAluguel").val('');
         $("#qtdProdutoAluguel").val('');
         $("#vlrProdutoAluguel").val('');
+        $("#tabelaRefProduto").hide('fade');
         swal({
             title: "Sucesso!",
             text: "Registro salvo com sucesso!",
@@ -176,10 +177,9 @@ $(document).ready(function(){
     $("#dtaAluguel").val('');
     $("#dtaAluguel").change(function () {
         if($(this).val() == ''){
-            $("#cadProdutoCor").hide();
+            $("#cadProdutoCor").hide('fade');
         }else{
-            $("#cadProdutoCor").show();
-            // listarComboboxProduto($(this).val());
+            $("#cadProdutoCor").show('fade');
         }
     });
     $("#dtaAluguel").change();

@@ -58,6 +58,12 @@ class AluguelModel extends BaseModel
         }
         return json_encode($result);
     }	
+
+    Public Function UpdateStatusAluguel(){
+        $dao = new AluguelDao();
+        $result = $dao->UpdateStatusAluguel();
+        return json_encode($result);
+    }	
  
     Public Function ListarAlugueisDia(){
         $dao = new AluguelDao();

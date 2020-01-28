@@ -101,7 +101,12 @@ function montaGridAluguel(dados){
 
 function alteraStatusAluguel(codAluguel, status) {
     var parametros = 'codVenda;'+codAluguel+'|codSituacao;'+status;
-    ExecutaDispatch('Aluguel', 'UpdateAluguel', parametros, retornoInsertAluguel);
+    ExecutaDispatch('Aluguel', 'UpdateStatusAluguel', parametros, retornoAlteraStatusAluguel);
+}
+
+function retornoAlteraStatusAluguel() {
+    carregaGridAluguel();
+
 }
 
 $(document).ready(function(){
