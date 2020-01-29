@@ -2,15 +2,14 @@
 <html>
     <head>
         <?php include "../../View/Scripts.php"; ?>
-        <script type="text/javascript" src="../../Resources/jqx/jqwidgets/jqxinput.js"></script>
+        <!-- <script type="text/javascript" src="../../Resources/jqx/jqwidgets/jqxinput.js"></script>
         <script type="text/javascript" src="../../Resources/jqx/jqwidgets/jqxdatetimeinput.js"></script>
-        <script type="text/javascript" src="../../Resources/jqx/jqwidgets/jqxcalendar.js"></script>
+        <script type="text/javascript" src="../../Resources/jqx/jqwidgets/jqxcalendar.js"></script> -->
         <script src="../../View/Aluguel/js/AluguelView.js?rdm=<?php echo V ?>"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     </head>
     <body>
         <?php include "../../View/MenuPrincipal/Cabecalho.php"; ?>
-        <input type="hidden" id="codAluguel">
         <div class="container" id="tdAluguel" style="padding-top: 10px;">
             <div class="row">
                 <div class="col-12 col-xs-4 col-md-6 col-lg-6">

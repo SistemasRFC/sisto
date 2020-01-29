@@ -7,6 +7,7 @@ $(function() {
         $("#nroTelefone").val('');
         $("#txtEmail").val('');
         $("#dscEndereco").val('');
+        $("#dtaNascimento").val('');
        $("#modalCliente").modal('show');
     });
 
@@ -42,41 +43,25 @@ $(function() {
 });
     
 function inserirAluguel(){
-    swal({
-        title: "Aguarde, salvando registro!",
-        imageUrl: "../../Resources/images/preload.gif",
-        showConfirmButton: false
-    });
-    parametros = 'dtaAluguel;'+$("#dtaAluguel").val()+'|codCliente;'+$("#codClienteAluguel").val()+'|codSituacao;8|codProdutoCor;'+$("#codProdutoCorAluguel").val()+'|qtdProdutoAluguel;'+$("#qtdProdutoAluguel").val()+'|vlrProdutoAluguel;'+$("#vlrProdutoAluguel").val();
-    ExecutaDispatch('Aluguel', 'InsertAluguel', parametros, retornoInsertAluguel);
+    // swal({
+    //     title: "Aguarde, salvando registro!",
+    //     imageUrl: "../../Resources/images/preload.gif",
+    //     showConfirmButton: false
+    // });
+    var params = retornaParametros('cadAluguel');
+    // parametros = 'dtaAluguel;'+$("#dtaAluguel").val()+'|codCliente;'+$("#codClienteAluguel").val()+'|codSituacao;8|codProdutoCor;'+$("#codProdutoCorAluguel").val()+'|qtdProdutoAluguel;'+$("#qtdProdutoAluguel").val()+'|vlrProdutoAluguel;'+$("#vlrProdutoAluguel").val();
+    ExecutaDispatch('Aluguel', 'InsertAluguel', params, retornoInsertAluguel, 'Aguarde, salvando aluguel', 'Aluguel salvo com sucesso!');
 }
 
 function retornoInsertAluguel(retorno){
-    if (retorno[0]){
-        carregaGridAluguel();
-        $("#codAluguel").val(retorno[2]);
-        listaProdutosAluguel(retorno[2]);
-        $("#codProdutoAluguel").val('');
-        $("#codProdutoCorAluguel").val('');
-        $("#dscProdutoAluguel").val('');
-        $("#qtdProdutoAluguel").val('');
-        $("#vlrProdutoAluguel").val('');
-        $("#tabelaRefProduto").hide('fade');
-        swal({
-            title: "Sucesso!",
-            text: "Registro salvo com sucesso!",
-            type: "success",
-            confirmButtonText: "Fechar"
-        });
-    }else{
-        $(".jquery-waiting-base-container").fadeOut({modo:"fast"});
-        swal({
-            title: "Erro!",
-            text: retorno[1],
-            type: "error",
-            confirmButtonText: "Fechar"
-        });
-    }
+    $("#codAluguel").val(retorno[2]);
+    listaProdutosAluguel(retorno[2]);
+    $("#codProdutoAluguel").val('');
+    $("#codProdutoCorAluguel").val('');
+    $("#dscProdutoAluguel").val('');
+    $("#qtdProdutoAluguel").val('');
+    $("#vlrProdutoAluguel").val('');
+    $("#tabelaRefProduto").hide('fade');
 }
 
 
@@ -99,31 +84,8 @@ function limpaCamposAluguel() {
 }
 
 function updateAluguel(){
-    swal({
-        title: "Aguarde, salvando registro!",
-        imageUrl: "../../Resources/images/preload.gif",
-        showConfirmButton: false
-    });
-    parametros = 'codVenda;'+$("#codAluguel").val()+'|dtaAluguel;'+$("#dtaAluguel").val()+'|codCliente;'+$("#codClienteAluguel").val();
-    parametros += '|codProdutoAluguel;'+$("#codProdutoAluguel").val()+'|codProdutoCor;'+$("#codProdutoCorAluguel").val()+'|qtdProdutoAluguel;'+$("#qtdProdutoAluguel").val()+'|vlrProdutoAluguel;'+$("#vlrProdutoAluguel").val()+"|codSituacao;8";
-    ExecutaDispatch('Aluguel', 'UpdateAluguel', parametros, retornoInsertAluguel);
-}
-
-function listaComboSituacao(){
-    ExecutaDispatch('Situacao', 'ListarSituacao', undefined, montaComboSituacao);
-}
-
-function montaComboSituacao(dados){
-    if(dados[0]){
-        dados = dados[1];
-         combo = '<select id="comboSituacao" class="btn btn-outline-secondary dropdown-toggle" >';
-         combo += '<option value="" disabled selected hidden>Selecione uma opção</option>';
-        for (i=0;i<dados.length;i++){
-            combo += '<option value="'+dados[i].COD_SITUACAO+'">'+dados[i].DSC_SITUACAO+'</option>';
-        }
-         combo +='</select>';
-         $("#divComboSituacao").html(combo);
-    }
+    var params = retornaParametros('cadAluguel');
+    ExecutaDispatch('Aluguel', 'UpdateAluguel', params, retornoInsertAluguel, 'Aguarde, salvando aluguel', 'Aluguel salvo com sucesso!');
 }
 
 function selecionaClientes(){
@@ -180,6 +142,7 @@ $(document).ready(function(){
             $("#cadProdutoCor").hide('fade');
         }else{
             $("#cadProdutoCor").show('fade');
+            $("#dtaVenda").val($(this).val());
         }
     });
     $("#dtaAluguel").change();

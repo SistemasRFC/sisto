@@ -181,12 +181,15 @@ class BaseDao{
                        'I' => FILTER_SANITIZE_NUMBER_INT,
                        'F' => FILTER_SANITIZE_NUMBER_FLOAT,
                        'D' => FILTER_SANITIZE_STRING,
+                       'DT' => FILTER_SANITIZE_STRING,
                        'P' => FILTER_SANITIZE_STRING);
         if ($type=='F'){
             $return = filter_input(INPUT_POST, $field);
             $return = str_replace(",", ".", str_replace(".", "", $return));
         }else if ($type=='D'){
             $return = BaseDao::ConverteDataForm(filter_input(INPUT_POST, $field, $array[$type]));            
+        }else if ($type=='DT'){
+            $return = BaseDao::ConverteDataForm(filter_input(INPUT_POST, $field, $array[$type]), true);            
         }else if ($type=='P'){
             $return = md5(filter_input(INPUT_POST, $field, $array[$type]));
         }else{
@@ -267,6 +270,48 @@ class BaseDao{
                         $values .= $valuec['column']." = ".$value.", ";
                     }
                     
+                }
+            }
+        }
+        $values = substr($values, 0, strlen($values)-2).' 
+                WHERE '.$this->columnKey[key($this->columnKey)]['column'].' = '.$this->Populate(key($this->columnKey), 'I');
+        $sql = "UPDATE ".$this->tableName." ".$values;
+        return $this->updateDB($sql, $this->Populate(key($this->columnKey)));      
+    }
+
+    Public Function MontarInsertObj(stdClass $obj){
+        if ($this->columnKey){
+            $columnKey = $this->CatchUltimoCodigo($this->tableName, $this->columnKey[key($this->columnKey)]['column']);
+            $fields = '('.$this->columnKey[key($this->columnKey)]['column'].', ';
+            $values = 'VALUES ('.$columnKey.', ';
+        }else{
+            $fields = '(';
+            $values = 'VALUES (';
+            $columnKey = 0;
+        }
+
+        foreach($obj as $key => $value){
+            foreach($this->columns as $keyc => $valuec){
+                if ($keyc == $key){
+                    $fields .= $valuec['column'].', ';
+                    $values .= "'".$value."', ";                  
+                }
+            }
+        }
+        $fields = substr($fields, 0, strlen($fields)-2).')';
+        $values = substr($values, 0, strlen($values)-2).')';
+        $sql = "INSERT INTO ".$this->tableName." ".$fields." ".$values;
+        $return = $this->insertDB($sql);
+        $return[2] = $columnKey;      
+        return $return;
+    }
+    
+    Public Function MontarUpdateObj(stdClass $obj){
+        $values = ' SET ';
+        foreach($obj as $key => $value){
+            foreach($this->columns as $keyc => $valuec){                
+                if ($keyc == $key){
+                    $values .= $valuec['column']." = ".$value.", ";                   
                 }
             }
         }

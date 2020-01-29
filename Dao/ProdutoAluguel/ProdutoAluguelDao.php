@@ -41,13 +41,14 @@ class ProdutoAluguelDao extends BaseDao
         return $this->insertDB($sql);
     }
 
-    Public Function InsertProdutoAluguel($codAluguel){
-        $sql = "INSERT INTO RE_VENDA_PRODUTO (COD_VENDA, COD_PRODUTO_COR, QTD_VENDA, VLR_VENDA)
-                                      VALUES (".$codAluguel.",
-                                              ".$this->Populate('codProdutoCor','I').",
-                                              ".$this->Populate('qtdProdutoAluguel','I').",
-                                              ".$this->Populate('vlrProdutoAluguel','F').")";
-        return $this->insertDB($sql);
+    Public Function InsertProdutoAluguel(stdClass $obj){
+        // $sql = "INSERT INTO RE_VENDA_PRODUTO (COD_VENDA, COD_PRODUTO_COR, QTD_VENDA, VLR_VENDA)
+        //                               VALUES (".$codAluguel.",
+        //                                       ".$this->Populate('codProdutoCor','I').",
+        //                                       ".$this->Populate('qtdProdutoAluguel','I').",
+        //                                       ".$this->Populate('vlrProdutoAluguel','F').")";
+        // return $this->insertDB($sql);
+        return $this->MontarInsertObj($obj);
     }
 
     Public Function DeleteProdutoAluguel(){

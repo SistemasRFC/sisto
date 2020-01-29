@@ -65,13 +65,14 @@ class AluguelDao extends BaseDao
       return $this->MontarUpdate();
    }
 
-   Public Function InsertAluguel($codUsuario){
-      $sql = "INSERT INTO RE_VENDA (DTA_VENDA, COD_USUARIO, COD_CLIENTE, COD_SITUACAO)
-                           VALUES ('".$this->Populate('dtaAluguel','D')."',
-                                    '".$codUsuario."',
-                                    '".$this->Populate('codCliente','I')."',
-                                    '".$this->Populate('codSituacao','I')."')";
-      return $this->insertDB($sql);
+   Public Function InsertAluguel(stdClass $obj){
+      // $sql = "INSERT INTO RE_VENDA (DTA_VENDA, COD_USUARIO, COD_CLIENTE, COD_SITUACAO)
+      //                      VALUES ('".$this->Populate('dtaAluguel','D')."',
+      //                               '".$codUsuario."',
+      //                               '".$this->Populate('codCliente','I')."',
+      //                               '".$this->Populate('codSituacao','I')."')";
+      // return $this->insertDB($sql);
+      return $this->MontarInsertObj($obj);
    }
     
    Public Function ListarAlugueisDia(){
@@ -86,7 +87,7 @@ class AluguelDao extends BaseDao
                   FROM RE_VENDA V
                INNER JOIN EN_CLIENTE CL
                   ON V.COD_CLIENTE = CL.COD_CLIENTE
-               WHERE V.DTA_VENDA = NOW()
+                  WHERE DATE_FORMAT(V.DTA_VENDA, '%d/%m/%Y') = DATE_FORMAT(NOW(), '%d/%m/%Y')
                ORDER BY V.DTA_VENDA, CL.NME_CLIENTE";
       return $this->selectDB($sql, false);
    }

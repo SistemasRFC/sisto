@@ -32,8 +32,11 @@ class AluguelModel extends BaseModel
     }
     
     Public Function InsertAluguel(){
-        $dao = new AluguelDao();        
-        $result = $dao->InsertAluguel($_SESSION['cod_usuario']);
+        $dao = new AluguelDao();
+        BaseModel::PopulaObjetoComRequest($dao->getColumns());
+        $this->objRequest->codUsuario = $_SESSION['cod_usuario'];
+        // var_dump($this->objRequest); die;
+        $result = $dao->InsertAluguel($this->objRequest);
         if ($result[0]){
             $codAluguel = $result[2];
             $produtoAluguelModel = new ProdutoAluguelModel();
@@ -68,9 +71,8 @@ class AluguelModel extends BaseModel
     Public Function ListarAlugueisDia(){
         $dao = new AluguelDao();
         $lista = $dao->ListarAlugueisDia();
-        if($lista[0] && $lista[1]['COD_ALUGUEL']=null){
-            $lista[0] = false;
-            $lista[1] = null;
+        if($lista[0] && $lista[1] == null){
+            $lista[1] = [];
         }
         return json_encode($lista);
     }
@@ -78,7 +80,9 @@ class AluguelModel extends BaseModel
     Public Function ListarAlugueisAgendados(){
         $dao = new AluguelDao();
         $lista = $dao->ListarAlugueisAgendados();
-        
+        if($lista[0] && $lista[1] == null){
+            $lista[1] = [];
+        }
         return json_encode($lista);
     }
 }

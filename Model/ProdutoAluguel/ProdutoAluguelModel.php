@@ -23,10 +23,12 @@ class ProdutoAluguelModel extends BaseModel
     
     Public Function InsertProdutoAluguel($codAluguel=null){
         $dao = new ProdutoAluguelDao();
-        if ($codAluguel==null){
-            $codAluguel = $dao->Populate('codAluguel','I');
+        BaseModel::PopulaObjetoComRequest($dao->getColumns());
+        if ($codAluguel!==null){
+            $this->objRequest->codVenda = $codAluguel;
         }
-        $result = $dao->InsertProdutoAluguel($codAluguel);
+        // var_dump($this->objRequest); die;
+        $result = $dao->InsertProdutoAluguel($this->objRequest);
         return json_encode($result);        
     }
 
