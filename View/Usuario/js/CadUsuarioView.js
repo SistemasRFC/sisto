@@ -7,7 +7,7 @@ $(function() {
         }
     });
     $("#btnReiniciaSenha").click(function(){
-        ExecutaDispatch('Usuario', 'ReiniciarSenha', 'codUsuario;'+$("#codUsuario").val(), retornoReiniciaSenha);
+        ExecutaDispatch('Usuario', 'ReiniciarSenha', 'codUsuario;'+$("#codUsuario").val(), retornoReiniciaSenha, 'Aguarde, reiniciando a senha', 'Senha reiniciada com sucesso!<br> A senha para acesso é: 123459');
     });
 });
 

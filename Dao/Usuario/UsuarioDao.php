@@ -84,11 +84,7 @@ class UsuarioDao extends BaseDao
         $sql =  "UPDATE SE_USUARIO
                           SET TXT_SENHA = '".$senha."'
                         WHERE COD_USUARIO = ".filter_input(INPUT_POST, 'codUsuario', FILTER_SANITIZE_NUMBER_INT);
-        if ($this->insertDB("$sql")){
-            return filter_input(INPUT_POST, 'codUsuario', FILTER_SANITIZE_NUMBER_INT);
-        }else{
-            return 0;
-        }
+        return $this->insertDB($sql);
     }
     
     Public Function ListarUsuariosAtivos(){
