@@ -236,7 +236,7 @@
     color: #0088cc !important;
 }
 
-    .jqx-expander-header-bootstrap:hover:not(.jqx-fill-state-disabled-bootstrap) {
+    .jqx-expander-header-bootstrap:hover {
         color: #005580 !important;
         cursor: pointer;
     }
@@ -921,8 +921,4 @@ input[type="password"].jqx-input-bootstrap:-ms-input-placeholder, input[type="pa
 .jqx-layout-bootstrap
 {
     background-color: #cccccc;
-}
- /*applied to the timepicker*/
-.jqx-svg-picker-bootstrap:hover {
-	background-color: rgb(248, 248, 248);
 }

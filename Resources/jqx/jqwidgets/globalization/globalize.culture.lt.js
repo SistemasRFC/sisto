@@ -1,5 +1,3 @@
-/* tslint:disable */
-/* eslint-disable */
 /*
  * Globalize Culture lt
  *
