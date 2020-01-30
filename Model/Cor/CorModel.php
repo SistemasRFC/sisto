@@ -1,6 +1,7 @@
 <?php
 include_once(PATH."Model/BaseModel.php");
 include_once(PATH."Dao/Cor/CorDao.php");
+include_once(PATH."Resources/php/FuncoesMoeda.php");
 class CorModel extends BaseModel
 {
     public function CorModel(){
@@ -35,6 +36,9 @@ class CorModel extends BaseModel
     Public Function ListarCoresAtivas($Json=true){
         $dao = new CorDao();
         $lista = $dao->ListarCoresAtivas();
+        if ($lista[0]){
+            $lista = FuncoesMoeda::FormataMoedaInArray($lista, 'VLR_PRODUTO_COR');
+        }
         if ($Json){
             return json_encode($lista);
         }else{

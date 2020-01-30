@@ -14,7 +14,7 @@ function montaTabelaProduto(retorno) {
         dados = retorno[1];
         if(dados != null){
             html += "<table width='100%' border='1'>";
-            html += " <tr>";
+            html += " <tr>";    
             html += "  <th colspan='7' style='text-align: center;background-color: #ddd'>";
             html += "   Quantidade já reservada por dia";
             html += "  </th>";
