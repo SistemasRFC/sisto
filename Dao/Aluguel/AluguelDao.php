@@ -4,12 +4,16 @@ class AluguelDao extends BaseDao
 {
     Protected $tableName = "RE_VENDA";
     
-    Protected $columns = array ("dtaVenda"   => array("column" =>"DTA_VENDA", "typeColumn" =>"D"),
-                                "codUsuario"   => array("column" =>"COD_USUARIO", "typeColumn" =>"I"),
-                                "codCliente"   => array("column" =>"COD_CLIENTE", "typeColumn" =>"I"),
-                                "codSituacao"   => array("column" =>"COD_SITUACAO", "typeColumn" =>"I"));
+    Protected $columns = array ("dtaVenda"            => array("column" =>"DTA_VENDA", "typeColumn" =>"D"),
+                                "codUsuario"          => array("column" =>"COD_USUARIO", "typeColumn" =>"I"),
+                                "codCliente"          => array("column" =>"COD_CLIENTE", "typeColumn" =>"I"),
+                                "codSituacao"         => array("column" =>"COD_SITUACAO", "typeColumn" =>"I"),
+                                "codTipoPagamento"    => array("column" =>"COD_TIPO_PAGAMENTO", "typeColumn" =>"I"),
+                                "dscEnderecoEntrega"  => array("column" =>"DSC_ENDERECO_ENTREGA", "typeColumn" =>"S"),
+                                "dscPontoReferencia"  => array("column" =>"DSC_PONTO_REFERENCIA", "typeColumn" =>"S"),
+                                "nroCepEntrega"  => array("column" =>"NRO_CEP_ENTREGA", "typeColumn" =>"S"));
     
-    Protected $columnKey = array("codVenda"=> array("column" =>"COD_VENDA", "typeColumn" => "I"));
+    Protected $columnKey = array("codVenda"           => array("column" =>"COD_VENDA", "typeColumn" => "I"));
     
     Public Function AluguelDao(){
         $this->conect();
@@ -23,6 +27,9 @@ class AluguelDao extends BaseDao
                        C.NME_CLIENTE,
                        V.COD_SITUACAO,
                        S.DSC_SITUACAO,
+                       V.COD_TIPO_PAGAMENTO,
+                       V.DSC_ENDERECO_ENTREGA,
+                       V.DSC_PONTO_REFERENCIA,
                         (SELECT SUM(VP.VLR_VENDA)
                            FROM RE_VENDA_PRODUTO VP 
                           WHERE VP.COD_VENDA = V.COD_VENDA) AS VLR_TOTAL

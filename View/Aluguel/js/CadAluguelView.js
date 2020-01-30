@@ -43,13 +43,7 @@ $(function() {
 });
     
 function inserirAluguel(){
-    // swal({
-    //     title: "Aguarde, salvando registro!",
-    //     imageUrl: "../../Resources/images/preload.gif",
-    //     showConfirmButton: false
-    // });
     var params = retornaParametros('cadAluguel');
-    // parametros = 'dtaAluguel;'+$("#dtaAluguel").val()+'|codCliente;'+$("#codClienteAluguel").val()+'|codSituacao;8|codProdutoCor;'+$("#codProdutoCorAluguel").val()+'|qtdProdutoAluguel;'+$("#qtdProdutoAluguel").val()+'|vlrProdutoAluguel;'+$("#vlrProdutoAluguel").val();
     ExecutaDispatch('Aluguel', 'InsertAluguel', params, retornoInsertAluguel, 'Aguarde, salvando aluguel', 'Aluguel salvo com sucesso!');
 }
 
@@ -73,6 +67,11 @@ function carregaCamposAluguel(nmeCliente, codAluguel, dtaAluguel, codCliente){
     $("#codClienteAluguel").val(codCliente);
     listaProdutosAluguel(codAluguel);
     $("#modalListaAlugueis").modal('hide');
+
+    // $("#codTipoPagamento").val(lista[key].COD_TIPO_PAGAMENTO);
+    // $("#dscEnderecoEntrega").val(lista[key].DSC_ENDERECO_ENTREGA);
+    // $("#dscPontoReferencia").val(lista[key].DSC_PONTO_REFERENCIA);
+    // $("#nroCepEntrega").val(lista[key].NRO_CEP_ENTREGA);
 }
 
 function limpaCamposAluguel() {
@@ -115,27 +114,28 @@ function montaDivClientes(lista){
 }
 
 function retornoInsertCliente(retorno){
-    if (retorno[0]){
-        $("#codClienteAluguel").val(retorno[2]);
-        $("#nmeClienteAluguel").val($("#nmeCliente").val());
-        $("#modalCliente").modal('hide');
-        swal({
-            title: "Sucesso!",
-            text: "Registro salvo com sucesso!",
-            type: "success",
-        });
-    }else{
-        $(".jquery-waiting-base-container").fadeOut({modo:"fast"});
-        swal({
-            title: "Erro!",
-            text: retorno[1],
-            type: "error",
-            confirmButtonText: "Fechar"
-        });
+    $("#codClienteAluguel").val(retorno[2]);
+    $("#nmeClienteAluguel").val($("#nmeCliente").val());
+    $("#modalCliente").modal('hide');
+}
+
+function buscaTiposPagamento() {
+    ExecutaDispatch('Aluguel', 'ListarTiposPagamento', undefined, montaComboTpoPagamento);
+}
+
+function montaComboTpoPagamento(tipos) {
+    listaTipos = tipos[1];
+    var combo = '<select id="codTipoPagamento" class="form-control cadAluguel">';
+    for (i=0;i<listaTipos.length;i++){
+        combo += '<option value="'+listaTipos[i].COD+'">'+listaTipos[i].DSC+'</option>';
     }
+    combo += '</select>';
+    $("#tdCodTipoPagamento").html(combo);
+
 }
 
 $(document).ready(function(){
+    buscaTiposPagamento();
     $("#dtaAluguel").val('');
     $("#dtaAluguel").change(function () {
         if($(this).val() == ''){

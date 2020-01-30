@@ -13,13 +13,17 @@
     </div>
     <div class="row">&nbsp;</div>
     <div class="row">
-        <div class="col-11 col-xs-11 col-md-6 col-lg-6">
+        <div class="col-11 col-xs-7 col-md-6 col-lg-6">
             <label><b>Cliente</b></label><br>
             <input type='hidden' id='codClienteAluguel' name="codCliente" class='persist cadAluguel'>
             <input id="nmeClienteAluguel" class='form-control' autocomplete="off"/>
         </div>
         <div class="col-1 col-xs-1 col-md-1 col-lg-1" style="padding: 0px;padding-top: 32px;">
             <button id="bntIncCliente" class="btn btn-default" title="Incluir Cliente" style="border: 1px solid #ccc;cursor: pointer;">...</button>
+        </div>
+        <div class="col-12 col-xs-4 col-md-3 col-lg-3">
+            <label for="codTipoPagamento"><b>Tipo de Pagamento</b></label>
+            <div id="tdCodTipoPagamento"></div>
         </div>
     </div>
     <div class="row">&nbsp;</div>

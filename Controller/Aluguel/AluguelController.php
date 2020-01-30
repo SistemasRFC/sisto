@@ -41,5 +41,10 @@ class AluguelController extends BaseController
         $AluguelModel = new AluguelModel();
         echo $AluguelModel->ListarAlugueisAgendados();
     }
+
+    Public Function ListarTiposPagamento(){
+        $AluguelModel = new AluguelModel();
+        echo $AluguelModel->ListarTiposPagamento();
+    }
 }
 $classController = new AluguelController();
