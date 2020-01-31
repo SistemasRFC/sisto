@@ -1,3 +1,4 @@
+var listaCliente = [];
 $(function() {
     $("#btnNovoCliente").click(function(){
         limparCampos();
@@ -5,31 +6,24 @@ $(function() {
     });
 
     $("#btnSalvarCliente").click(function(){
-        if($("#nmeCliente").val() == '' || $("#nroTelefone").val() == ''){
-            swal({
-                title: "Aviso!",
-                text: "Preencha os campos: Nome e Telefone!",
-                type: "info",
-                confirmButtonText: "Fechar"
-            }); 
+        if($("#codCliente").val() == 0){
+            inserirCliente();
         }else{
-            if($("#codCliente").val() == 0){
-                inserirCliente();
-            }else{
-                updateCliente();
-            }   
+            updateCliente();
         }
     });
 });
 
 function retornoInsertCliente(){
-    $("#codCliente").val(0);
-    $("#nmeCliente").val('');
-    $("#nroCpf").val('');
-    $("#nroTelefone").val('');
-    $("#txtEmail").val('');
-    $("#dscEndereco").val('');
-    $("#dtaNascimento").val('');
+    $(".cadCliente").val('');
+    $("#dataNascimento").val('');
+    // $("#codCliente").val(0);
+    // $("#nmeCliente").val('');
+    // $("#nroCpf").val('');
+    // $("#nroTelefone").val('');
+    // $("#txtEmail").val('');
+    // $("#dscEndereco").val('');
+    // $("#dtaNascimento").val('');
     carregaGridClientes();
     $("#modalCadCliente").modal('hide');
 }
@@ -52,13 +46,14 @@ function montaGridClientes(dados){
         tabela += '</tr>';
         tabela += '</thead><tbody>';
         for (i=0;i<dados.length;i++){
-
+            listaCliente[i] = new ClienteClass(dados[i]);
             tabela += '<tr>';
             tabela += '<td>'+dados[i].NME_CLIENTE+'</td>';
             tabela += '<td>'+dados[i].NRO_CPF+'</td>';
             tabela += '<td>'+dados[i].NRO_TELEFONE+'</td>';
             tabela += '<td>'+dados[i].DSC_ENDERECO+'</td>';
-            tabela += "<td><a href=\"javascript:carregaCamposCliente('"+dados[i].COD_CLIENTE+"', '"+dados[i].NME_CLIENTE+"', '"+dados[i].NRO_CPF+"', '"+dados[i].NRO_TELEFONE+"', '"+dados[i].TXT_EMAIL+"', '"+dados[i].DSC_ENDERECO+"', '"+dados[i].DTA_NASCIMENTO+"');\">Editar</a></td>";
+            tabela += "<td><a href=\"javascript:carregaCamposCliente("+i+");\">Editar</a></td>";
+            // tabela += "<td><a href=\"javascript:carregaCamposCliente('"+dados[i].COD_CLIENTE+"', '"+dados[i].NME_CLIENTE+"', '"+dados[i].NRO_CPF+"', '"+dados[i].NRO_TELEFONE+"', '"+dados[i].TXT_EMAIL+"', '"+dados[i].DSC_ENDERECO+"', '"+dados[i].DTA_NASCIMENTO+"');\">Editar</a></td>";
             tabela += '</tr>';
 
         }
@@ -96,13 +91,15 @@ function montaGridClientes(dados){
 }
 
 function limparCampos() {
-    $("#codCliente").val(0); 
-    $("#nmeCliente").val(''); 
-    $("#nroCpf").val(''); 
-    $("#nroTelefone").val(''); 
-    $("#txtEmail").val(''); 
-    $("#dscEndereco").val(''); 
-    $("#dtaNascimento").val(''); 
+    $(".cadCliente").val('');
+    $("#dataNascimento").val(''); 
+    // $("#codCliente").val(0); 
+    // $("#nmeCliente").val(''); 
+    // $("#nroCpf").val(''); 
+    // $("#nroTelefone").val(''); 
+    // $("#txtEmail").val(''); 
+    // $("#dscEndereco").val(''); 
+    // $("#dtaNascimento").val(''); 
 }
 
 $(document).ready(function(){

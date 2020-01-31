@@ -6,6 +6,8 @@
         <script type="text/javascript" src="../../Resources/jqx/jqwidgets/jqxdatetimeinput.js"></script>
         <script type="text/javascript" src="../../Resources/jqx/jqwidgets/jqxcalendar.js"></script> -->
         <script src="../../View/Aluguel/js/AluguelView.js?rdm=<?php echo V ?>"></script>
+        <script src="../../View/Aluguel/js/classes/AluguelClass.js?rdm=<?php echo V ?>"></script>
+        <script src="../../View/Aluguel/js/classes/ProdutoAluguelClass.js?rdm=<?php echo V ?>"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     </head>
     <body>

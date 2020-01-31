@@ -30,6 +30,16 @@ class ClienteController extends BaseController
     Public Function UpdateCliente(){
         $ClienteModel = new ClienteModel();
         echo $ClienteModel->UpdateCliente();
-    }	
+    }
+
+    Public Function BuscaEnderecoCliente(){
+        $ClienteModel = new ClienteModel();
+        echo $ClienteModel->BuscaEnderecoCliente();
+    }
+
+    Public Function PesquisaCep() {
+        $ClienteModel = new ClienteModel();
+        echo $ClienteModel->PesquisaCep();
+    }
 }
 $classController = new ClienteController();

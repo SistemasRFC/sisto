@@ -1,16 +1,17 @@
+var listaAluguel=[];
 $(function() {
     $("#btnNovoAluguel").click(function(){
-        $("#codAluguel").val('');
-        $("#dtaAluguel").val('');
-        $("#codClienteAluguel").val('');
-        $("#nmeClienteAluguel").val('');
+        $(".cadAluguel").val('');
+        // $("#codAluguel").val('');
+        // $("#dtaAluguel").val('');
+        // $("#codClienteAluguel").val('');
+        // $("#nmeClienteAluguel").val('');
         $("#tabelaProdutosAluguel").hide();
-        $("#codProdutoAluguel").val('');
-        $("#codProdutoCorAluguel").val('');
-        $("#dscProdutoAluguel").val('');
-        $("#qtdProdutoAluguel").val('');
-        $("#vlrProdutoAluguel").val('');
-        // $("#cadProdutoCor").hide();
+        // $("#codProdutoAluguel").val('');
+        // $("#codProdutoCorAluguel").val('');
+        // $("#dscProdutoAluguel").val('');
+        // $("#qtdProdutoAluguel").val('');
+        // $("#vlrProdutoAluguel").val('');
     });
     
     $("#btnListaAlugueis").click(function(){
@@ -40,7 +41,7 @@ function montaGridAluguel(dados){
             tabela += '</tr>';
             tabela += '</thead><tbody>';
             for (i=0;i<dados.length;i++){
-
+                listaAluguel[i] = new AluguelClass(dados[i]);
                 tabela += '<tr>';
                 tabela += "<td style='text-align: center;'>"+dados[i].DTA_ALUGUEL+"</td>";
                 tabela += '<td>'+dados[i].NME_CLIENTE+'</td>';
@@ -55,7 +56,8 @@ function montaGridAluguel(dados){
                 tabela += "<td style='text-align: center;'>"+dados[i].DSC_SITUACAO+"</td>";
                 tabela += "<td style='text-align: right;'>R$ "+dados[i].VLR_TOTAL+"</td>";
                 tabela += "<td style='text-align: center;'>";
-                tabela += " <a href=\"javascript:carregaCamposAluguel('"+dados[i].NME_CLIENTE+"', '"+dados[i].COD_ALUGUEL+"', '"+dados[i].DTA_ALUGUEL+"', '"+dados[i].COD_CLIENTE+"');\">Editar</a>";
+                tabela += " <a href=\"javascript:carregaCamposAluguel('"+i+"');\">Editar</a>";
+                // tabela += " <a href=\"javascript:carregaCamposAluguel('"+dados[i].NME_CLIENTE+"', '"+dados[i].COD_ALUGUEL+"', '"+dados[i].DTA_ALUGUEL+"', '"+dados[i].COD_CLIENTE+"');\">Editar</a>";
                 tabela += " <a href=\"javascript:alteraStatusAluguel('"+dados[i].COD_ALUGUEL+"', '9');\">Entregar</a><br>";
                 tabela += " <a href=\"javascript:alteraStatusAluguel('"+dados[i].COD_ALUGUEL+"', '7');\">Cancelar</a>";
                 tabela += "</td>";

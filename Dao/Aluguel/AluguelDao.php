@@ -30,6 +30,7 @@ class AluguelDao extends BaseDao
                        V.COD_TIPO_PAGAMENTO,
                        V.DSC_ENDERECO_ENTREGA,
                        V.DSC_PONTO_REFERENCIA,
+                       V.NRO_CEP_ENTREGA,
                         (SELECT SUM(VP.VLR_VENDA)
                            FROM RE_VENDA_PRODUTO VP 
                           WHERE VP.COD_VENDA = V.COD_VENDA) AS VLR_TOTAL

@@ -9,7 +9,8 @@ class ClienteDao extends BaseDao
                                 "txtEmail"      => array("column" =>"TXT_EMAIL", "typeColumn" =>"S"),
                                 "nroCpf"        => array("column" =>"NRO_CPF", "typeColumn" =>"S"),
                                 "dscEndereco"   => array("column" =>"DSC_ENDERECO", "typeColumn" =>"S"),
-                                "dtaNascimento"   => array("column" =>"DTA_NASCIMENTO", "typeColumn" =>"D"));
+                                "dtaNascimento" => array("column" =>"DTA_NASCIMENTO", "typeColumn" =>"D"),
+                                "nroCep"        => array("column" =>"NRO_CEP", "typeColumn" =>"S"));
     
     Protected $columnKey = array("codCliente"   => array("column" =>"COD_CLIENTE", "typeColumn" => "I"));
     
@@ -36,5 +37,13 @@ class ClienteDao extends BaseDao
 
     Public Function InsertCliente(){
         return $this->MontarInsert();
+    }
+
+    Public Function BuscaEnderecoCliente(stdClass $obj){
+        $select = " SELECT DSC_ENDERECO AS DSC_ENDERECO_CLIENTE,
+                           NRO_CEP AS NRO_CEP_CLIENTE
+                      FROM EN_CLIENTE
+                     WHERE COD_CLIENTE =".$obj->codCliente;
+        return $this->selectDB($select, false);
     }
 }

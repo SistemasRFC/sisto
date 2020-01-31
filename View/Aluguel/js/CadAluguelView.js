@@ -40,7 +40,26 @@ $(function() {
             inserirCliente();  
         }
     });
+
+    if ($("#indEnderecoCad").is(":checked")){
+        var params = "codCliente;"+$("#codClienteAluguel").val();
+        ExecutaDispatch('Cliente', 'BuscaEnderecoCliente', params, preencheEnderecoAluguel);
+    }
 });
+
+function preencheEnderecoAluguel(retorno) {
+    if(retorno[1] !== null){
+        $("#nroCepEntrega").val(retorno[1][0]['NRO_CEP_CLIENTE']);
+        // $("#dscEnderecoEntrega").val(retorno[1][0]['DSC_ENDERECO_CLIENTE']);
+    } else {
+        swal({
+            title: "Aviso!",
+            text: retorno[2],
+            type: "info",
+            confirmButtonText: "Fechar"
+        }); 
+    }
+}
     
 function inserirAluguel(){
     var params = retornaParametros('cadAluguel');
@@ -59,19 +78,22 @@ function retornoInsertAluguel(retorno){
 }
 
 
-function carregaCamposAluguel(nmeCliente, codAluguel, dtaAluguel, codCliente){
+// function carregaCamposAluguel(nmeCliente, codAluguel, dtaAluguel, codCliente){
+function carregaCamposAluguel(indice){
+    console.log('carregaCamposAluguel', listaAluguel[indice], indice);
     limpaCamposAluguel();
-    $("#codAluguel").val(codAluguel);
-    $("#dtaAluguel").val(dtaAluguel).change;
-    $("#nmeClienteAluguel").val(nmeCliente);
-    $("#codClienteAluguel").val(codCliente);
-    listaProdutosAluguel(codAluguel);
+    $("#codAluguel").val(listaAluguel[indice].codVenda);
+    $("#dtaAluguel").val(listaAluguel[indice].dtaVenda).change;
+    $("#nmeClienteAluguel").val(listaAluguel[indice].nmeCliente);
+    $("#codClienteAluguel").val(listaAluguel[indice].codCliente);
+    $("#comboTipoPagamento").val(listaAluguel[indice].codTipoPagamento);
+    $("#codTipoPagamento").val(listaAluguel[indice].codTipoPagamento);
+    $("#dscEnderecoEntrega").val(listaAluguel[indice].dscEnderecoEntrega);
+    $("#dscPontoReferencia").val(listaAluguel[indice].dscPontoReferencia);
+    $("#nroCepEntrega").val(listaAluguel[indice].nroCepEntrega);
+    listaProdutosAluguel(listaAluguel[indice].codVenda);
     $("#modalListaAlugueis").modal('hide');
 
-    // $("#codTipoPagamento").val(lista[key].COD_TIPO_PAGAMENTO);
-    // $("#dscEnderecoEntrega").val(lista[key].DSC_ENDERECO_ENTREGA);
-    // $("#dscPontoReferencia").val(lista[key].DSC_PONTO_REFERENCIA);
-    // $("#nroCepEntrega").val(lista[key].NRO_CEP_ENTREGA);
 }
 
 function limpaCamposAluguel() {
@@ -125,12 +147,16 @@ function buscaTiposPagamento() {
 
 function montaComboTpoPagamento(tipos) {
     listaTipos = tipos[1];
-    var combo = '<select id="codTipoPagamento" class="form-control cadAluguel">';
+    var combo = '<select id="comboTipoPagamento" class="form-control">';
+    combo += '<option value="" selected disabled>Selecione...</option>';
     for (i=0;i<listaTipos.length;i++){
         combo += '<option value="'+listaTipos[i].COD+'">'+listaTipos[i].DSC+'</option>';
     }
     combo += '</select>';
     $("#tdCodTipoPagamento").html(combo);
+    $("#comboTipoPagamento").change(function () {
+        $("#codTipoPagamento").val($(this).val());
+    });
 
 }
 
@@ -146,7 +172,7 @@ $(document).ready(function(){
         }
     });
     $("#dtaAluguel").change();
-
+    
     $("#nmeClienteAluguel").keyup(function(){
         if ($(this).val().length>3){
             selecionaClientes();
@@ -158,5 +184,5 @@ $(document).ready(function(){
         valueMember: "COD", 
         width: '100%', 
         height: 40
-    });    
+    });
 });

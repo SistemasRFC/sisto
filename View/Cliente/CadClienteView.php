@@ -22,11 +22,16 @@
         </div>
         <div class="col-4">
             <label><b>Data de Nascimento</b></label>
-            <input type="text" id="dtaNascimento" name="dtaNascimento" class="form-control cadCliente">
+            <input type="hidden" id="dtaNascimento" name="dtaNascimento" class="cadCliente">
+            <input type="text" id="dataNascimento" class="form-control">
         </div>
     </div>
     <div class="row">
-        <div class="col-11">
+        <div class="col-3">
+            <label><b>CEP</b></label>
+            <input type="text" id="nroCep" name="nroCep" class="form-control cadCliente">
+        </div>
+        <div class="col-12">
             <label><b>Endereço</b></label>
             <input type="text" id="dscEndereco" name="dscEndereco" class="form-control cadCliente">
         </div>

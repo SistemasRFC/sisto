@@ -109,7 +109,8 @@ function montaGridProdutosAluguel(dados){
     if(dados[0]){
         dados = dados[1];
         if(dados != null){
-            var tabela = '<table id="tbProdutosAluguel" class="display" style="width:100%">';
+            var tabela = '<h5><b>Produtos desse aluguel</b></h5>';
+            tabela += '<table id="tbProdutosAluguel" class="display" style="width:100%">';
             tabela += '<thead>';
             tabela += '<tr>';
             tabela += '<th><b>Produto</b></th>';
@@ -144,6 +145,7 @@ function montaGridProdutosAluguel(dados){
             $('#tbProdutosAluguel').DataTable({
                 "ordering": false,
                 "searching": false,
+                "pagingType": "numbers",
                 "language": {
                     "decimal": ",",
                     "thousands": ".",
