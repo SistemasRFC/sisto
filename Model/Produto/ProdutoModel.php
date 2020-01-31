@@ -88,11 +88,11 @@ class ProdutoModel extends BaseModel
         if($lista[0]) {
             $total = count($lista[1]);
             for($i =0; $i < $total; $i++) {
-                $lista[1][$i]['COD'] = $lista[1][$i]['COD'].';'.FuncoesMoeda::FormataMoeda($lista[1][$i]['VLR_PRODUTO_COR']);
+                $lista[1][$i]['VLR_PRODUTO_COR'] = FuncoesMoeda::FormataMoeda($lista[1][$i]['VLR_PRODUTO_COR']);
             }
         }
         if ($Json){
-            return json_encode($lista);
+            return json_encode($lista[1]);
         }else{
             return $lista;        
         }

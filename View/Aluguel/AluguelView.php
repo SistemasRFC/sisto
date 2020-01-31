@@ -2,15 +2,17 @@
 <html>
     <head>
         <?php include "../../View/Scripts.php"; ?>
-        <!-- <script type="text/javascript" src="../../Resources/jqx/jqwidgets/jqxinput.js"></script>
-        <script type="text/javascript" src="../../Resources/jqx/jqwidgets/jqxdatetimeinput.js"></script>
-        <script type="text/javascript" src="../../Resources/jqx/jqwidgets/jqxcalendar.js"></script> -->
-        <script src="../../View/Aluguel/js/AluguelView.js?rdm=<?php echo V ?>"></script>
+        <script type="text/javascript" src="../../Resources/jqx/jqwidgets/jqxwindow.js"></script>
+        <script type="text/javascript" src="../../Resources/jqx/jqwidgets/jqxbuttons.js"></script>
+        <script type="text/javascript" src="../../Resources/jqx/jqwidgets/jqxscrollbar.js"></script>
+        <script type="text/javascript" src="../../Resources/jqx/jqwidgets/jqxlistbox.js"></script>
+        <script src="../../View/Aluguel/js/AluguelView.js?rdm=<?php echo V ?>"></script>        
         <script src="../../View/Aluguel/js/classes/AluguelClass.js?rdm=<?php echo V ?>"></script>
         <script src="../../View/Aluguel/js/classes/ProdutoAluguelClass.js?rdm=<?php echo V ?>"></script>
+        <script src="../../View/Aluguel/js/classes/AutoCompleteClass.js?rdm=<?php echo V; ?>"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     </head>
-    <body>
+    <body id="corpo">
         <?php include "../../View/MenuPrincipal/Cabecalho.php"; ?>
         <div class="container" id="tdAluguel" style="padding-top: 10px;">
             <div class="row">
@@ -53,4 +55,10 @@
             </div>
         </div>
     </div>
+</div>
+<div id='painelAutoComplete'>
+    <div id='divAutoComplete'><div id="windowHeader">
+    </div>
+    <div style="overflow: hidden;" id="windowContent">
+    </div> 
 </div>

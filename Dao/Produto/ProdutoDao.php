@@ -85,6 +85,7 @@ class ProdutoDao extends BaseDao
                                  ON VP.COD_VENDA = V.COD_VENDA 
                               WHERE V.DTA_VENDA = '".$this->Populate('dtaAluguel', 'D')."') AS VP
                     ON PC.COD_PRODUTO_COR = VP.COD_PRODUTO_COR
+                 WHERE P.DSC_PRODUTO LIKE '%".$this->Populate('nmeProduto')."%'
                  ORDER BY P.DSC_PRODUTO, C.DSC_COR, QTD_DISPONIVEL";
 //       echo $sql;die;
         return $this->selectDB($select, false);

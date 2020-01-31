@@ -25,17 +25,17 @@ if ( typeof require !== "undefined" &&
 	Globalize = window.Globalize;
 }
 
-Globalize.addCultureInfo( "de-DE", "default", {
-	name: "de-DE",
-	englishName: "German (Germany)",
-	nativeName: "Deutsch (Deutschland)",
-	language: "de",
+Globalize.addCultureInfo( "pt-BR", "default", {
+	name: "pt-BR",
+	englishName: "Portuguese (Brazil)",
+	nativeName: "Português (Brasil)",
+	language: "pt",
 	numberFormat: {
 		",": ".",
 		".": ",",
-		"NaN": "n. def.",
-		negativeInfinity: "-unendlich",
-		positiveInfinity: "+unendlich",
+		"NaN": "Não Numérico.",
+		negativeInfinity: "-infinito",
+		positiveInfinity: "+infinito",
 		percent: {
 			pattern: ["-n%","n%"],
 			",": ".",
@@ -45,25 +45,25 @@ Globalize.addCultureInfo( "de-DE", "default", {
 			pattern: ["-n $","n $"],
 			",": ".",
 			".": ",",
-			symbol: "€"
+			symbol: "R$"
 		}
 	},
 	calendars: {
 		standard: {
-			"/": ".",
+			"/": "/",
 			firstDay: 1,
 			days: {
-				names: ["Sonntag","Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag"],
-				namesAbbr: ["So","Mo","Di","Mi","Do","Fr","Sa"],
-				namesShort: ["So","Mo","Di","Mi","Do","Fr","Sa"]
+				names: ["Domingo","Segunda-Feira","Terça-Feira","Quarta-Feira","Quinta-Feira","Sexta-Feira","Sábado"],
+				namesAbbr: ["Dom","Seg","Ter","Qua","Qui","Sex","Sab"],
+				namesShort: ["Do","Se","Te","Qa","Qi","Se","Sa"]
 			},
 			months: {
-				names: ["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember",""],
-				namesAbbr: ["Jan","Feb","Mrz","Apr","Mai","Jun","Jul","Aug","Sep","Okt","Nov","Dez",""]
+				names: ["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro",""],
+				namesAbbr: ["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Aug","Set","Out","Nov","Dez",""]
 			},
-			AM: null,
-			PM: null,
-			eras: [{"name":"n. Chr.","start":null,"offset":0}],
+			AM: [ "AM", "am", "AM" ],
+			PM: [ "PM", "pm", "PM" ],
+			eras: [{"name":"D.C.","start":null,"offset":0}],
 			patterns: {
 				d: "dd.MM.yyyy",
 				D: "dddd, d. MMMM yyyy",

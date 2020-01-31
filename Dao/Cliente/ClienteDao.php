@@ -26,7 +26,7 @@ class ClienteDao extends BaseDao
         $select = " SELECT COD_CLIENTE AS COD,
                            NME_CLIENTE AS TEXT
                       FROM EN_CLIENTE
-                     WHERE NME_CLIENTE LIKE '%".$this->Populate('nmeClienteAluguel')."%'";
+                     WHERE NME_CLIENTE LIKE '%".$this->Populate('term')."%'";
 
         return $this->selectDB($select, false);
     }

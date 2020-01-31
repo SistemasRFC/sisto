@@ -8,7 +8,7 @@
         <div class="col-12 col-sm-12 col-md-3 col-lg-3">
             <label><b>Data</b></label>
             <input type="hidden" id="dtaVenda" name="dtaVenda" class="cadAluguel" />
-            <input type="text" id="dtaAluguel" class="form-control refProduto" />
+            <input type="text" id="dtaAluguel" class="refProduto" />
         </div>
     </div>
     <br>
@@ -16,7 +16,12 @@
         <div class="col-11 col-xs-7 col-md-6 col-lg-6">
             <label><b>Cliente</b></label><br>
             <input type='hidden' id='codClienteAluguel' name="codCliente" class='persist cadAluguel'>
+<<<<<<< HEAD
             <input id="nmeClienteAluguel" class='form-control' autocomplete="off" />
+=======
+            <input id="nmeClienteAluguel" class='form-control' autocomplete="off"/>
+            <div id="semResposta" style="display: none;"></div>
+>>>>>>> origin/rafael
         </div>
         <div class="col-1 col-xs-1 col-md-1 col-lg-1" style="padding: 0px;padding-top: 32px;">
             <button id="bntIncCliente" class="btn btn-default" title="Incluir Cliente" style="border: 1px solid #ccc;cursor: pointer;">...</button>

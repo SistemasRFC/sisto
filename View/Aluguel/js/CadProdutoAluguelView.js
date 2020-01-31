@@ -14,7 +14,7 @@ function montaTabelaProduto(retorno) {
         dados = retorno[1];
         if(dados != null){
             html += "<table width='100%' border='1'>";
-            html += " <tr>";
+            html += " <tr>";    
             html += "  <th colspan='7' style='text-align: center;background-color: #ddd'>";
             html += "   Quantidade já reservada por dia";
             html += "  </th>";
@@ -45,31 +45,39 @@ function montaTabelaProduto(retorno) {
 }
 
 function selecionaProdutos(){
-    var parametros = "dtaAluguel;"+$("#dtaAluguel").val();
+    var parametros = "dtaAluguel;"+$("#dtaAluguel").val()+"|nmeProduto;"+$("#dscProdutoAluguel").val();
     ExecutaDispatch('Produto', 'ListarProdutoCorAutoComplete', parametros, montaDivProdutos);
 }
 
 function montaDivProdutos(lista){
-    $("#dscProdutoAluguel").jqxInput({ 
-        source: lista[1], 
-        placeHolder: "Produto", 
-        displayMember: "TEXT", 
-        valueMember: "COD", 
-        width: '100%', 
-        height: 40
-    });
-    $("#dscProdutoAluguel").on('select', function (event) {
-        if (event.args) {
-            var item = event.args.item;
-            var codigo = item.value.split(';');
-            var cod = codigo[0];
-            var valor = codigo[1];
-            if (item) {
-                $("#codProdutoCorAluguel").val(cod).change();
-                $("#vlrProdutoAluguel").val(valor);
+    if (lista[1]!=null){
+        $("#dscProdutoAluguel").jqxInput({ 
+            source: lista[1], 
+            placeHolder: "Produto", 
+            displayMember: "TEXT", 
+            valueMember: "COD", 
+            width: '100%', 
+            height: 40
+        });
+        $("#dscProdutoAluguel").on('select', function (event) {
+            if (event.args) {
+                var item = event.args.item;
+                var codigo = item.value.split(';');
+                var cod = codigo[0];
+                var valor = codigo[1];
+                if (item) {
+                    $("#codProdutoCorAluguel").val(cod).change();
+                    $("#vlrProdutoAluguel").val(valor);
+                }
             }
-        }
-    });
+        });
+    }else{
+        $("#semProduto").html('Sem dados para esta pesquisa!');
+        $("#semProduto").show('fade');
+        setTimeout(function(){
+            $("#semProduto").hide('fade');
+        }, 2000);        
+    }
 }
 
 function carregaCamposProdutoAluguel(codProdutoAluguel, dscProdutoCor, codProdutoCor, qtdProdutoAluguel, vlrProdutoAluguel){
@@ -212,14 +220,40 @@ function retornoDeleteProdutoAluguel(retorno){
     }
 }
 
-$(document).ready(function(){
-    // listarComboboxProduto();
+function atualizaTabela(){
+    $("#codProdutoCorAluguel").change();
+}
 
-    $("#dscProdutoAluguel").keyup(function(){
-        if ($(this).val().length>3){
-            selecionaProdutos();
+$(document).ready(function(){
+    $("#dscProdutoAluguel").keyup(function(key){ 
+        if ((key.keyCode!=40) && (key.keyCode!=38)){
+            if ($(this).val().trim()!=''){
+                var autoComplete = new AutoCompleteClass();
+                autoComplete._height=150;
+                autoComplete._nmeDiv='painelAutoComplete';
+                autoComplete._nmeInput=$(this).attr('id');
+                autoComplete._dataField="codProdutoCorAluguel;COD|dscProdutoAluguel;TEXT|vlrProdutoAluguel;VLR_PRODUTO_COR";
+                autoComplete._camposPesquisa="controller;Produto|method;ListarProdutoCorAutoComplete|dtaAluguel;"+$("#dtaAluguel").val()+"|nmeProduto;"+$("#dscProdutoAluguel").val();
+                autoComplete._displayMember="TEXT";
+                autoComplete._valueMember="COD"; 
+                autoComplete._callback='atualizaTabela()';
+                autoComplete.CriarDivAutoComplete();            
+            }else{
+                if ( $("#divAutoComplete").length ){
+                    $("#divAutoComplete").jqxWindow("destroy");
+                }
+            }
+        }else{            
+            $("#listaPesquisa").jqxListBox('selectedIndex' ,0);
+            $("#listaPesquisa").jqxListBox("focus");
         }
     });
+    
+    $("#nmeClienteAluguel").focus(function(){
+        if ($("#divAutoComplete").length){
+            $("#divAutoComplete").jqxWindow("destroy");
+        }
+    }); 
 
     $(".refProduto").change(function(){
         if($("#codProdutoCorAluguel").val() !== '' && $("#dtaAluguel").val() !== '') {

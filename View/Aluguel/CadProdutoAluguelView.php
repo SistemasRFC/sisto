@@ -1,4 +1,5 @@
 <script src="../../View/Aluguel/js/CadProdutoAluguelView.js?rdm=<?php echo V; ?>"></script>
+<script src="../../View/Aluguel/js/classes/AutoCompleteClass.js?rdm=<?php echo V; ?>"></script>
 <input type="hidden" id="codProdutoAluguel" name="codVendaProduto" class="cadAluguel">
 <div class="container-fluid">
     <div class="row">
@@ -6,6 +7,7 @@
             <label><b>Produto</b></label><br>
             <input type='hidden' id='codProdutoCorAluguel' name="codProdutoCor" class='persist cadAluguel refProduto'>
             <input id="dscProdutoAluguel" class='form-control' autocomplete="off"/>
+            <div id="semProduto" style="display:none;"></div>
         </div>
         <div class="col-1 col-sm-1 col-md-1 col-lg-1" style="padding: 0px;padding-top: 32px;">
             <button id="bntIncProduto" class="btn btn-default" title="Incluir Produto" style="border: 1px solid #ccc;cursor: pointer;">...</button>

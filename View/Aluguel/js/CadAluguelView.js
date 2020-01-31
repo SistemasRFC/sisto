@@ -109,32 +109,6 @@ function updateAluguel(){
     ExecutaDispatch('Aluguel', 'UpdateAluguel', params, retornoInsertAluguel, 'Aguarde, salvando aluguel', 'Aluguel salvo com sucesso!');
 }
 
-function selecionaClientes(){
-    var parametros = "verificaPermissao;N|nmeClienteAluguel;"+$("#nmeClienteAluguel").val();
-    ExecutaDispatch('Cliente', 'ListarClientesAutoComplete', parametros, montaDivClientes);
-}
-
-function montaDivClientes(lista){
-    if (lista[1]!=null){
-        $("#nmeClienteAluguel").jqxInput({ 
-            source: lista[1], 
-            placeHolder: "Cliente", 
-            displayMember: "TEXT", 
-            valueMember: "COD", 
-            width: '100%', 
-            height: 40
-        });
-        $("#nmeClienteAluguel").on('select', function (event) {
-            if (event.args) {
-                var item = event.args.item;
-                if (item) {
-                    $("#codClienteAluguel").val(item.value);
-                }
-            }
-        });
-    }
-}
-
 function retornoInsertCliente(retorno){
     $("#codClienteAluguel").val(retorno[2]);
     $("#nmeClienteAluguel").val($("#nmeCliente").val());
@@ -172,17 +146,41 @@ $(document).ready(function(){
         }
     });
     $("#dtaAluguel").change();
-    
-    $("#nmeClienteAluguel").keyup(function(){
-        if ($(this).val().length>3){
-            selecionaClientes();
+
+    $("#nmeClienteAluguel").keyup(function(key){ 
+        if ((key.keyCode!=40) && (key.keyCode!=38)){
+            if ($(this).val().trim()!=''){
+                var autoComplete = new AutoCompleteClass();
+                autoComplete._height=150;
+                autoComplete._nmeDiv='painelAutoComplete';
+                autoComplete._nmeInput=$(this).attr('id');
+                autoComplete._dataField="codClienteAluguel;COD|nmeClienteAluguel;TEXT";
+                autoComplete._camposPesquisa='controller;Cliente|method;ListarClientesAutoComplete|verificaPermissao;N|term;'+$("#nmeClienteAluguel").val();
+                autoComplete._displayMember="TEXT";
+                autoComplete._valueMember="COD";
+                
+                autoComplete.CriarDivAutoComplete();            
+            }else{
+                if ( $("#divAutoComplete").length ){
+                    $("#divAutoComplete").jqxWindow("destroy");
+                }
+            }
+        }else{            
+            $("#listaPesquisa").jqxListBox('selectedIndex' ,0);
+            $("#listaPesquisa").jqxListBox("focus");
         }
     });
-    $("#nmeClienteAluguel").jqxInput({ 
-        placeHolder: "Cliente", 
-        displayMember: "TEXT", 
-        valueMember: "COD", 
-        width: '100%', 
-        height: 40
-    });
+    
+    $("#nmeClienteAluguel").focus(function(){
+        if ($("#divAutoComplete").length){
+            $("#divAutoComplete").jqxWindow("destroy");
+        }
+    }); 
+
+    $("input[type=text]").focus(function(){
+        if ($("#divAutoComplete").length){
+            $("#divAutoComplete").jqxWindow("destroy");
+        }
+    }); 
+   
 });
