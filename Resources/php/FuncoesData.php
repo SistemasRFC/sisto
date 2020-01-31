@@ -38,7 +38,8 @@ class FuncoesData{
     Public Static Function AtualizaDataInArray($lista, $campo, $hora = false) {
         $listaAtualizada = $lista;
         $datas = explode('|', $campo);
-        for ($i = 0; $i < count($listaAtualizada[1]); $i++) {
+        $total = count($listaAtualizada[1]);
+        for ($i = 0; $i < $total; $i++) {
             for ($j = 0; $j < count($datas); $j++) {
                 $listaAtualizada[1][$i][$datas[$j]] = self::ConverteDataBanco($listaAtualizada[1][$i][$datas[$j]], $hora);
             }

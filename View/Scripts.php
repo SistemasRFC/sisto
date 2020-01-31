@@ -10,13 +10,16 @@ DEFINE('V', time());
         <script src="../../Resources/jquery/jquery-1.10.1.min.js"></script>
         <script src="../../Resources/bootstrap/js/popper.min.js"></script>
         <script src="../../Resources/bootstrap/js/bootstrap.min.js"></script>
+        
         <!-- jqwidgets -->
         <script type="text/javascript" src="../../Resources/jqx/jqwidgets/jqxcore.js"></script>
         <script type="text/javascript" src="../../Resources/jqx/jqwidgets/jqxdata.js"></script>
         <script type="text/javascript" src="../../Resources/jqx/jqwidgets/jqxinput.js"></script>
+        <script type="text/javascript" src="../../Resources/jqx/jqwidgets/globalization/globalize.js"></script>
         <script type="text/javascript" src="../../Resources/jqx/jqwidgets/jqxdatetimeinput.js"></script>
         <script type="text/javascript" src="../../Resources/jqx/jqwidgets/jqxcalendar.js"></script>
         <script type="text/javascript" src="../../Resources/jqx/jqwidgets/jqxmaskedinput.js"></script>
+        <script src="../../Resources/jquery/jQuery-Mask-Plugin-master/src/jquery.mask.js"></script>
         <!-- Bootstrap core CSS -->
         <link href="../../Resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="../../Resources/jqx/jqwidgets/styles/jqx.base.css" type="text/css" />        

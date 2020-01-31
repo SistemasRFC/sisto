@@ -11,7 +11,9 @@ class AluguelDao extends BaseDao
                                 "codTipoPagamento"    => array("column" =>"COD_TIPO_PAGAMENTO", "typeColumn" =>"I"),
                                 "dscEnderecoEntrega"  => array("column" =>"DSC_ENDERECO_ENTREGA", "typeColumn" =>"S"),
                                 "dscPontoReferencia"  => array("column" =>"DSC_PONTO_REFERENCIA", "typeColumn" =>"S"),
-                                "nroCepEntrega"  => array("column" =>"NRO_CEP_ENTREGA", "typeColumn" =>"S"));
+                                "nroCepEntrega"       => array("column" =>"NRO_CEP_ENTREGA", "typeColumn" =>"S"),
+                                "dtaRecibo"           => array("column" =>"DTA_RECIBO", "typeColumn" =>"S"),
+                                "dtaBuscaProduto"     => array("column" =>"DTA_BUSCA_PRODUTO", "typeColumn" =>"S"));
     
     Protected $columnKey = array("codVenda"           => array("column" =>"COD_VENDA", "typeColumn" => "I"));
     
@@ -22,6 +24,7 @@ class AluguelDao extends BaseDao
     Public Function ListarAluguel(){
         $select = "SELECT V.COD_VENDA AS COD_ALUGUEL,
                        DATE_FORMAT(V.DTA_VENDA, '%d/%m/%Y') AS DTA_ALUGUEL,
+                       V.COD_USUARIO,
                        U.NME_USUARIO,
                        V.COD_CLIENTE,
                        C.NME_CLIENTE,
@@ -31,6 +34,7 @@ class AluguelDao extends BaseDao
                        V.DSC_ENDERECO_ENTREGA,
                        V.DSC_PONTO_REFERENCIA,
                        V.NRO_CEP_ENTREGA,
+                       V.DTA_RECIBO,
                         (SELECT SUM(VP.VLR_VENDA)
                            FROM RE_VENDA_PRODUTO VP 
                           WHERE VP.COD_VENDA = V.COD_VENDA) AS VLR_TOTAL
@@ -63,9 +67,19 @@ class AluguelDao extends BaseDao
         return $this->selectDB($select, false);
     }
 
-   Public Function UpdateStatusAluguel(){
-      $sql = "UPDATE RE_VENDA SET COD_SITUACAO ='".$this->Populate('codSituacao', 'I')."'
-                           WHERE COD_VENDA ='".$this->Populate('codVenda', 'I')."'";
+   Public Function UpdateStatusAluguel(stdClass $obj){
+      $sql = "UPDATE RE_VENDA SET COD_SITUACAO =".$obj->codSituacao."
+                           WHERE COD_VENDA =".$obj->codVenda."";
+      return $this->insertDB($sql);
+   }
+
+   /**
+    * Aluguel finalizado quando o produto é recolhido, gravando a data do recolhimento
+    */
+   Public Function FinalizarAluguel(stdClass $obj){
+      $sql = "UPDATE RE_VENDA SET COD_SITUACAO =".$obj->codSituacao.",
+                              SET DTA_BUSCA_PRODUTO =".$obj->codSituacao."
+                           WHERE COD_VENDA =".$obj->codVenda."";
       return $this->insertDB($sql);
    }
 

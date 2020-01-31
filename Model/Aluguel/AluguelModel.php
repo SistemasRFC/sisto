@@ -69,7 +69,16 @@ class AluguelModel extends BaseModel
     public function UpdateStatusAluguel()
     {
         $dao = new AluguelDao();
-        $result = $dao->UpdateStatusAluguel();
+        BaseModel::PopulaObjetoComRequest($dao->getColumns());
+        if($this->objRequest->codSituacao == FINALIZADO){
+            /**
+            * Aluguel finalizado quando o produto é recolhido, gravando a data do recolhimento
+            */
+            $this->objRequest->dtaBuscaProduto = date('d/m/Y');
+            $result = $dao->FinalizarAluguel($this->objRequest);
+        } else {
+            $result = $dao->UpdateStatusAluguel($this->objRequest);
+        }
         return json_encode($result);
     }
 

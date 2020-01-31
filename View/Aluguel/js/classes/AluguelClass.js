@@ -1,19 +1,20 @@
 class AluguelClass{
-	constructor(registro){
-		// console.log('registro>>>>', registro);
-        this._codVenda = registro['COD_ALUGUEL'];
-        this._dtaVenda = registro['DTA_ALUGUEL'];
-        this._codUsuario = registro['COD_USUARIO'];
-        this._nmeUsuario = registro['NME_USUARIO'];
-        this._codCliente = registro['COD_CLIENTE'];
-        this._nmeCliente = registro['NME_CLIENTE'];
-        this._codSituacao = registro['COD_SITUACAO'];
-        this._codTipoPagamento = registro['COD_TIPO_PAGAMENTO'];
-        this._dscEnderecoEntrega = registro['DSC_ENDERECO_ENTREGA'];
-        this._dscPontoReferencia = registro['DSC_PONTO_REFERENCIA'];
-        this._nroCepEntrega = registro['NRO_CEP_ENTREGA'];
-        this._vlrTotal = registro['VLR_TOTAL'];
-        this._produtosAluguel = new ProdutosAluguelClass(registro['PRODUTOS']).listaProdutos;
+	constructor(){
+        this._codVenda;
+        this._dtaVenda;
+        this._codUsuario;
+        this._nmeUsuario;
+        this._codCliente;
+        this._nmeCliente;
+        this._codSituacao;
+        this._codTipoPagamento;
+        this._dscEnderecoEntrega;
+        this._dscPontoReferencia;
+        this._nroCepEntrega;
+        this._dtaRecibo;
+        this._dtaBuscaProduto;
+        this._vlrTotal;
+        this._produtosAluguel = [];
 	}
   
 	get codVenda(){
@@ -104,6 +105,22 @@ class AluguelClass{
 		this._nroCepEntrega= val;
     }
 
+	get dtaRecibo(){
+		return this._dtaRecibo;
+	}
+
+	set dtaRecibo(val){
+		this._dtaRecibo= val;
+    }
+
+	get dtaBuscaProduto(){
+		return this._dtaBuscaProduto;
+	}
+
+	set dtaBuscaProduto(val){
+		this._dtaBuscaProduto= val;
+    }
+
 	get vlrTotal(){
 		return this._vlrTotal;
 	}
@@ -116,8 +133,15 @@ class AluguelClass{
 		return this._produtosAluguel;
 	}
 
-	set produtosAluguel(val){
-		this._produtosAluguel= val;
+	set produtosAluguel(produtos){
+		for(var i=0;i<produtos.length;i++){
+			this._produtosAluguel[i] = new ProdutosAluguelClass();
+			this._produtosAluguel[i].codVendaProduto = produtos[i].COD_VENDA_PRODUTO;
+			this._produtosAluguel[i].codProdutoCor = produtos[i].COD_PRODUTO_COR;
+			this._produtosAluguel[i].dscProdutoCor = produtos[i].DSC_PRODUTO_COR;
+			this._produtosAluguel[i].qtdVenda = produtos[i].QTD_VENDA;
+			this._produtosAluguel[i].vlrVenda = produtos[i].VLR_VENDA;
+		}
 	}
 
 }

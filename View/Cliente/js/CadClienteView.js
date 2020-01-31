@@ -1,21 +1,29 @@
 $(function () {
-    $("#dataNascimento").jqxDateTimeInput({ width: '100%', height: '40px', formatString: 'dd/MM/yyyy', value: null });
-    // $("#nroCpf").jqxMaskedInput({ width: '100%', height: '40px', mask: '###.###.###-##' });
-    // $("#nroTelefone").jqxMaskedInput({ width: '100%', height: '40px', mask: '(##) #####-####' });
+    $("#dtaNascimento").mask('99/99/9999');
+    $("#nroCpf").mask('999.999.999-99');
+    $("#nroTelefone").mask('(61) 99999-9999');
+    $("#nroCep").mask('99999-999');
 
-    $("#nroCep").blur(function() {
-        var params = 'nroCep;'+$(this).val();
-        ExecutaDispatch('Cliente', 'PesquisaCep', params, preencheEndereco);
-    });
-
-    $("#dataNascimento").change(function() {
-        $("#dtaNascimento").val($(this).val());
+    $("#nroCep").blur(function () {
+        var params = 'nroCep;' + $(this).val();
+        ExecutaDispatch('Cliente', 'PesquisaCep', params, preencheEndereco, 'Aguarde, buscando endereço');
     });
 });
 
 function preencheEndereco(retorno) {
-    var endereco = ""+retorno[1][0].logradouro+" "+retorno[1][0].bairro;
-    $("#dscEndereco").val(endereco);
+    if (retorno[1][0] == null || retorno[1][0].erro) {
+        swal({
+            title: "Erro ao executar!",
+            text: "Erro: CEP inválido",
+            type: "error",
+            confirmButtonText: "Fechar"
+        });
+        $("#dscEndereco").val('');
+    } else {
+        swal.close();
+        var endereco = "" + retorno[1][0].logradouro + " - " + retorno[1][0].bairro;
+        $("#dscEndereco").val(endereco);
+    }
 }
 
 function inserirCliente() {
@@ -23,10 +31,7 @@ function inserirCliente() {
     ExecutaDispatch('Cliente', 'InsertCliente', params, retornoInsertCliente, 'Aguarde, cadastrando Cliente', 'Cliente cadastrado com sucesso!');
 }
 
-
-// function carregaCamposCliente(codCliente, nmeCliente, nroCpf, nroTelefone, txtEmail, dscEndereco, dtaNascimento) {
 function carregaCamposCliente(indice) {
-    console.log('>>', listaCliente[indice]);
     $("#codCliente").val(listaCliente[indice].codCliente);
     $("#nmeCliente").val(listaCliente[indice].nmeCliente);
     $("#nroCpf").val(listaCliente[indice].nroCpf);
@@ -34,7 +39,7 @@ function carregaCamposCliente(indice) {
     $("#txtEmail").val(listaCliente[indice].txtEmail);
     $("#nroCep").val(listaCliente[indice].nroCep);
     $("#dscEndereco").val(listaCliente[indice].dscEndereco);
-    $("#dataNascimento").val(listaCliente[indice].dtaNascimento);
+    $("#dtaNascimento").val(listaCliente[indice].dtaNascimento);
     $("#modalCadCliente").modal('show');
 }
 

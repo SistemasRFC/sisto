@@ -16,14 +16,6 @@ $(function() {
 
 function retornoInsertCliente(){
     $(".cadCliente").val('');
-    $("#dataNascimento").val('');
-    // $("#codCliente").val(0);
-    // $("#nmeCliente").val('');
-    // $("#nroCpf").val('');
-    // $("#nroTelefone").val('');
-    // $("#txtEmail").val('');
-    // $("#dscEndereco").val('');
-    // $("#dtaNascimento").val('');
     carregaGridClientes();
     $("#modalCadCliente").modal('hide');
 }
@@ -46,14 +38,21 @@ function montaGridClientes(dados){
         tabela += '</tr>';
         tabela += '</thead><tbody>';
         for (i=0;i<dados.length;i++){
-            listaCliente[i] = new ClienteClass(dados[i]);
+            listaCliente[i] = new ClienteClass();
+            listaCliente[i].codCliente = dados[i].COD_CLIENTE;
+            listaCliente[i].nmeCliente = dados[i].NME_CLIENTE;
+            listaCliente[i].nroCpf = dados[i].NRO_CPF;
+            listaCliente[i].nroTelefone = dados[i].NRO_TELEFONE;
+            listaCliente[i].txtEmail = dados[i].TXT_EMAIL;
+            listaCliente[i].nroCep = dados[i].NRO_CEP;
+            listaCliente[i].dscEndereco = dados[i].DSC_ENDERECO;
+            listaCliente[i].dtaNascimento = dados[i].DTA_NASCIMENTO;
             tabela += '<tr>';
             tabela += '<td>'+dados[i].NME_CLIENTE+'</td>';
             tabela += '<td>'+dados[i].NRO_CPF+'</td>';
             tabela += '<td>'+dados[i].NRO_TELEFONE+'</td>';
             tabela += '<td>'+dados[i].DSC_ENDERECO+'</td>';
             tabela += "<td><a href=\"javascript:carregaCamposCliente("+i+");\">Editar</a></td>";
-            // tabela += "<td><a href=\"javascript:carregaCamposCliente('"+dados[i].COD_CLIENTE+"', '"+dados[i].NME_CLIENTE+"', '"+dados[i].NRO_CPF+"', '"+dados[i].NRO_TELEFONE+"', '"+dados[i].TXT_EMAIL+"', '"+dados[i].DSC_ENDERECO+"', '"+dados[i].DTA_NASCIMENTO+"');\">Editar</a></td>";
             tabela += '</tr>';
 
         }
@@ -92,14 +91,6 @@ function montaGridClientes(dados){
 
 function limparCampos() {
     $(".cadCliente").val('');
-    $("#dataNascimento").val(''); 
-    // $("#codCliente").val(0); 
-    // $("#nmeCliente").val(''); 
-    // $("#nroCpf").val(''); 
-    // $("#nroTelefone").val(''); 
-    // $("#txtEmail").val(''); 
-    // $("#dscEndereco").val(''); 
-    // $("#dtaNascimento").val(''); 
 }
 
 $(document).ready(function(){

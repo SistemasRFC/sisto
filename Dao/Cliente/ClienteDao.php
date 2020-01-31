@@ -39,6 +39,11 @@ class ClienteDao extends BaseDao
         return $this->MontarInsert();
     }
 
+    Public Function VerificaCpfExite($nroCpf){
+        $select = " SELECT COD_CLIENTE FROM EN_CLIENTE WHERE NRO_CPF =".$nroCpf;
+        return $this->selectDB($select, false);
+    }
+
     Public Function BuscaEnderecoCliente(stdClass $obj){
         $select = " SELECT DSC_ENDERECO AS DSC_ENDERECO_CLIENTE,
                            NRO_CEP AS NRO_CEP_CLIENTE

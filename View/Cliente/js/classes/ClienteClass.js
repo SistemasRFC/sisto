@@ -1,14 +1,13 @@
 class ClienteClass{
-	constructor(registro){
-		// console.log('registro>>>>', registro);
-        this._codCliente = registro['COD_CLIENTE'];
-        this._nmeCliente = registro['NME_CLIENTE'];
-        this._nroTelefone = registro['NRO_TELEFONE'];
-        this._txtEmail = registro['TXT_EMAIL'];
-        this._nroCpf = registro['NRO_CPF'];
-        this._dscEndereco = registro['DSC_ENDERECO'];
-        this._dtaNascimento = registro['DTA_NASCIMENTO'];
-        this._nroCep = registro['NRO_CEP'];
+	constructor(){
+        this._codCliente;
+        this._nmeCliente;
+        this._nroTelefone;
+        this._txtEmail;
+        this._nroCpf;
+        this._dscEndereco;
+        this._dtaNascimento;
+        this._nroCep;
     }
 
 	get codCliente(){

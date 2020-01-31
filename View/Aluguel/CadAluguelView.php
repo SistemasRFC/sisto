@@ -5,10 +5,15 @@
     <input type="hidden" value="8" id="codSituacao" name="codSituacao" class="cadAluguel persist">
     <br>
     <div class="row">
-        <div class="col-12 col-sm-12 col-md-3 col-lg-3">
-            <label><b>Data</b></label>
+        <div class="col-12 col-sm-6 col-md-3 col-lg-3">
+            <label><b>Data de Entrega</b></label>
             <input type="hidden" id="dtaVenda" name="dtaVenda" class="cadAluguel" />
             <input type="text" id="dtaAluguel" class="refProduto" />
+        </div>
+        <div class="col-12 col-sm-6 col-md-3 col-lg-3">
+            <label><b>Data do Recibo</b></label>
+            <input type="hidden" id="dtaRecibo" name="dtaRecibo" class="cadAluguel" />
+            <input type="text" id="dataRecibo" />
         </div>
     </div>
     <br>
@@ -35,7 +40,6 @@
             <input type="text" id="nroCepEntrega" name="nroCepEntrega" class='form-control cadAluguel' />
         </div>
         <div class="col-11 col-xs-7 col-md-8 col-lg-8">
-            <!-- <div class="col-11 col-xs-11 col-md-11 col-lg-11"> -->
             <label for="dscEnderecoEntrega"><b>Endereço de Entrega</b></label><br>
             <input type="text" id="dscEnderecoEntrega" name="dscEnderecoEntrega" class='form-control cadAluguel' />
         </div>
@@ -43,7 +47,6 @@
             <input type="checkbox" id="indEnderecoCad" name="indEnderecoCad" />
             <label for="indEnderecoCad"><b>Endereço do Cliente</b></label>
         </div>
-        <!-- </div> -->
     </div>
     <br>
     <div class="row">

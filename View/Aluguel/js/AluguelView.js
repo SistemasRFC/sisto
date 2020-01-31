@@ -2,16 +2,12 @@ var listaAluguel=[];
 $(function() {
     $("#btnNovoAluguel").click(function(){
         $(".cadAluguel").val('');
-        // $("#codAluguel").val('');
-        // $("#dtaAluguel").val('');
-        // $("#codClienteAluguel").val('');
-        // $("#nmeClienteAluguel").val('');
+        $("#dtaAluguel").val('');
+        $("#dataRecibo").val('');
+        $("#nmeClienteAluguel").val('');
+        $("#dscProdutoAluguel").val('');
+        $("#indEnderecoCad").prop('checked', false);
         $("#tabelaProdutosAluguel").hide();
-        // $("#codProdutoAluguel").val('');
-        // $("#codProdutoCorAluguel").val('');
-        // $("#dscProdutoAluguel").val('');
-        // $("#qtdProdutoAluguel").val('');
-        // $("#vlrProdutoAluguel").val('');
     });
     
     $("#btnListaAlugueis").click(function(){
@@ -41,7 +37,21 @@ function montaGridAluguel(dados){
             tabela += '</tr>';
             tabela += '</thead><tbody>';
             for (i=0;i<dados.length;i++){
-                listaAluguel[i] = new AluguelClass(dados[i]);
+                listaAluguel[i] = new AluguelClass();
+                listaAluguel[i].codVenda = dados[i].COD_ALUGUEL;
+                listaAluguel[i].dtaVenda = dados[i].DTA_ALUGUEL;
+                listaAluguel[i].codUsuario = dados[i].COD_USUARIO;
+                listaAluguel[i].nmeUsuario = dados[i].NME_USUARIO;
+                listaAluguel[i].codCliente = dados[i].COD_CLIENTE;
+                listaAluguel[i].nmeCliente = dados[i].NME_CLIENTE;
+                listaAluguel[i].codSituacao = dados[i].COD_SITUACAO;
+                listaAluguel[i].codTipoPagamento = dados[i].COD_TIPO_PAGAMENTO;
+                listaAluguel[i].dscEnderecoEntrega = dados[i].DSC_ENDERECO_ENTREGA;
+                listaAluguel[i].dscPontoReferencia = dados[i].DSC_PONTO_REFERENCIA;
+                listaAluguel[i].nroCepEntrega = dados[i].NRO_CEP_ENTREGA;
+                listaAluguel[i].dtaRecibo = dados[i].DTA_RECIBO;
+                listaAluguel[i].vlrTotal = dados[i].VLR_TOTAL;
+                listaAluguel[i].produtosAluguel = dados[i].PRODUTOS;
                 tabela += '<tr>';
                 tabela += "<td style='text-align: center;'>"+dados[i].DTA_ALUGUEL+"</td>";
                 tabela += '<td>'+dados[i].NME_CLIENTE+'</td>';
@@ -57,7 +67,6 @@ function montaGridAluguel(dados){
                 tabela += "<td style='text-align: right;'>R$ "+dados[i].VLR_TOTAL+"</td>";
                 tabela += "<td style='text-align: center;'>";
                 tabela += " <a href=\"javascript:carregaCamposAluguel('"+i+"');\">Editar</a>";
-                // tabela += " <a href=\"javascript:carregaCamposAluguel('"+dados[i].NME_CLIENTE+"', '"+dados[i].COD_ALUGUEL+"', '"+dados[i].DTA_ALUGUEL+"', '"+dados[i].COD_CLIENTE+"');\">Editar</a>";
                 tabela += " <a href=\"javascript:alteraStatusAluguel('"+dados[i].COD_ALUGUEL+"', '9');\">Entregar</a><br>";
                 tabela += " <a href=\"javascript:alteraStatusAluguel('"+dados[i].COD_ALUGUEL+"', '7');\">Cancelar</a>";
                 tabela += "</td>";

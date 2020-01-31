@@ -1,13 +1,9 @@
 $(function() {
-    $("#dtaAluguel").jqxDateTimeInput({ width: '300px', height: '40px', formatString: 'dd/MM/yyyy'});
+    $("#dtaAluguel").jqxDateTimeInput({ width: '220px', height: '40px', formatString: 'dd/MM/yyyy'});
+    $("#dataRecibo").jqxDateTimeInput({ width: '220px', height: '40px', formatString: 'dd/MM/yyyy'});
+    $("#nroCepEntrega").mask('99999-999');
     $("#bntIncCliente").click(function(){
-        $("#codCliente").val(0);
-        $("#nmeCliente").val('');
-        $("#nroCpf").val('');
-        $("#nroTelefone").val('');
-        $("#txtEmail").val('');
-        $("#dscEndereco").val('');
-        $("#dtaNascimento").val('');
+        $(".cadCliente").val('');
        $("#modalCliente").modal('show');
     });
 
@@ -41,16 +37,41 @@ $(function() {
         }
     });
 
-    if ($("#indEnderecoCad").is(":checked")){
-        var params = "codCliente;"+$("#codClienteAluguel").val();
-        ExecutaDispatch('Cliente', 'BuscaEnderecoCliente', params, preencheEnderecoAluguel);
-    }
+    $("#indEnderecoCad").change(function() {
+        if ($(this).prop("checked")){
+            var params = "codCliente;"+$("#codClienteAluguel").val();
+            ExecutaDispatch('Cliente', 'BuscaEnderecoCliente', params, preencheEnderecoCliente);
+        }
+    });
+
+    $("#nroCepEntrega").blur(function () {
+        var params = 'nroCep;' + $(this).val();
+        ExecutaDispatch('Cliente', 'PesquisaCep', params, preencheEnderecoEntrega, 'Aguarde, buscando endereço');
+    });
 });
 
-function preencheEnderecoAluguel(retorno) {
+function preencheEnderecoEntrega(retorno) {
+    if (retorno[1][0] == null || retorno[1][0].erro) {
+        swal({
+            title: "Erro ao executar!",
+            text: "Erro: CEP inválido",
+            type: "error",
+            confirmButtonText: "Fechar"
+        });
+        $("#dscEnderecoEntrega").val('');
+    } else {
+        swal.close();
+        var endereco = "" + retorno[1][0].logradouro + " - " + retorno[1][0].bairro;
+        $("#dscEnderecoEntrega").val(endereco);
+    }
+}
+
+var cepRef;
+function preencheEnderecoCliente(retorno) {
     if(retorno[1] !== null){
+        cepRef = retorno[1][0]['NRO_CEP_CLIENTE'];
         $("#nroCepEntrega").val(retorno[1][0]['NRO_CEP_CLIENTE']);
-        // $("#dscEnderecoEntrega").val(retorno[1][0]['DSC_ENDERECO_CLIENTE']);
+        $("#dscEnderecoEntrega").val(retorno[1][0]['DSC_ENDERECO_CLIENTE']);
     } else {
         swal({
             title: "Aviso!",
@@ -77,10 +98,7 @@ function retornoInsertAluguel(retorno){
     $("#tabelaRefProduto").hide('fade');
 }
 
-
-// function carregaCamposAluguel(nmeCliente, codAluguel, dtaAluguel, codCliente){
 function carregaCamposAluguel(indice){
-    console.log('carregaCamposAluguel', listaAluguel[indice], indice);
     limpaCamposAluguel();
     $("#codAluguel").val(listaAluguel[indice].codVenda);
     $("#dtaAluguel").val(listaAluguel[indice].dtaVenda).change;
@@ -91,6 +109,12 @@ function carregaCamposAluguel(indice){
     $("#dscEnderecoEntrega").val(listaAluguel[indice].dscEnderecoEntrega);
     $("#dscPontoReferencia").val(listaAluguel[indice].dscPontoReferencia);
     $("#nroCepEntrega").val(listaAluguel[indice].nroCepEntrega);
+    if($("#nroCepEntrega").val() == cepRef) {
+        $("#indEnderecoCad").prop('checked', true);
+    } else {
+        $("#indEnderecoCad").prop('checked', false);
+    }
+    $("#dataRecibo").val(listaAluguel[indice].dtaRecibo).change;
     listaProdutosAluguel(listaAluguel[indice].codVenda);
     $("#modalListaAlugueis").modal('hide');
 
@@ -137,6 +161,7 @@ function montaComboTpoPagamento(tipos) {
 $(document).ready(function(){
     buscaTiposPagamento();
     $("#dtaAluguel").val('');
+    $("#dataRecibo").val('');
     $("#dtaAluguel").change(function () {
         if($(this).val() == ''){
             $("#cadProdutoCor").hide('fade');
@@ -144,6 +169,9 @@ $(document).ready(function(){
             $("#cadProdutoCor").show('fade');
             $("#dtaVenda").val($(this).val());
         }
+    });
+    $("#dataRecibo").change(function () {
+        $("#dtaRecibo").val($(this).val());
     });
     $("#dtaAluguel").change();
 

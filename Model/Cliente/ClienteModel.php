@@ -2,6 +2,7 @@
 include_once(PATH."Model/BaseModel.php");
 include_once(PATH."Dao/Cliente/ClienteDao.php");
 include_once(PATH . "Resources/php/FuncoesString.php");
+include_once(PATH . "Resources/php/FuncoesData.php");
 class ClienteModel extends BaseModel
 {
     public function ClienteModel(){
@@ -11,14 +12,13 @@ class ClienteModel extends BaseModel
         }
     }
 
-    Public Function ListarClientes($Json=true){
+    Public Function ListarClientes(){
         $dao = new ClienteDao();
         $lista = $dao->ListarClientes();
-        if ($Json){
-            return json_encode($lista);
-        }else{
-            return $lista;        
+        if($lista[0]) {
+            $lista = FuncoesData::AtualizaDataInArray($lista, 'DTA_NASCIMENTO');
         }
+        return json_encode($lista);
     }
 
     Public Function ListarClientesAutoComplete(){
@@ -32,7 +32,16 @@ class ClienteModel extends BaseModel
         BaseModel::PopulaObjetoComRequest($dao->getColumns());
         $result = $this->VerificaCampos();
         if($result[0]) {
-            $result = $dao->InsertCliente($this->objRequest);
+            $result = $dao->VerificaCpfExite($this->objRequest->nroCpf);
+            if($result[0]){
+                if($result[1] == null) {
+                    $result = $dao->InsertCliente($this->objRequest);
+                } else {
+                    $result[0] = false;
+                    $result[1] = "Já existe um cliente com o CPF informado!";
+                }
+
+            }
         }
         return json_encode($result);        
     }
@@ -117,7 +126,7 @@ class ClienteModel extends BaseModel
 
     Public Function ValidaCodCliente() {
         $result=array(true, '');
-        if ($this->objRequest->codCliente){
+        if (!$this->objRequest->codCliente){
             $result[0] = false;
             $result[1] .= "Nenhum Cliente foi selecionado'\n";
         }
