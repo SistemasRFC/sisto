@@ -1,5 +1,4 @@
 <script src="../../View/Aluguel/js/CadProdutoAluguelView.js?rdm=<?php echo V; ?>"></script>
-<script src="../../View/Aluguel/js/classes/AutoCompleteClass.js?rdm=<?php echo V; ?>"></script>
 <input type="hidden" id="codProdutoAluguel" name="codVendaProduto" class="cadAluguel">
 <div class="container-fluid">
     <div class="row">
