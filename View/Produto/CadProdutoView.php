@@ -1,4 +1,5 @@
 <script src="../../View/Produto/js/CadProdutoView.js?rdm=<?php echo V; ?>"></script>
+        <script src="../../View/Cor/js/classes/CorClass.js?rdm=<?php echo V; ?>"></script>
 <script type="text/javascript" src="../../Resources/jquery/jquery.maskMoney.js"></script>
 <div class="row">
     <input id="codProduto" type="hidden" class="form-control">

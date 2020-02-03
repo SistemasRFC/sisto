@@ -31,18 +31,5 @@ class CorModel extends BaseModel
         $dao = new CorDao();
         $result = $dao->UpdateCor();
         return json_encode($result);
-    }	
-
-    Public Function ListarCoresAtivas($Json=true){
-        $dao = new CorDao();
-        $lista = $dao->ListarCoresAtivas();
-        if ($lista[0]){
-            $lista = FuncoesMoeda::FormataMoedaInArray($lista, 'VLR_PRODUTO_COR');
-        }
-        if ($Json){
-            return json_encode($lista);
-        }else{
-            return $lista;        
-        }
     }
 }

@@ -1,9 +1,6 @@
 $(function() {
     $("#bntIncProduto").click(function(){
-        $("#codProduto").val('');
-        $("#dscProduto").val('');
-        $(".vlrProdutoCor").val('');
-        $(".qtdProdutoCor").val('');
+        limparCamposProduto();
         $("#modalProduto").modal('show');
     });
 });

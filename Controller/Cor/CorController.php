@@ -25,11 +25,6 @@ class CorController extends BaseController
     Public Function UpdateCor(){
         $CorModel = new CorModel();
         echo $CorModel->UpdateCor();
-    }	
-
-    Public Function ListarCoresAtivas(){
-        $CorModel = new CorModel();
-        echo $CorModel->ListarCoresAtivas();
-    }	
+    }
 }
 $classController = new CorController();
