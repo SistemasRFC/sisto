@@ -38,34 +38,6 @@ class ProdutoDao extends BaseDao
                      VALUES ('".$this->Populate('dscProduto', 'S')."')";
         return $this->insertDB($sql);
     }
-    
-    Public function VerificaProdutoCor($codCor){
-        $sql_select = "SELECT COD_PRODUTO_COR
-                         FROM RE_PRODUTO_COR
-                        WHERE COD_PRODUTO = '".filter_input(INPUT_POST, 'codProduto', FILTER_SANITIZE_NUMBER_INT)."'
-                          AND COD_COR = '".$codCor."'";
-                        //   echo $sql_select;
-        return $this->selectDB($sql_select, false);
-        
-    }
-
-    Public Function InsertProdutoCor($codProduto, $codCor, $vlrProdutoCor, $qtdProdutoCor){
-            $sql = "INSERT INTO RE_PRODUTO_COR
-                                (COD_PRODUTO, COD_COR, VLR_PRODUTO_COR, QTD_PRODUTO_COR) 
-                         VALUES ('".$codProduto."',
-                                 '".$codCor."', 
-                                 '".$vlrProdutoCor."',
-                                 '".$qtdProdutoCor."')";
-                                //  echo $sql;
-        return $this->insertDB($sql);
-    }
-
-    Public Function UpdateProdutoCor($codCor, $vlrProdutoCor, $qtdProdutoCor){
-            $sql = "UPDATE RE_PRODUTO_COR SET VLR_PRODUTO_COR = '".$vlrProdutoCor."', QTD_PRODUTO_COR = '".$qtdProdutoCor."'
-                                        WHERE COD_PRODUTO = '".filter_input(INPUT_POST, 'codProduto', FILTER_SANITIZE_NUMBER_INT)."'
-                                          AND COD_COR = '".$codCor."'";
-        return $this->insertDB($sql);
-    }
 
     Public Function ListarProdutoCorAutoComplete(){
         $select = "SELECT PC.COD_PRODUTO_COR AS COD,

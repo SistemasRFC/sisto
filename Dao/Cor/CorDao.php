@@ -33,30 +33,5 @@ class CorDao extends BaseDao
                     '".$this->Populate('indAtivo', 'S')."')";
         return $this->insertDB($sql);
     }
-
-    Public Function ListarCoresAtivas(){
-        if($this->Populate('codProduto', 'I') != NUll){
-            $sql = "SELECT C.COD_COR,
-                           C.DSC_COR,
-                           COALESCE (PC.VLR_PRODUTO_COR, 0) AS VLR_PRODUTO_COR,
-                           COALESCE (PC.QTD_PRODUTO_COR, 0) AS QTD_PRODUTO_COR
-                      FROM EN_COR C
-                      LEFT JOIN RE_PRODUTO_COR PC
-                        ON C.COD_COR = PC.COD_COR
-                       AND PC.COD_PRODUTO = ".$this->Populate('codProduto', 'I')."
-                     WHERE C.IND_ATIVO = 'S'
-                     GROUP BY C.COD_COR
-                     ORDER BY C.COD_COR";
-        }else{
-            $sql = "SELECT COD_COR,
-                           DSC_COR,
-                           '' AS VLR_PRODUTO_COR,
-                           '' AS QTD_PRODUTO_COR
-                      FROM EN_COR
-                     WHERE IND_ATIVO = 'S'
-                     ORDER BY COD_COR";
-        }
-        return $this->selectDB($sql, false);
-    }
  
 }

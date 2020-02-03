@@ -1,6 +1,7 @@
 <?php
 include_once(PATH."Model/BaseModel.php");
 include_once(PATH."Dao/Produto/ProdutoDao.php");
+include_once(PATH."Model/ProdutoCor/ProdutoCorModel.php");
 include_once(PATH."Resources/php/FuncoesMoeda.php");
 include_once(PATH."Resources/php/FuncoesData.php");
 class ProdutoModel extends BaseModel
@@ -32,52 +33,23 @@ class ProdutoModel extends BaseModel
     }
     
     Public Function InsertProduto(){
-        $dao = new ProdutoDao();
-        $dao->IniciaTransacao();
-        $result = $dao->InsertProduto();
+        $ProdutoDao = new ProdutoDao();
+        $result = $ProdutoDao->InsertProduto();
         if($result[0]){
             $codProduto = $result[2];
-            $array = explode("$", $_POST['codCor']);
-            for ($i=0;$i<count($array)-1;$i++){
-                $registro=explode('#',$array[$i]);
-                $registro[1] = str_replace(",", ".", str_replace(".", "", $registro[1]));
-                if($registro[1] && $registro[2]) {
-                    $result = $dao->InsertProdutoCor($codProduto, $registro[0], $registro[1], $registro[2]);
-                }
-            }
-            if($result[0]){
-                $dao->ComitaTransacao();
-            }else{
-                $dao->RolbackTransacao();
-            }
+            $ProdutoCorModel = new ProdutoCorModel();
+            $result = $ProdutoCorModel->InsertProdutoCor($codProduto, $_POST['codCor'], false);
         }
         return json_encode($result);        
     }
 
     Public Function UpdateProduto(){
         $dao = new ProdutoDao();
-        $dao->IniciaTransacao();
         $result = $dao->UpdateProduto();
         if($result[0]){
             $codProduto = filter_input(INPUT_POST, 'codProduto', FILTER_SANITIZE_NUMBER_INT);
-            $array = explode("$", $_POST['codCor']);
-            for ($i=0;$i<count($array)-1;$i++){
-                $registro=explode('#',$array[$i]);
-                $registro[1] = str_replace(",", ".", str_replace(".", "", $registro[1]));
-                if($registro[1] && $registro[2] != 0){
-                    $result = $dao->VerificaProdutoCor($registro[0]);
-                    if($result[1] == NULL){
-                        $result = $dao->InsertProdutoCor($codProduto, $registro[0], $registro[1], $registro[2]);
-                    }else{
-                        $result = $dao->UpdateProdutoCor($registro[0], $registro[1], $registro[2]);
-                    }
-                }
-            }
-            if($result[0]){
-                $dao->ComitaTransacao();
-            }else{
-                $dao->RolbackTransacao();
-            }
+            $ProdutoCorModel = new ProdutoCorModel();
+            $result = $ProdutoCorModel->UpdateProdutoCor($codProduto, $_POST['codCor'], false);
         }
         return json_encode($result);
     }

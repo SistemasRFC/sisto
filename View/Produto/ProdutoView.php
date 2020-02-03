@@ -3,7 +3,6 @@
     <head>
         <?php include "../../View/Scripts.php"; ?>
         <script src="../../View/Produto/js/ProdutoView.js?rdm=<?php echo V; ?>"></script>
-        <script src="../../View/Cor/js/classes/CorClass.js?rdm=<?php echo V; ?>"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     </head>
     <body>
