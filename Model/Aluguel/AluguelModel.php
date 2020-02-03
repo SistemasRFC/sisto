@@ -86,8 +86,19 @@ class AluguelModel extends BaseModel
     {
         $dao = new AluguelDao();
         $lista = $dao->ListarAlugueisDia();
-        if ($lista[0] && $lista[1] == null) {
-            $lista[1] = [];
+        if ($lista[0]) {
+            $lista = FuncoesMoeda::FormataMoedaInArray($lista, 'VLR_TOTAL');
+            if ($lista[1] != null) {
+                for ($i = 0; $i < count($lista[1]); $i++) {
+                    $produtos = $dao->ListarProdutosAluguel($lista[1][$i]['COD_ALUGUEL']);
+                    // var_dump($produtos);
+                    if ($produtos[0]) {
+                        $lista[1][$i]['PRODUTOS'] = $produtos[1];
+                    }
+                }
+            } else {
+                $lista[1] = [];
+            }
         }
         return json_encode($lista);
     }
@@ -96,8 +107,19 @@ class AluguelModel extends BaseModel
     {
         $dao = new AluguelDao();
         $lista = $dao->ListarAlugueisAgendados();
-        if ($lista[0] && $lista[1] == null) {
-            $lista[1] = [];
+        if ($lista[0]) {
+            $lista = FuncoesMoeda::FormataMoedaInArray($lista, 'VLR_TOTAL');
+            if ($lista[1] != null) {
+                for ($i = 0; $i < count($lista[1]); $i++) {
+                    $produtos = $dao->ListarProdutosAluguel($lista[1][$i]['COD_ALUGUEL']);
+                    // var_dump($produtos);
+                    if ($produtos[0]) {
+                        $lista[1][$i]['PRODUTOS'] = $produtos[1];
+                    }
+                }
+            } else {
+                $lista[1] = [];
+            }
         }
         return json_encode($lista);
     }

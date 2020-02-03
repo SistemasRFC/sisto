@@ -99,35 +99,47 @@ class AluguelDao extends BaseDao
     
    Public Function ListarAlugueisDia(){
       $sql = " SELECT V.COD_VENDA AS COD_ALUGUEL,
-                     DATE_FORMAT(V.DTA_VENDA, '%d/%m/%Y') AS DTA_ALUGUEL,
-                     V.COD_CLIENTE,
-                     CL.NME_CLIENTE AS DSC_CLIENTE,
-                     CL.NRO_TELEFONE,
-                     (SELECT SUM(VP.VLR_VENDA)
-                        FROM RE_VENDA_PRODUTO VP 
-                        WHERE VP.COD_VENDA = V.COD_VENDA) AS VLR_TOTAL_ALUGUEL
-                  FROM RE_VENDA V
-               INNER JOIN EN_CLIENTE CL
-                  ON V.COD_CLIENTE = CL.COD_CLIENTE
-                  WHERE DATE_FORMAT(V.DTA_VENDA, '%d/%m/%Y') = DATE_FORMAT(NOW(), '%d/%m/%Y')
-               ORDER BY V.DTA_VENDA, CL.NME_CLIENTE";
+                      DATE_FORMAT(V.DTA_VENDA, '%d/%m/%Y') AS DTA_ALUGUEL,
+                      V.COD_USUARIO,
+                      V.COD_CLIENTE,
+                      C.NME_CLIENTE,
+                      V.COD_SITUACAO,
+                      S.DSC_SITUACAO,
+                      C.NRO_TELEFONE,
+                      (SELECT SUM(VP.VLR_VENDA*VP.QTD_VENDA)
+                         FROM RE_VENDA_PRODUTO VP 
+                        WHERE VP.COD_VENDA = V.COD_VENDA) AS VLR_TOTAL
+                 FROM RE_VENDA V
+                INNER JOIN EN_CLIENTE C
+                   ON V.COD_CLIENTE = C.COD_CLIENTE
+                INNER JOIN EN_SITUACAO S
+                   ON V.COD_SITUACAO = S.COD_SITUACAO
+                WHERE DATE_FORMAT(V.DTA_VENDA, '%d/%m/%Y') = DATE_FORMAT(NOW(), '%d/%m/%Y')
+                  AND V.COD_SITUACAO != ".CANCELADO."
+                ORDER BY V.COD_VENDA";
       return $this->selectDB($sql, false);
    }
     
     Public Function ListarAlugueisAgendados(){
         $sql = " SELECT V.COD_VENDA AS COD_ALUGUEL,
                         DATE_FORMAT(V.DTA_VENDA, '%d/%m/%Y') AS DTA_ALUGUEL,
+                        V.COD_USUARIO,
                         V.COD_CLIENTE,
-                        CL.NME_CLIENTE AS DSC_CLIENTE,
-                        CL.NRO_TELEFONE,
-                        (SELECT SUM(VP.VLR_VENDA)
+                        C.NME_CLIENTE,
+                        V.COD_SITUACAO,
+                        S.DSC_SITUACAO,
+                        C.NRO_TELEFONE,
+                        (SELECT SUM(VP.VLR_VENDA*VP.QTD_VENDA)
                            FROM RE_VENDA_PRODUTO VP 
-                          WHERE VP.COD_VENDA = V.COD_VENDA) AS VLR_TOTAL_ALUGUEL
+                           WHERE VP.COD_VENDA = V.COD_VENDA) AS VLR_TOTAL
                    FROM RE_VENDA V
-                  INNER JOIN EN_CLIENTE CL
-                     ON V.COD_CLIENTE = CL.COD_CLIENTE
-                  WHERE DATE_FORMAT(V.DTA_VENDA, '%d/%m/%Y') >= DATE_FORMAT(NOW(), '%d/%m/%Y')
-                  ORDER BY V.DTA_VENDA, CL.NME_CLIENTE";
+                  INNER JOIN EN_CLIENTE C
+                     ON V.COD_CLIENTE = C.COD_CLIENTE
+                  INNER JOIN EN_SITUACAO S
+                     ON V.COD_SITUACAO = S.COD_SITUACAO
+                  WHERE STR_TO_DATE(DATE_FORMAT(V.DTA_VENDA, '%d/%m/%Y'), '%d/%m/%Y') > STR_TO_DATE(DATE_FORMAT(NOW(), '%d/%m/%Y'), '%d/%m/%Y')
+                    AND V.COD_SITUACAO != ".CANCELADO."
+                  ORDER BY V.DTA_VENDA, C.NME_CLIENTE";
         return $this->selectDB($sql, false);
     }
 }
