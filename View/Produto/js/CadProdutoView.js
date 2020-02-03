@@ -1,3 +1,4 @@
+var corClass = new Array();
 $(function() {
     $("#btnSalvarProduto").click(function(){
         if($("#dscProduto").val() == ''){
@@ -109,6 +110,15 @@ function montaGridCoresProduto(dados){
     }
 }
 
+function teste(lista){
+    for (var i=0; i<lista[1].length;i++){
+        var cor = new CorClass();
+        cor._codCor = lista[1][i].COD_COR;
+        cor._dscCor = lista[1][i].DSC_COR;
+        corClass.push(cor);
+    }
+}
 $(document).ready(function(){
     ExecutaDispatch('Cor', 'ListarCoresAtivas', undefined , montaGridCoresProduto);
+//    ExecutaDispatch('Cor', 'ListarCores', undefined , teste);
 });
