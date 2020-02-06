@@ -1,6 +1,6 @@
-Constantes.php
+/Constantes.php
 Controller/BaseController.php
 Dao/BaseDao.php
 Model/BaseModel.php
-Dispatch.php
+/Dispatch.php
 nbproject
