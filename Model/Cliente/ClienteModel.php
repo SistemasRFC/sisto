@@ -83,29 +83,29 @@ class ClienteModel extends BaseModel
         $result=array(true, '');
         if (!isset($this->objRequest->nmeCliente) || trim($this->objRequest->nmeCliente)=='') {
             $result[0] = false;
-            $result[1] .= "Preencha o Nome do cliente'\n";
+            $result[1] .= "Preencha o Nome do cliente \n";
         }
         if (!isset($this->objRequest->nroCpf) || trim($this->objRequest->nroCpf)=='') {
             $result[0] = false;
-            $result[1] .= "Preencha o CPF do Cliente'\n";
+            $result[1] .= "Preencha o CPF do Cliente \n";
         } else if(!FuncoesString::validaCPF($this->objRequest->nroCpf)){
             $result[0] = false;
             $result[1] .= "CPF inválido'\n";
         }
         if (!isset($this->objRequest->nroTelefone) || trim($this->objRequest->nroTelefone)=='' || $this->objRequest->nroTelefone == '() _____-____'){
             $result[0] = false;
-            $result[1] .= "Preencha o Telefone do Cliente'\n";
+            $result[1] .= "Preencha o Telefone do Cliente \n";
         }
         if (!isset($this->objRequest->txtEmail)){
             $result[0] = false;
-            $result[1] .= "Preencha o E-mail do Cliente'\n";
+            $result[1] .= "Preencha o E-mail do Cliente \n";
         } else if(!filter_var($this->objRequest->txtEmail, FILTER_VALIDATE_EMAIL)) {
             $result[0] = false;
             $result[1] .= "Email inválido\n";
         }
         if (!isset($this->objRequest->dtaNascimento)){
             $result[0] = false;
-            $result[1] .= "Preencha a Data de Nascimento do Cliente'\n";
+            $result[1] .= "Preencha a Data de Nascimento do Cliente \n";
         } else {
             $retorno = $this->validaNascimento($this->objRequest->dtaNascimento);
             if(!$retorno[0]){
@@ -115,20 +115,20 @@ class ClienteModel extends BaseModel
         }
         if (!isset($this->objRequest->nroCep) || trim($this->objRequest->nroCep)==''){
             $result[0] = false;
-            $result[1] .= "Preencha o CEP do Cliente'\n";
+            $result[1] .= "Preencha o CEP do Cliente \n";
         }
         if (!isset($this->objRequest->dscEndereco) || trim($this->objRequest->dscEndereco)==''){
             $result[0] = false;
-            $result[1] .= "Preencha o Endereço do Cliente'\n";
+            $result[1] .= "Preencha o Endereço do Cliente \n";
         }
         return $result;
     }
 
     Public Function ValidaCodCliente() {
         $result=array(true, '');
-        if (!$this->objRequest->codCliente){
+        if (!isset($this->objRequest->codCliente)){
             $result[0] = false;
-            $result[1] .= "Nenhum Cliente foi selecionado'\n";
+            $result[1] .= "Nenhum Cliente foi selecionado \n";
         }
         return $result;
     }

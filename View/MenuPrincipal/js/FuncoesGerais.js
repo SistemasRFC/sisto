@@ -8,10 +8,6 @@ function retornaParametros(classe=null){
     var retorno='';
     $("."+classe).each(function(index) { 
         name = $(this).prop('name');
-        console.log('nome>>', $(this));
-        console.log('nome>>', name);
-        console.log('tipo>>', $(this).attr('type'));
-        console.log('val>>', $(this).val());
         switch ($(this).attr('type')) {
             case 'checkbox':
                 if ($(this).is(":checked")){
