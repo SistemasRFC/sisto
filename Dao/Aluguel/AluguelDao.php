@@ -12,8 +12,8 @@ class AluguelDao extends BaseDao
                                 "dscEnderecoEntrega"  => array("column" =>"DSC_ENDERECO_ENTREGA", "typeColumn" =>"S"),
                                 "dscPontoReferencia"  => array("column" =>"DSC_PONTO_REFERENCIA", "typeColumn" =>"S"),
                                 "nroCepEntrega"       => array("column" =>"NRO_CEP_ENTREGA", "typeColumn" =>"S"),
-                                "dtaRecibo"           => array("column" =>"DTA_RECIBO", "typeColumn" =>"S"),
-                                "dtaBuscaProduto"     => array("column" =>"DTA_BUSCA_PRODUTO", "typeColumn" =>"S"));
+                                "dtaRecibo"           => array("column" =>"DTA_RECIBO", "typeColumn" =>"D"),
+                                "dtaBuscaProduto"     => array("column" =>"DTA_BUSCA_PRODUTO", "typeColumn" =>"D"));
     
     Protected $columnKey = array("codVenda"           => array("column" =>"COD_VENDA", "typeColumn" => "I"));
     
